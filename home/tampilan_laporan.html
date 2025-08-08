@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Detail Jawaban</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+
+    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css" />
+  </head>
+
+  <body class="app">
+    <header class="app-header fixed-top">
+      <div class="app-header-inner">
+        <div class="container-fluid py-2">
+          <div class="app-header-content">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto">
+                <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
+                    <title>Menu</title>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
+                  </svg>
+                </a>
+              </div>
+              <div class="app-search-box col">
+                <form class="app-search-form">
+                  <input type="text" placeholder="Search..." name="search" class="form-control search-input" />
+                  <button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+              </div>
+              <div class="app-utilities col-auto">
+                <div class="app-utility-item app-user-dropdown dropdown">
+                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile" /></a>
+                  <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+                    <li><a class="dropdown-item" href="#">Account</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="app-sidepanel" class="app-sidepanel">
+        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+        <div class="sidepanel-inner d-flex flex-column">
+          <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+          <div class="app-branding">
+            <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo" /><span class="logo-text">PORTAL</span></a>
+          </div>
+          <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+            <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+                  <span class="nav-link-text">Home</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="docs.html">
+                  <span class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+                  <span class="nav-link-text">Scanning</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="orders.html">
+                  <span class="nav-icon"><i class="fa-solid fa-file-alt"></i></span>
+                  <span class="nav-link-text">Data Laporan</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Detail Jawaban</h1>
+            </div>
+            <div class="col-auto">
+              <a class="btn btn-secondary" href="orders.html">
+                <i class="fa-solid fa-arrow-left me-1"></i>
+                Kembali ke Laporan
+              </a>
+            </div>
+          </div>
+          <div class="app-card app-card-settings shadow-sm p-4">
+            <div class="app-card-body">
+              <div id="info-pengguna" class="mb-4 border-bottom pb-4">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="d-inline-block ms-2">Memuat data...</p>
+              </div>
+
+              <div id="jawaban-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+      import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
+        authDomain: "test-online-b48ef.firebaseapp.com",
+        databaseURL: "https://test-online-b48ef-default-rtdb.firebaseio.com",
+        projectId: "test-online-b48ef",
+        storageBucket: "test-online-b48ef.appspot.com",
+        messagingSenderId: "636551088140",
+        appId: "1:636551088140:web:747fbb116635b4074a4629",
+        measurementId: "G-5Q7L6DK68G",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      const infoPenggunaContainer = document.getElementById("info-pengguna");
+      const jawabanContainer = document.getElementById("jawaban-container");
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const jawabanKey = urlParams.get("key");
+
+      if (jawabanKey) {
+        fetchJawabanData(jawabanKey);
+      } else {
+        infoPenggunaContainer.innerHTML = `<div class="alert alert-danger">ID Laporan tidak valid atau tidak ditemukan di URL.</div>`;
+        jawabanContainer.style.display = "none";
+      }
+
+      async function fetchJawabanData(key) {
+        try {
+          const laporanRef = ref(database, `LAPORAN/${key}`);
+          const dataRef = ref(database, `DATA/${key}`);
+
+          const [laporanSnapshot, dataSnapshot] = await Promise.all([get(laporanRef), get(dataRef)]);
+
+          if (laporanSnapshot.exists() && dataSnapshot.exists()) {
+            const laporanData = laporanSnapshot.val();
+            const jawabanData = dataSnapshot.val();
+
+            const tanggalFormatted = new Date(laporanData.tanggal).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" });
+            infoPenggunaContainer.innerHTML = `
+                        <p class="mb-1"><strong>Nama Pengguna:</strong> ${laporanData.namaPengguna}</p>
+                        <p class="mb-0"><strong>Tanggal Pengisian:</strong> ${tanggalFormatted}</p>
+                    `;
+
+            jawabanContainer.innerHTML = "";
+
+            const soalKeys = Object.keys(jawabanData).sort((a, b) => {
+              return parseInt(a.split("_")[1]) - parseInt(b.split("_")[1]);
+            });
+
+            soalKeys.forEach((soalKey) => {
+              const item = jawabanData[soalKey];
+              const soalNomor = soalKey.split("_")[1];
+
+              const jawabanHTML = `
+                            <div class="mb-4">
+                                <h5 class="question-title mb-2">Soal ${soalNomor}:</h5>
+                                <p class="text-muted">${item.pertanyaan}</p>
+                                <div class="p-3 bg-light rounded border">
+                                    <p class="mb-0">${item.jawaban || '<span class="text-danger fst-italic">(Tidak dijawab)</span>'}</p>
+                                </div>
+                            </div>
+                        `;
+              jawabanContainer.innerHTML += jawabanHTML;
+            });
+          } else {
+            infoPenggunaContainer.innerHTML = `<div class="alert alert-warning">Data untuk ID Laporan ini tidak lengkap atau tidak ditemukan.</div>`;
+          }
+        } catch (error) {
+          console.error("Gagal mengambil detail jawaban:", error);
+          infoPenggunaContainer.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat memuat data dari database.</div>`;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -382,7 +382,7 @@
                     </select>
                   </div>
                   <div class="col-auto">
-                    <a class="btn app-btn-secondary" href="#">
+                    <a class="btn app-btn-secondary" href="#" id="downloadCsvBtn">
                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                         <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
@@ -602,9 +602,8 @@
     <script type="module">
       // Impor fungsi yang dibutuhkan dari Firebase
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-      import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+      import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"; // Ganti dengan konfigurasi Firebase Anda
 
-      // Ganti dengan konfigurasi Firebase Anda
       const firebaseConfig = {
         apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
         authDomain: "test-online-b48ef.firebaseapp.com",
@@ -614,21 +613,15 @@
         messagingSenderId: "636551088140",
         appId: "1:636551088140:web:747fbb116635b4074a4629",
         measurementId: "G-5Q7L6DK68G",
-      };
+      }; // Inisialisasi Firebase
 
-      // Inisialisasi Firebase
       const app = initializeApp(firebaseConfig);
-      const database = getDatabase(app);
+      const database = getDatabase(app); // Ambil referensi ke body tabel di HTML
 
-      // Ambil referensi ke body tabel di HTML
-      const tableBody = document.getElementById("laporan-table-body");
+      const tableBody = document.getElementById("laporan-table-body"); // Buat referensi ke koleksi 'LAPORAN' di database
 
-      // Buat referensi ke koleksi 'LAPORAN' di database
-      const laporanRef = ref(database, "LAPORAN");
+      const laporanRef = ref(database, "LAPORAN"); // Gunakan onValue untuk mendengarkan perubahan data secara real-time
 
-      
-
-      // Gunakan onValue untuk mendengarkan perubahan data secara real-time
       onValue(laporanRef, (snapshot) => {
         // Kosongkan tabel setiap kali ada data baru
         tableBody.innerHTML = "";
@@ -636,52 +629,113 @@
         if (snapshot.exists()) {
           // Jika ada data, loop setiap data laporan
           snapshot.forEach((childSnapshot) => {
-            const laporanData = childSnapshot.val();
+            const laporanData = childSnapshot.val(); // Periksa apakah data memiliki nama pengguna dan tanggal
+            if (laporanData.namaPengguna && laporanData.tanggal) {
+              // Format tanggal dari timestamp menjadi string yang mudah dibaca
+              const tanggalFormatted = formatTanggal(laporanData.tanggal); // Buat satu baris tabel (<tr>) untuk setiap data
 
-            // Format tanggal dari timestamp menjadi string yang mudah dibaca
-            const tanggalFormatted = formatTanggal(laporanData.tanggal);
+              const tableRow = `
+                <tr>
+                  <td class="cell">${laporanData.namaPengguna}</td>
+                  <td class="cell">${tanggalFormatted}</td>
+                  <td class="cell"><span class="badge bg-success">Selesai</span></td>
+                  <td class="cell">
+                    <a class="btn-sm app-btn-secondary" href="tampilan_laporan.html?key=${childSnapshot.key}">
+                      Lihat Jawaban
+                    </a>
+                  </td>
+                </tr>
+              `; // Masukkan baris baru ke dalam body tabel
 
-            // Buat satu baris tabel (<tr>) untuk setiap data
-            const tableRow = `
-                    <tr>
-                        <td class="cell">${laporanData.namaPengguna}</td>
-                        <td class="cell">${tanggalFormatted}</td>
-                        <td class="cell"><span class="badge bg-success">Selesai</span></td>
-                        <td class="cell">
-                            <a class="btn-sm app-btn-secondary" href="tampilan_laporan.html?key=${laporanData.idKunciJawaban}">
-                                Lihat Jawaban
-                            </a>
-                        </td>
-                    </tr>
-                `;
-
-            // Masukkan baris baru ke dalam body tabel
-            tableBody.innerHTML += tableRow;
+              tableBody.innerHTML += tableRow;
+            }
           });
         } else {
           // Jika tidak ada data di koleksi LAPORAN
           const noDataRow = `
-                <tr>
-                    <td class="cell" colspan="4" style="text-align: center;">Belum ada data laporan.</td>
-                </tr>
-            `;
+            <tr>
+              <td class="cell" colspan="4" style="text-align: center;">Belum ada data laporan.</td>
+            </tr>
+          `;
           tableBody.innerHTML = noDataRow;
         }
       });
-
       /**
        * Fungsi untuk mengubah timestamp Firebase menjadi format tanggal dd/mm/yyyy
        * @param {number} timestamp - Angka timestamp dari Firebase.
        * @returns {string} - Tanggal yang sudah diformat.
        */
+
       function formatTanggal(timestamp) {
         const date = new Date(timestamp);
         const options = { year: "numeric", month: "long", day: "numeric" };
         return date.toLocaleDateString("id-ID", options); // Format Indonesia (e.g., 8 Agustus 2025)
+      } // --- Logika untuk Tombol Download CSV ---
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const downloadBtn = document.getElementById("downloadCsvBtn");
+
+        downloadBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          onValue(
+            laporanRef,
+            (snapshot) => {
+              const data = snapshot.val();
+              if (data) {
+                const laporanArray = Object.values(data);
+                const csv = convertToCSV(laporanArray);
+                downloadCSV(csv);
+                Swal.fire({
+                  icon: "success",
+                  title: "Berhasil!",
+                  text: "Data laporan berhasil diunduh.",
+                  confirmButtonColor: "#3085d6",
+                });
+              } else {
+                Swal.fire({
+                  icon: "info",
+                  title: "Tidak Ada Data",
+                  text: "Tidak ada data laporan yang dapat diunduh.",
+                  confirmButtonColor: "#3085d6",
+                });
+              }
+            },
+            { onlyOnce: true }
+          );
+        });
+      });
+
+      function convertToCSV(objArray) {
+        let str = ""; // Header
+        const headers = ["Nama Pengguna", "Tanggal Pengisian", "Jawaban"];
+        str += headers.join(";") + "\r\n"; // Rows
+
+        for (let i = 0; i < objArray.length; i++) {
+          const item = objArray[i];
+          const namaPengguna = item.namaPengguna ? `"${item.namaPengguna.replace(/"/g, '""')}"` : '""';
+          const tanggal = item.tanggal ? `"${formatTanggal(item.tanggal)}"` : '""';
+          const jawaban = item.jawaban
+            ? `"${Object.values(item.jawaban)
+                .map((j) => j.jawaban)
+                .join(" | ")
+                .replace(/"/g, '""')}"`
+            : '""';
+          str += [namaPengguna, tanggal, jawaban].join(";") + "\r\n";
+        }
+        return str;
       }
 
-      // --- Logika untuk Tombol Logout ---
-      
+      function downloadCSV(csv) {
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "data_laporan.csv");
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     </script>
   </body>
 </html>

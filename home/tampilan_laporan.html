@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Detail Jawaban</title>
+    <title>Detail Data</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -86,13 +86,19 @@
         <div class="container-xl">
           <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-              <h1 class="app-page-title mb-0">Detail Jawaban</h1>
+              <h1 class="app-page-title mb-0">Detail Data</h1>
             </div>
             <div class="col-auto">
-              <a class="btn btn-secondary" href="orders.html">
-                <i class="fa-solid fa-arrow-left me-1"></i>
-                Kembali ke Laporan
-              </a>
+              <div class="d-flex align-items-center">
+                <a class="btn btn-secondary me-2" href="orders.html">
+                  <i class="fa-solid fa-arrow-left me-1"></i>
+                  Kembali ke Laporan
+                </a>
+                <button id="download-csv-btn" class="btn btn-primary" style="display: none">
+                  <i class="fa-solid fa-download me-1"></i>
+                  Download CSV
+                </button>
+              </div>
             </div>
           </div>
           <div class="app-card app-card-settings shadow-sm p-4">
@@ -115,8 +121,8 @@
     <script src="assets/js/app.js"></script>
 
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-      import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
@@ -130,13 +136,17 @@
       };
 
       const app = initializeApp(firebaseConfig);
-      const database = getDatabase(app);
+      const db = getDatabase(app);
 
       const infoPenggunaContainer = document.getElementById("info-pengguna");
       const jawabanContainer = document.getElementById("jawaban-container");
+      const downloadCsvBtn = document.getElementById("download-csv-btn");
 
       const urlParams = new URLSearchParams(window.location.search);
       const jawabanKey = urlParams.get("key");
+
+      let currentData = null; // Menyimpan data dari DATA
+      let currentLaporanData = null; // Menyimpan data dari LAPORAN
 
       if (jawabanKey) {
         fetchJawabanData(jawabanKey);
@@ -147,48 +157,134 @@
 
       async function fetchJawabanData(key) {
         try {
-          const laporanRef = ref(database, `LAPORAN/${key}`);
-          const dataRef = ref(database, `DATA/${key}`);
+          const laporanRef = ref(db, `LAPORAN/${key}`);
+          const dataRef = ref(db, `DATA/${key}`);
 
           const [laporanSnapshot, dataSnapshot] = await Promise.all([get(laporanRef), get(dataRef)]);
 
           if (laporanSnapshot.exists() && dataSnapshot.exists()) {
-            const laporanData = laporanSnapshot.val();
-            const jawabanData = dataSnapshot.val();
+            currentLaporanData = laporanSnapshot.val();
+            currentData = dataSnapshot.val();
 
-            const tanggalFormatted = new Date(laporanData.tanggal).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" });
+            // Menampilkan tombol unduh setelah data berhasil dimuat
+            downloadCsvBtn.style.display = "inline-block";
+
+            const tanggalFormatted = currentLaporanData.tanggal
+              ? new Date(currentLaporanData.tanggal).toLocaleString("id-ID", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              : "-";
+
             infoPenggunaContainer.innerHTML = `
-                        <p class="mb-1"><strong>Nama Pengguna:</strong> ${laporanData.namaPengguna}</p>
-                        <p class="mb-0"><strong>Tanggal Pengisian:</strong> ${tanggalFormatted}</p>
-                    `;
+              <p class="mb-1"><strong>Nama Pengguna:</strong> ${currentData.nama || "Tidak Ditemukan"}</p>
+              <p class="mb-0"><strong>Tanggal Pengisian:</strong> ${tanggalFormatted}</p>
+            `;
 
             jawabanContainer.innerHTML = "";
 
-            const soalKeys = Object.keys(jawabanData).sort((a, b) => {
-              return parseInt(a.split("_")[1]) - parseInt(b.split("_")[1]);
-            });
+            if (currentData.jawaban?.pilgan && Array.isArray(currentData.jawaban.pilgan)) {
+              currentData.jawaban.pilgan.forEach((item) => {
+                const opsiList = item.opsi?.length ? `<ul>${item.opsi.map((o) => `<li>${o}</li>`).join("")}</ul>` : "";
+                const jawabanHTML = item.jawaban ? `<strong>${item.jawaban.opsi}</strong> (Skor: ${item.jawaban.value})` : `<span class="text-danger fst-italic">(Tidak dijawab)</span>`;
 
-            soalKeys.forEach((soalKey) => {
-              const item = jawabanData[soalKey];
-              const soalNomor = soalKey.split("_")[1];
+                jawabanContainer.innerHTML += `
+                  <div class="mb-4">
+                    <h5 class="question-title mb-2">${item.judul || "Pertanyaan " + item.no}</h5>
+                    <p class="text-muted">${item.pertanyaan || ""}</p>
+                    ${opsiList}
+                    <div class="p-3 bg-light rounded border">${jawabanHTML}</div>
+                  </div>
+                `;
+              });
+            }
 
-              const jawabanHTML = `
-                            <div class="mb-4">
-                                <h5 class="question-title mb-2">Soal ${soalNomor}:</h5>
-                                <p class="text-muted">${item.pertanyaan}</p>
-                                <div class="p-3 bg-light rounded border">
-                                    <p class="mb-0">${item.jawaban || '<span class="text-danger fst-italic">(Tidak dijawab)</span>'}</p>
-                                </div>
-                            </div>
-                        `;
-              jawabanContainer.innerHTML += jawabanHTML;
-            });
+            if (currentData.jawaban?.esai && Array.isArray(currentData.jawaban.esai)) {
+              currentData.jawaban.esai.forEach((item) => {
+                const jawabanHTML = item.jawaban && item.jawaban.trim() !== "" ? `<p>${item.jawaban}</p>` : `<span class="text-danger fst-italic">(Tidak dijawab)</span>`;
+
+                jawabanContainer.innerHTML += `
+                  <div class="mb-4">
+                    <h5 class="question-title mb-2">${item.judul || "Pertanyaan " + item.no}</h5>
+                    <p class="text-muted">${item.pertanyaan || ""}</p>
+                    <div class="p-3 bg-light rounded border">${jawabanHTML}</div>
+                  </div>
+                `;
+              });
+            }
           } else {
             infoPenggunaContainer.innerHTML = `<div class="alert alert-warning">Data untuk ID Laporan ini tidak lengkap atau tidak ditemukan.</div>`;
           }
         } catch (error) {
           console.error("Gagal mengambil detail jawaban:", error);
           infoPenggunaContainer.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat memuat data dari database.</div>`;
+        }
+      }
+
+      downloadCsvBtn.addEventListener("click", () => {
+        if (currentData && currentLaporanData) {
+          downloadCSV(currentData, currentLaporanData);
+        }
+      });
+
+      function downloadCSV(data, laporanData) {
+        const rows = [];
+
+        // Header CSV
+        rows.push(["Nama Pengguna", "Tanggal Pengisian", "Jenis Pertanyaan", "No", "Judul", "Pertanyaan", "Jawaban", "Skor"]);
+
+        // Data pengguna
+        const nama = data.nama || "Tidak Ditemukan";
+
+        // Format tanggal agar sesuai dengan tampilan di halaman web
+        const tanggalFormatted = laporanData.tanggal
+          ? new Date(laporanData.tanggal).toLocaleString("id-ID", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : "-";
+
+        // Data Pilihan Ganda
+        if (data.jawaban?.pilgan && Array.isArray(data.jawaban.pilgan)) {
+          data.jawaban.pilgan.forEach((item) => {
+            const jawaban = item.jawaban ? item.jawaban.opsi : "(Tidak dijawab)";
+            const skor = item.jawaban ? item.jawaban.value : 0;
+            const judul = item.judul || "Pertanyaan " + item.no;
+            const pertanyaan = item.pertanyaan || "";
+
+            rows.push([nama, tanggalFormatted, "Pilihan Ganda", item.no, judul, pertanyaan, jawaban, skor]);
+          });
+        }
+
+        // Data Esai
+        if (data.jawaban?.esai && Array.isArray(data.jawaban.esai)) {
+          data.jawaban.esai.forEach((item) => {
+            const jawaban = item.jawaban && item.jawaban.trim() !== "" ? item.jawaban : "(Tidak dijawab)";
+            const judul = item.judul || "Pertanyaan " + item.no;
+            const pertanyaan = item.pertanyaan || "";
+
+            rows.push([nama, tanggalFormatted, "Esai", item.no, judul, pertanyaan, jawaban, "N/A"]);
+          });
+        }
+
+        const csvContent = rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        if (link.download !== undefined) {
+          const url = URL.createObjectURL(blob);
+          link.setAttribute("href", url);
+          link.setAttribute("download", `laporan_jawaban_${jawabanKey}.csv`);
+          link.style.visibility = "hidden";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
         }
       }
     </script>

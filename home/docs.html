@@ -121,92 +121,2802 @@
                 </div>
 
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 1:</h5>
-                  <p>Jelaskan tujuan utama dari program “E-Counseling PsikoGius” yang dikembangkan untuk Posyandu Remaja Boginville.</p>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal1" style="height: 120px"></textarea>
-                    <label for="soal1">Tulis jawaban Anda di sini...</label>
+                  <h5 class="question-title mb-2">Pertanyaan 1</h5>
+                  <p class="text-muted">(bila pertanyaan telah selesai ditanyakan silahkan beri tanda silang pada jawaban pasien sesuai jawaban yang diberikan pada pertanyaan P1. Setiap ada perbedaan pada pertanyaan ini harus diragukan)</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Dalam kehidupan anda, zat apa saja dibawah ini yang pernah digunakan? (HANYA PENGGUNAAN NON MEDIS)</th>
+                          <th class="text-center">Tidak</th>
+                          <th class="text-center">Ya</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-tembakau" id="p1-tembakau-no" value="0" />
+                              <label class="form-check-label" for="p1-tembakau-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-tembakau" id="p1-tembakau-yes" value="3" />
+                              <label class="form-check-label" for="p1-tembakau-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-alkohol" id="p1-alkohol-no" value="0" />
+                              <label class="form-check-label" for="p1-alkohol-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-alkohol" id="p1-alkohol-yes" value="3" />
+                              <label class="form-check-label" for="p1-alkohol-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-kanabis" id="p1-kanabis-no" value="0" />
+                              <label class="form-check-label" for="p1-kanabis-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-kanabis" id="p1-kanabis-yes" value="3" />
+                              <label class="form-check-label" for="p1-kanabis-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-kokain" id="p1-kokain-no" value="0" />
+                              <label class="form-check-label" for="p1-kokain-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-kokain" id="p1-kokain-yes" value="3" />
+                              <label class="form-check-label" for="p1-kokain-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-stimulan" id="p1-stimulan-no" value="0" />
+                              <label class="form-check-label" for="p1-stimulan-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-stimulan" id="p1-stimulan-yes" value="3" />
+                              <label class="form-check-label" for="p1-stimulan-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-inhalansia" id="p1-inhalansia-no" value="0" />
+                              <label class="form-check-label" for="p1-inhalansia-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-inhalansia" id="p1-inhalansia-yes" value="3" />
+                              <label class="form-check-label" for="p1-inhalansia-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-sedatif" id="p1-sedatif-no" value="0" />
+                              <label class="form-check-label" for="p1-sedatif-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-sedatif" id="p1-sedatif-yes" value="3" />
+                              <label class="form-check-label" for="p1-sedatif-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-halusinogen" id="p1-halusinogen-no" value="0" />
+                              <label class="form-check-label" for="p1-halusinogen-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-halusinogen" id="p1-halusinogen-yes" value="3" />
+                              <label class="form-check-label" for="p1-halusinogen-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-opioid" id="p1-opioid-no" value="0" />
+                              <label class="form-check-label" for="p1-opioid-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-opioid" id="p1-opioid-yes" value="3" />
+                              <label class="form-check-label" for="p1-opioid-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-lain" id="p1-lain-no" value="0" />
+                              <label class="form-check-label" for="p1-lain-no">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p1-lain" id="p1-lain-yes" value="3" />
+                              <label class="form-check-label" for="p1-lain-yes">3</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 2:</h5>
-                  <p>Sebutkan dan jelaskan siapa sasaran utama yang diberdayakan dalam program “Pemberdayaan Kelompok Tenaga Kesehatan Posyandu Remaja Boginville”!</p>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal2" style="height: 120px"></textarea>
-                    <label for="soal2">Tulis jawaban Anda di sini...</label>
+                  <h5 class="question-title mb-2">Pertanyaan 2</h5>
+                  <p>Dalam tiga bulan terakhir, seberapa sering anda pernah menggunakan zat seperti yang anda katakan?</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Zat</th>
+                          <th class="text-center">Tidak pernah</th>
+                          <th class="text-center">Satu atau dua kali</th>
+                          <th class="text-center">Bulanan</th>
+                          <th class="text-center">Mingguan</th>
+                          <th class="text-center">Harian atau hampir tiap hari</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-tembakau" id="p2-tembakau-0" value="0" />
+                              <label class="form-check-label" for="p2-tembakau-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-tembakau" id="p2-tembakau-2" value="2" />
+                              <label class="form-check-label" for="p2-tembakau-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-tembakau" id="p2-tembakau-3" value="3" />
+                              <label class="form-check-label" for="p2-tembakau-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-tembakau" id="p2-tembakau-4" value="4" />
+                              <label class="form-check-label" for="p2-tembakau-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-tembakau" id="p2-tembakau-6" value="6" />
+                              <label class="form-check-label" for="p2-tembakau-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-alkohol" id="p2-alkohol-0" value="0" />
+                              <label class="form-check-label" for="p2-alkohol-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-alkohol" id="p2-alkohol-2" value="2" />
+                              <label class="form-check-label" for="p2-alkohol-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-alkohol" id="p2-alkohol-3" value="3" />
+                              <label class="form-check-label" for="p2-alkohol-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-alkohol" id="p2-alkohol-4" value="4" />
+                              <label class="form-check-label" for="p2-alkohol-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-alkohol" id="p2-alkohol-6" value="6" />
+                              <label class="form-check-label" for="p2-alkohol-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kanabis" id="p2-kanabis-0" value="0" />
+                              <label class="form-check-label" for="p2-kanabis-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kanabis" id="p2-kanabis-2" value="2" />
+                              <label class="form-check-label" for="p2-kanabis-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kanabis" id="p2-kanabis-3" value="3" />
+                              <label class="form-check-label" for="p2-kanabis-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kanabis" id="p2-kanabis-4" value="4" />
+                              <label class="form-check-label" for="p2-kanabis-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kanabis" id="p2-kanabis-6" value="6" />
+                              <label class="form-check-label" for="p2-kanabis-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kokain" id="p2-kokain-0" value="0" />
+                              <label class="form-check-label" for="p2-kokain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kokain" id="p2-kokain-2" value="2" />
+                              <label class="form-check-label" for="p2-kokain-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kokain" id="p2-kokain-3" value="3" />
+                              <label class="form-check-label" for="p2-kokain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kokain" id="p2-kokain-4" value="4" />
+                              <label class="form-check-label" for="p2-kokain-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-kokain" id="p2-kokain-6" value="6" />
+                              <label class="form-check-label" for="p2-kokain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-stimulan" id="p2-stimulan-0" value="0" />
+                              <label class="form-check-label" for="p2-stimulan-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-stimulan" id="p2-stimulan-2" value="2" />
+                              <label class="form-check-label" for="p2-stimulan-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-stimulan" id="p2-stimulan-3" value="3" />
+                              <label class="form-check-label" for="p2-stimulan-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-stimulan" id="p2-stimulan-4" value="4" />
+                              <label class="form-check-label" for="p2-stimulan-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-stimulan" id="p2-stimulan-6" value="6" />
+                              <label class="form-check-label" for="p2-stimulan-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-inhalansia" id="p2-inhalansia-0" value="0" />
+                              <label class="form-check-label" for="p2-inhalansia-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-inhalansia" id="p2-inhalansia-2" value="2" />
+                              <label class="form-check-label" for="p2-inhalansia-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-inhalansia" id="p2-inhalansia-3" value="3" />
+                              <label class="form-check-label" for="p2-inhalansia-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-inhalansia" id="p2-inhalansia-4" value="4" />
+                              <label class="form-check-label" for="p2-inhalansia-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-inhalansia" id="p2-inhalansia-6" value="6" />
+                              <label class="form-check-label" for="p2-inhalansia-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-sedatif" id="p2-sedatif-0" value="0" />
+                              <label class="form-check-label" for="p2-sedatif-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-sedatif" id="p2-sedatif-2" value="2" />
+                              <label class="form-check-label" for="p2-sedatif-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-sedatif" id="p2-sedatif-3" value="3" />
+                              <label class="form-check-label" for="p2-sedatif-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-sedatif" id="p2-sedatif-4" value="4" />
+                              <label class="form-check-label" for="p2-sedatif-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-sedatif" id="p2-sedatif-6" value="6" />
+                              <label class="form-check-label" for="p2-sedatif-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-halusinogen" id="p2-halusinogen-0" value="0" />
+                              <label class="form-check-label" for="p2-halusinogen-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-halusinogen" id="p2-halusinogen-2" value="2" />
+                              <label class="form-check-label" for="p2-halusinogen-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-halusinogen" id="p2-halusinogen-3" value="3" />
+                              <label class="form-check-label" for="p2-halusinogen-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-halusinogen" id="p2-halusinogen-4" value="4" />
+                              <label class="form-check-label" for="p2-halusinogen-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-halusinogen" id="p2-halusinogen-6" value="6" />
+                              <label class="form-check-label" for="p2-halusinogen-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-opioid" id="p2-opioid-0" value="0" />
+                              <label class="form-check-label" for="p2-opioid-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-opioid" id="p2-opioid-2" value="2" />
+                              <label class="form-check-label" for="p2-opioid-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-opioid" id="p2-opioid-3" value="3" />
+                              <label class="form-check-label" for="p2-opioid-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-opioid" id="p2-opioid-4" value="4" />
+                              <label class="form-check-label" for="p2-opioid-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-opioid" id="p2-opioid-6" value="6" />
+                              <label class="form-check-label" for="p2-opioid-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-lain" id="p2-lain-0" value="0" />
+                              <label class="form-check-label" for="p2-lain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-lain" id="p2-lain-2" value="2" />
+                              <label class="form-check-label" for="p2-lain-2">2</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-lain" id="p2-lain-3" value="3" />
+                              <label class="form-check-label" for="p2-lain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-lain" id="p2-lain-4" value="4" />
+                              <label class="form-check-label" for="p2-lain-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p2-lain" id="p2-lain-6" value="6" />
+                              <label class="form-check-label" for="p2-lain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 3:</h5>
-                  <p>Jelaskan apa yang Anda pahami tentang konsep 'Terapi Religius' dalam konteks program “E-Counseling PsikoGius”!</p>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal3" style="height: 120px"></textarea>
-                    <label for="soal3">Tulis jawaban Anda di sini...</label>
+                  <h5 class="question-title mb-2">Pertanyaan 3</h5>
+                  <p>Selama tiga bulan terakhir, seberapa sering anda mempunyai keinginan yang kuat untuk menggunakan?</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Zat</th>
+                          <th class="text-center">Tidak pernah</th>
+                          <th class="text-center">Satu atau dua kali</th>
+                          <th class="text-center">Bulanan</th>
+                          <th class="text-center">Mingguan</th>
+                          <th class="text-center">Harian atau hampir tiap hari</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-tembakau" id="p3-tembakau-0" value="0" />
+                              <label class="form-check-label" for="p3-tembakau-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-tembakau" id="p3-tembakau-3" value="3" />
+                              <label class="form-check-label" for="p3-tembakau-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-tembakau" id="p3-tembakau-4" value="4" />
+                              <label class="form-check-label" for="p3-tembakau-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-tembakau" id="p3-tembakau-5" value="5" />
+                              <label class="form-check-label" for="p3-tembakau-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-tembakau" id="p3-tembakau-6" value="6" />
+                              <label class="form-check-label" for="p3-tembakau-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-alkohol" id="p3-alkohol-0" value="0" />
+                              <label class="form-check-label" for="p3-alkohol-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-alkohol" id="p3-alkohol-3" value="3" />
+                              <label class="form-check-label" for="p3-alkohol-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-alkohol" id="p3-alkohol-4" value="4" />
+                              <label class="form-check-label" for="p3-alkohol-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-alkohol" id="p3-alkohol-5" value="5" />
+                              <label class="form-check-label" for="p3-alkohol-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-alkohol" id="p3-alkohol-6" value="6" />
+                              <label class="form-check-label" for="p3-alkohol-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kanabis" id="p3-kanabis-0" value="0" />
+                              <label class="form-check-label" for="p3-kanabis-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kanabis" id="p3-kanabis-3" value="3" />
+                              <label class="form-check-label" for="p3-kanabis-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kanabis" id="p3-kanabis-4" value="4" />
+                              <label class="form-check-label" for="p3-kanabis-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kanabis" id="p3-kanabis-5" value="5" />
+                              <label class="form-check-label" for="p3-kanabis-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kanabis" id="p3-kanabis-6" value="6" />
+                              <label class="form-check-label" for="p3-kanabis-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kokain" id="p3-kokain-0" value="0" />
+                              <label class="form-check-label" for="p3-kokain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kokain" id="p3-kokain-3" value="3" />
+                              <label class="form-check-label" for="p3-kokain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kokain" id="p3-kokain-4" value="4" />
+                              <label class="form-check-label" for="p3-kokain-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kokain" id="p3-kokain-5" value="5" />
+                              <label class="form-check-label" for="p3-kokain-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-kokain" id="p3-kokain-6" value="6" />
+                              <label class="form-check-label" for="p3-kokain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-stimulan" id="p3-stimulan-0" value="0" />
+                              <label class="form-check-label" for="p3-stimulan-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-stimulan" id="p3-stimulan-3" value="3" />
+                              <label class="form-check-label" for="p3-stimulan-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-stimulan" id="p3-stimulan-4" value="4" />
+                              <label class="form-check-label" for="p3-stimulan-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-stimulan" id="p3-stimulan-5" value="5" />
+                              <label class="form-check-label" for="p3-stimulan-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-stimulan" id="p3-stimulan-6" value="6" />
+                              <label class="form-check-label" for="p3-stimulan-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-inhalansia" id="p3-inhalansia-0" value="0" />
+                              <label class="form-check-label" for="p3-inhalansia-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-inhalansia" id="p3-inhalansia-3" value="3" />
+                              <label class="form-check-label" for="p3-inhalansia-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-inhalansia" id="p3-inhalansia-4" value="4" />
+                              <label class="form-check-label" for="p3-inhalansia-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-inhalansia" id="p3-inhalansia-5" value="5" />
+                              <label class="form-check-label" for="p3-inhalansia-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-inhalansia" id="p3-inhalansia-6" value="6" />
+                              <label class="form-check-label" for="p3-inhalansia-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-sedatif" id="p3-sedatif-0" value="0" />
+                              <label class="form-check-label" for="p3-sedatif-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-sedatif" id="p3-sedatif-3" value="3" />
+                              <label class="form-check-label" for="p3-sedatif-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-sedatif" id="p3-sedatif-4" value="4" />
+                              <label class="form-check-label" for="p3-sedatif-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-sedatif" id="p3-sedatif-5" value="5" />
+                              <label class="form-check-label" for="p3-sedatif-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-sedatif" id="p3-sedatif-6" value="6" />
+                              <label class="form-check-label" for="p3-sedatif-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-halusinogen" id="p3-halusinogen-0" value="0" />
+                              <label class="form-check-label" for="p3-halusinogen-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-halusinogen" id="p3-halusinogen-3" value="3" />
+                              <label class="form-check-label" for="p3-halusinogen-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-halusinogen" id="p3-halusinogen-4" value="4" />
+                              <label class="form-check-label" for="p3-halusinogen-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-halusinogen" id="p3-halusinogen-5" value="5" />
+                              <label class="form-check-label" for="p3-halusinogen-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-halusinogen" id="p3-halusinogen-6" value="6" />
+                              <label class="form-check-label" for="p3-halusinogen-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-opioid" id="p3-opioid-0" value="0" />
+                              <label class="form-check-label" for="p3-opioid-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-opioid" id="p3-opioid-3" value="3" />
+                              <label class="form-check-label" for="p3-opioid-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-opioid" id="p3-opioid-4" value="4" />
+                              <label class="form-check-label" for="p3-opioid-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-opioid" id="p3-opioid-5" value="5" />
+                              <label class="form-check-label" for="p3-opioid-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-opioid" id="p3-opioid-6" value="6" />
+                              <label class="form-check-label" for="p3-opioid-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-lain" id="p3-lain-0" value="0" />
+                              <label class="form-check-label" for="p3-lain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-lain" id="p3-lain-3" value="3" />
+                              <label class="form-check-label" for="p3-lain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-lain" id="p3-lain-4" value="4" />
+                              <label class="form-check-label" for="p3-lain-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-lain" id="p3-lain-5" value="5" />
+                              <label class="form-check-label" for="p3-lain-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p3-lain" id="p3-lain-6" value="6" />
+                              <label class="form-check-label" for="p3-lain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 4:</h5>
-                  <p>Uraikan mengapa platform 'E-Counseling' menjadi komponen penting dalam program ini, terutama untuk menjangkau kalangan remaja!</p>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal4" style="height: 120px"></textarea>
-                    <label for="soal4">Tulis jawaban Anda di sini...</label>
+                  <h5 class="question-title mb-2">Pertanyaan 4</h5>
+                  <p>Selama tiga bulan terakhir, seberapa sering obat yang anda gunakan menyebabkan timbulnya masalah kesehatan, sosial, hukum dan masalah keuangan?</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Zat</th>
+                          <th class="text-center">Tidak pernah</th>
+                          <th class="text-center">Satu atau dua kali</th>
+                          <th class="text-center">Bulanan</th>
+                          <th class="text-center">Mingguan</th>
+                          <th class="text-center">Harian atau hampir tiap hari</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-tembakau" id="p4-tembakau-0" value="0" />
+                              <label class="form-check-label" for="p4-tembakau-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-tembakau" id="p4-tembakau-4" value="4" />
+                              <label class="form-check-label" for="p4-tembakau-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-tembakau" id="p4-tembakau-5" value="5" />
+                              <label class="form-check-label" for="p4-tembakau-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-tembakau" id="p4-tembakau-6" value="6" />
+                              <label class="form-check-label" for="p4-tembakau-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-tembakau" id="p4-tembakau-7" value="7" />
+                              <label class="form-check-label" for="p4-tembakau-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-alkohol" id="p4-alkohol-0" value="0" />
+                              <label class="form-check-label" for="p4-alkohol-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-alkohol" id="p4-alkohol-4" value="4" />
+                              <label class="form-check-label" for="p4-alkohol-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-alkohol" id="p4-alkohol-5" value="5" />
+                              <label class="form-check-label" for="p4-alkohol-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-alkohol" id="p4-alkohol-6" value="6" />
+                              <label class="form-check-label" for="p4-alkohol-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-alkohol" id="p4-alkohol-7" value="7" />
+                              <label class="form-check-label" for="p4-alkohol-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kanabis" id="p4-kanabis-0" value="0" />
+                              <label class="form-check-label" for="p4-kanabis-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kanabis" id="p4-kanabis-4" value="4" />
+                              <label class="form-check-label" for="p4-kanabis-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kanabis" id="p4-kanabis-5" value="5" />
+                              <label class="form-check-label" for="p4-kanabis-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kanabis" id="p4-kanabis-6" value="6" />
+                              <label class="form-check-label" for="p4-kanabis-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kanabis" id="p4-kanabis-7" value="7" />
+                              <label class="form-check-label" for="p4-kanabis-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kokain" id="p4-kokain-0" value="0" />
+                              <label class="form-check-label" for="p4-kokain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kokain" id="p4-kokain-4" value="4" />
+                              <label class="form-check-label" for="p4-kokain-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kokain" id="p4-kokain-5" value="5" />
+                              <label class="form-check-label" for="p4-kokain-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kokain" id="p4-kokain-6" value="6" />
+                              <label class="form-check-label" for="p4-kokain-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-kokain" id="p4-kokain-7" value="7" />
+                              <label class="form-check-label" for="p4-kokain-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-stimulan" id="p4-stimulan-0" value="0" />
+                              <label class="form-check-label" for="p4-stimulan-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-stimulan" id="p4-stimulan-4" value="4" />
+                              <label class="form-check-label" for="p4-stimulan-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-stimulan" id="p4-stimulan-5" value="5" />
+                              <label class="form-check-label" for="p4-stimulan-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-stimulan" id="p4-stimulan-6" value="6" />
+                              <label class="form-check-label" for="p4-stimulan-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-stimulan" id="p4-stimulan-7" value="7" />
+                              <label class="form-check-label" for="p4-stimulan-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-inhalansia" id="p4-inhalansia-0" value="0" />
+                              <label class="form-check-label" for="p4-inhalansia-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-inhalansia" id="p4-inhalansia-4" value="4" />
+                              <label class="form-check-label" for="p4-inhalansia-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-inhalansia" id="p4-inhalansia-5" value="5" />
+                              <label class="form-check-label" for="p4-inhalansia-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-inhalansia" id="p4-inhalansia-6" value="6" />
+                              <label class="form-check-label" for="p4-inhalansia-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-inhalansia" id="p4-inhalansia-7" value="7" />
+                              <label class="form-check-label" for="p4-inhalansia-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-sedatif" id="p4-sedatif-0" value="0" />
+                              <label class="form-check-label" for="p4-sedatif-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-sedatif" id="p4-sedatif-4" value="4" />
+                              <label class="form-check-label" for="p4-sedatif-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-sedatif" id="p4-sedatif-5" value="5" />
+                              <label class="form-check-label" for="p4-sedatif-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-sedatif" id="p4-sedatif-6" value="6" />
+                              <label class="form-check-label" for="p4-sedatif-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-sedatif" id="p4-sedatif-7" value="7" />
+                              <label class="form-check-label" for="p4-sedatif-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-halusinogen" id="p4-halusinogen-0" value="0" />
+                              <label class="form-check-label" for="p4-halusinogen-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-halusinogen" id="p4-halusinogen-4" value="4" />
+                              <label class="form-check-label" for="p4-halusinogen-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-halusinogen" id="p4-halusinogen-5" value="5" />
+                              <label class="form-check-label" for="p4-halusinogen-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-halusinogen" id="p4-halusinogen-6" value="6" />
+                              <label class="form-check-label" for="p4-halusinogen-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-halusinogen" id="p4-halusinogen-7" value="7" />
+                              <label class="form-check-label" for="p4-halusinogen-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-opioid" id="p4-opioid-0" value="0" />
+                              <label class="form-check-label" for="p4-opioid-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-opioid" id="p4-opioid-4" value="4" />
+                              <label class="form-check-label" for="p4-opioid-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-opioid" id="p4-opioid-5" value="5" />
+                              <label class="form-check-label" for="p4-opioid-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-opioid" id="p4-opioid-6" value="6" />
+                              <label class="form-check-label" for="p4-opioid-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-opioid" id="p4-opioid-7" value="7" />
+                              <label class="form-check-label" for="p4-opioid-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-lain" id="p4-lain-0" value="0" />
+                              <label class="form-check-label" for="p4-lain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-lain" id="p4-lain-4" value="4" />
+                              <label class="form-check-label" for="p4-lain-4">4</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-lain" id="p4-lain-5" value="5" />
+                              <label class="form-check-label" for="p4-lain-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-lain" id="p4-lain-6" value="6" />
+                              <label class="form-check-label" for="p4-lain-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p4-lain" id="p4-lain-7" value="7" />
+                              <label class="form-check-label" for="p4-lain-7">7</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 5:</h5>
-                  <p>Kombinasi antara 'Psikoterapi' dan 'Terapi Religius' dalam 'PsikoGius' dirancang untuk menangani masalah Napza dari dua aspek utama. Sebutkan dan jelaskan kedua aspek tersebut!</p>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal5" style="height: 120px"></textarea>
-                    <label for="soal5">Tulis jawaban Anda di sini...</label>
+                  <h5 class="question-title mb-2">Pertanyaan 5</h5>
+                  <p>Selama tiga bulan terakhir, seberapa sering anda gagal melakukan hal-hal yang biasa anda lakukan disebabkan karena penggunaan dari?</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Zat</th>
+                          <th class="text-center">Tidak pernah</th>
+                          <th class="text-center">Satu atau dua kali</th>
+                          <th class="text-center">Bulanan</th>
+                          <th class="text-center">Mingguan</th>
+                          <th class="text-center">Harian atau hampir tiap hari</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-tembakau" id="p5-tembakau-0" value="0" />
+                              <label class="form-check-label" for="p5-tembakau-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-tembakau" id="p5-tembakau-5" value="5" />
+                              <label class="form-check-label" for="p5-tembakau-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-tembakau" id="p5-tembakau-6" value="6" />
+                              <label class="form-check-label" for="p5-tembakau-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-tembakau" id="p5-tembakau-7" value="7" />
+                              <label class="form-check-label" for="p5-tembakau-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-tembakau" id="p5-tembakau-8" value="8" />
+                              <label class="form-check-label" for="p5-tembakau-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-alkohol" id="p5-alkohol-0" value="0" />
+                              <label class="form-check-label" for="p5-alkohol-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-alkohol" id="p5-alkohol-5" value="5" />
+                              <label class="form-check-label" for="p5-alkohol-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-alkohol" id="p5-alkohol-6" value="6" />
+                              <label class="form-check-label" for="p5-alkohol-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-alkohol" id="p5-alkohol-7" value="7" />
+                              <label class="form-check-label" for="p5-alkohol-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-alkohol" id="p5-alkohol-8" value="8" />
+                              <label class="form-check-label" for="p5-alkohol-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kanabis" id="p5-kanabis-0" value="0" />
+                              <label class="form-check-label" for="p5-kanabis-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kanabis" id="p5-kanabis-5" value="5" />
+                              <label class="form-check-label" for="p5-kanabis-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kanabis" id="p5-kanabis-6" value="6" />
+                              <label class="form-check-label" for="p5-kanabis-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kanabis" id="p5-kanabis-7" value="7" />
+                              <label class="form-check-label" for="p5-kanabis-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kanabis" id="p5-kanabis-8" value="8" />
+                              <label class="form-check-label" for="p5-kanabis-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kokain" id="p5-kokain-0" value="0" />
+                              <label class="form-check-label" for="p5-kokain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kokain" id="p5-kokain-5" value="5" />
+                              <label class="form-check-label" for="p5-kokain-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kokain" id="p5-kokain-6" value="6" />
+                              <label class="form-check-label" for="p5-kokain-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kokain" id="p5-kokain-7" value="7" />
+                              <label class="form-check-label" for="p5-kokain-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-kokain" id="p5-kokain-8" value="8" />
+                              <label class="form-check-label" for="p5-kokain-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-stimulan" id="p5-stimulan-0" value="0" />
+                              <label class="form-check-label" for="p5-stimulan-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-stimulan" id="p5-stimulan-5" value="5" />
+                              <label class="form-check-label" for="p5-stimulan-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-stimulan" id="p5-stimulan-6" value="6" />
+                              <label class="form-check-label" for="p5-stimulan-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-stimulan" id="p5-stimulan-7" value="7" />
+                              <label class="form-check-label" for="p5-stimulan-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-stimulan" id="p5-stimulan-8" value="8" />
+                              <label class="form-check-label" for="p5-stimulan-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-inhalansia" id="p5-inhalansia-0" value="0" />
+                              <label class="form-check-label" for="p5-inhalansia-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-inhalansia" id="p5-inhalansia-5" value="5" />
+                              <label class="form-check-label" for="p5-inhalansia-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-inhalansia" id="p5-inhalansia-6" value="6" />
+                              <label class="form-check-label" for="p5-inhalansia-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-inhalansia" id="p5-inhalansia-7" value="7" />
+                              <label class="form-check-label" for="p5-inhalansia-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-inhalansia" id="p5-inhalansia-8" value="8" />
+                              <label class="form-check-label" for="p5-inhalansia-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-sedatif" id="p5-sedatif-0" value="0" />
+                              <label class="form-check-label" for="p5-sedatif-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-sedatif" id="p5-sedatif-5" value="5" />
+                              <label class="form-check-label" for="p5-sedatif-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-sedatif" id="p5-sedatif-6" value="6" />
+                              <label class="form-check-label" for="p5-sedatif-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-sedatif" id="p5-sedatif-7" value="7" />
+                              <label class="form-check-label" for="p5-sedatif-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-sedatif" id="p5-sedatif-8" value="8" />
+                              <label class="form-check-label" for="p5-sedatif-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-halusinogen" id="p5-halusinogen-0" value="0" />
+                              <label class="form-check-label" for="p5-halusinogen-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-halusinogen" id="p5-halusinogen-5" value="5" />
+                              <label class="form-check-label" for="p5-halusinogen-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-halusinogen" id="p5-halusinogen-6" value="6" />
+                              <label class="form-check-label" for="p5-halusinogen-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-halusinogen" id="p5-halusinogen-7" value="7" />
+                              <label class="form-check-label" for="p5-halusinogen-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-halusinogen" id="p5-halusinogen-8" value="8" />
+                              <label class="form-check-label" for="p5-halusinogen-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-opioid" id="p5-opioid-0" value="0" />
+                              <label class="form-check-label" for="p5-opioid-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-opioid" id="p5-opioid-5" value="5" />
+                              <label class="form-check-label" for="p5-opioid-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-opioid" id="p5-opioid-6" value="6" />
+                              <label class="form-check-label" for="p5-opioid-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-opioid" id="p5-opioid-7" value="7" />
+                              <label class="form-check-label" for="p5-opioid-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-opioid" id="p5-opioid-8" value="8" />
+                              <label class="form-check-label" for="p5-opioid-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-lain" id="p5-lain-0" value="0" />
+                              <label class="form-check-label" for="p5-lain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-lain" id="p5-lain-5" value="5" />
+                              <label class="form-check-label" for="p5-lain-5">5</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-lain" id="p5-lain-6" value="6" />
+                              <label class="form-check-label" for="p5-lain-6">6</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-lain" id="p5-lain-7" value="7" />
+                              <label class="form-check-label" for="p5-lain-7">7</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p5-lain" id="p5-lain-8" value="8" />
+                              <label class="form-check-label" for="p5-lain-8">8</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 6:</h5>
-                  <p>Berikan satu contoh konkret penerapan 'Psikoterapi' yang dapat dilakukan oleh kader kesehatan dalam sesi konseling untuk pengendalian Napza!</p>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal6" style="height: 120px"></textarea>
-                    <label for="soal6">Tulis jawaban Anda di sini...</label>
+                  <h5 class="question-title mb-2">Pertanyaan 6</h5>
+                  <p>Apakah ada teman, keluarga atau seseorang lainnya yang pernah mengungkapkan keprihatinannya tentang penggunaan dari?</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Zat</th>
+                          <th class="text-center">Tidak</th>
+                          <th class="text-center">Ya, tapi tidak dalam 3 bulan terakhir</th>
+                          <th class="text-center">Ya, dalam 3 bulan terakhir</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-tembakau" id="p6-tembakau-0" value="0" />
+                              <label class="form-check-label" for="p6-tembakau-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-tembakau" id="p6-tembakau-3" value="3" />
+                              <label class="form-check-label" for="p6-tembakau-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-tembakau" id="p6-tembakau-6" value="6" />
+                              <label class="form-check-label" for="p6-tembakau-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-alkohol" id="p6-alkohol-0" value="0" />
+                              <label class="form-check-label" for="p6-alkohol-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-alkohol" id="p6-alkohol-3" value="3" />
+                              <label class="form-check-label" for="p6-alkohol-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-alkohol" id="p6-alkohol-6" value="6" />
+                              <label class="form-check-label" for="p6-alkohol-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-kanabis" id="p6-kanabis-0" value="0" />
+                              <label class="form-check-label" for="p6-kanabis-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-kanabis" id="p6-kanabis-3" value="3" />
+                              <label class="form-check-label" for="p6-kanabis-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-kanabis" id="p6-kanabis-6" value="6" />
+                              <label class="form-check-label" for="p6-kanabis-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-kokain" id="p6-kokain-0" value="0" />
+                              <label class="form-check-label" for="p6-kokain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-kokain" id="p6-kokain-3" value="3" />
+                              <label class="form-check-label" for="p6-kokain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-kokain" id="p6-kokain-6" value="6" />
+                              <label class="form-check-label" for="p6-kokain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-stimulan" id="p6-stimulan-0" value="0" />
+                              <label class="form-check-label" for="p6-stimulan-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-stimulan" id="p6-stimulan-3" value="3" />
+                              <label class="form-check-label" for="p6-stimulan-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-stimulan" id="p6-stimulan-6" value="6" />
+                              <label class="form-check-label" for="p6-stimulan-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-inhalansia" id="p6-inhalansia-0" value="0" />
+                              <label class="form-check-label" for="p6-inhalansia-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-inhalansia" id="p6-inhalansia-3" value="3" />
+                              <label class="form-check-label" for="p6-inhalansia-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-inhalansia" id="p6-inhalansia-6" value="6" />
+                              <label class="form-check-label" for="p6-inhalansia-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-sedatif" id="p6-sedatif-0" value="0" />
+                              <label class="form-check-label" for="p6-sedatif-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-sedatif" id="p6-sedatif-3" value="3" />
+                              <label class="form-check-label" for="p6-sedatif-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-sedatif" id="p6-sedatif-6" value="6" />
+                              <label class="form-check-label" for="p6-sedatif-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-halusinogen" id="p6-halusinogen-0" value="0" />
+                              <label class="form-check-label" for="p6-halusinogen-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-halusinogen" id="p6-halusinogen-3" value="3" />
+                              <label class="form-check-label" for="p6-halusinogen-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-halusinogen" id="p6-halusinogen-6" value="6" />
+                              <label class="form-check-label" for="p6-halusinogen-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-opioid" id="p6-opioid-0" value="0" />
+                              <label class="form-check-label" for="p6-opioid-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-opioid" id="p6-opioid-3" value="3" />
+                              <label class="form-check-label" for="p6-opioid-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-opioid" id="p6-opioid-6" value="6" />
+                              <label class="form-check-label" for="p6-opioid-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-lain" id="p6-lain-0" value="0" />
+                              <label class="form-check-label" for="p6-lain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-lain" id="p6-lain-3" value="3" />
+                              <label class="form-check-label" for="p6-lain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p6-lain" id="p6-lain-6" value="6" />
+                              <label class="form-check-label" for="p6-lain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 7:</h5>
-                  <p>Jelaskan apa peran strategis Posyandu Remaja Boginville dalam mendukung keberhasilan program 'E-Counseling PsikoGius'!</p>
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal7" style="height: 120px"></textarea>
-                    <label for="soal7">Tulis jawaban Anda di sini...</label>
+                  <h5 class="question-title mb-2">Pertanyaan 7</h5>
+                  <p>Apakah anda pernah mencoba dan gagal untuk mengontrol, mengurangi, atau menghentikan penggunaan?</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Zat</th>
+                          <th class="text-center">Tidak</th>
+                          <th class="text-center">Ya, tapi tidak dalam 3 bulan terakhir</th>
+                          <th class="text-center">Ya, dalam 3 bulan terakhir</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-tembakau" id="p7-tembakau-0" value="0" />
+                              <label class="form-check-label" for="p7-tembakau-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-tembakau" id="p7-tembakau-3" value="3" />
+                              <label class="form-check-label" for="p7-tembakau-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-tembakau" id="p7-tembakau-6" value="6" />
+                              <label class="form-check-label" for="p7-tembakau-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-alkohol" id="p7-alkohol-0" value="0" />
+                              <label class="form-check-label" for="p7-alkohol-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-alkohol" id="p7-alkohol-3" value="3" />
+                              <label class="form-check-label" for="p7-alkohol-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-alkohol" id="p7-alkohol-6" value="6" />
+                              <label class="form-check-label" for="p7-alkohol-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-kanabis" id="p7-kanabis-0" value="0" />
+                              <label class="form-check-label" for="p7-kanabis-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-kanabis" id="p7-kanabis-3" value="3" />
+                              <label class="form-check-label" for="p7-kanabis-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-kanabis" id="p7-kanabis-6" value="6" />
+                              <label class="form-check-label" for="p7-kanabis-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-kokain" id="p7-kokain-0" value="0" />
+                              <label class="form-check-label" for="p7-kokain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-kokain" id="p7-kokain-3" value="3" />
+                              <label class="form-check-label" for="p7-kokain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-kokain" id="p7-kokain-6" value="6" />
+                              <label class="form-check-label" for="p7-kokain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-stimulan" id="p7-stimulan-0" value="0" />
+                              <label class="form-check-label" for="p7-stimulan-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-stimulan" id="p7-stimulan-3" value="3" />
+                              <label class="form-check-label" for="p7-stimulan-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-stimulan" id="p7-stimulan-6" value="6" />
+                              <label class="form-check-label" for="p7-stimulan-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-inhalansia" id="p7-inhalansia-0" value="0" />
+                              <label class="form-check-label" for="p7-inhalansia-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-inhalansia" id="p7-inhalansia-3" value="3" />
+                              <label class="form-check-label" for="p7-inhalansia-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-inhalansia" id="p7-inhalansia-6" value="6" />
+                              <label class="form-check-label" for="p7-inhalansia-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-sedatif" id="p7-sedatif-0" value="0" />
+                              <label class="form-check-label" for="p7-sedatif-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-sedatif" id="p7-sedatif-3" value="3" />
+                              <label class="form-check-label" for="p7-sedatif-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-sedatif" id="p7-sedatif-6" value="6" />
+                              <label class="form-check-label" for="p7-sedatif-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-halusinogen" id="p7-halusinogen-0" value="0" />
+                              <label class="form-check-label" for="p7-halusinogen-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-halusinogen" id="p7-halusinogen-3" value="3" />
+                              <label class="form-check-label" for="p7-halusinogen-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-halusinogen" id="p7-halusinogen-6" value="6" />
+                              <label class="form-check-label" for="p7-halusinogen-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-opioid" id="p7-opioid-0" value="0" />
+                              <label class="form-check-label" for="p7-opioid-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-opioid" id="p7-opioid-3" value="3" />
+                              <label class="form-check-label" for="p7-opioid-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-opioid" id="p7-opioid-6" value="6" />
+                              <label class="form-check-label" for="p7-opioid-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-lain" id="p7-lain-0" value="0" />
+                              <label class="form-check-label" for="p7-lain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-lain" id="p7-lain-3" value="3" />
+                              <label class="form-check-label" for="p7-lain-3">3</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p7-lain" id="p7-lain-6" value="6" />
+                              <label class="form-check-label" for="p7-lain-6">6</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 8:</h5>
-                  <p>Apa makna dari konsep 'pemberdayaan' yang diterapkan kepada kelompok tenaga kesehatan dalam program ini?</p>
+                  <h5 class="question-title mb-2">Pertanyaan 8</h5>
+                  <p>Apakah anda pernah menggunakan zat dengan cara menyuntik? (HANYA PENGGUNAAN NON MEDIS)</p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                      <thead>
+                        <tr>
+                          <th class="w-50">Zat</th>
+                          <th class="text-center">Tidak</th>
+                          <th class="text-center">Ya, tapi tidak dalam 3 bulan terakhir</th>
+                          <th class="text-center">Ya, dalam 3 bulan terakhir</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>a. Tembakau (rokok, cerutu, kretek, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-tembakau" id="p8-tembakau-0" value="0" />
+                              <label class="form-check-label" for="p8-tembakau-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-tembakau" id="p8-tembakau-1" value="1" />
+                              <label class="form-check-label" for="p8-tembakau-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-tembakau" id="p8-tembakau-2" value="2" />
+                              <label class="form-check-label" for="p8-tembakau-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b. Minuman beralkohol (bir, anggur, spiritus, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-alkohol" id="p8-alkohol-0" value="0" />
+                              <label class="form-check-label" for="p8-alkohol-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-alkohol" id="p8-alkohol-1" value="1" />
+                              <label class="form-check-label" for="p8-alkohol-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-alkohol" id="p8-alkohol-2" value="2" />
+                              <label class="form-check-label" for="p8-alkohol-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c. Kanabis (marijuana, ganja, gelek, cimeng, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-kanabis" id="p8-kanabis-0" value="0" />
+                              <label class="form-check-label" for="p8-kanabis-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-kanabis" id="p8-kanabis-1" value="1" />
+                              <label class="form-check-label" for="p8-kanabis-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-kanabis" id="p8-kanabis-2" value="2" />
+                              <label class="form-check-label" for="p8-kanabis-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d. Kokain</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-kokain" id="p8-kokain-0" value="0" />
+                              <label class="form-check-label" for="p8-kokain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-kokain" id="p8-kokain-1" value="1" />
+                              <label class="form-check-label" for="p8-kokain-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-kokain" id="p8-kokain-2" value="2" />
+                              <label class="form-check-label" for="p8-kokain-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e. Stimulan jenis amfetamin (ekstasi, shabu, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-stimulan" id="p8-stimulan-0" value="0" />
+                              <label class="form-check-label" for="p8-stimulan-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-stimulan" id="p8-stimulan-1" value="1" />
+                              <label class="form-check-label" for="p8-stimulan-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-stimulan" id="p8-stimulan-2" value="2" />
+                              <label class="form-check-label" for="p8-stimulan-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f. Inhalansia (lem, bensin, tiner, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-inhalansia" id="p8-inhalansia-0" value="0" />
+                              <label class="form-check-label" for="p8-inhalansia-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-inhalansia" id="p8-inhalansia-1" value="1" />
+                              <label class="form-check-label" for="p8-inhalansia-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-inhalansia" id="p8-inhalansia-2" value="2" />
+                              <label class="form-check-label" for="p8-inhalansia-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>g. Sedatif atau obat tidur (Pil Koplo, Valium, Dumolid, Lexotan, Rohypnol, Mogadon, dll.)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-sedatif" id="p8-sedatif-0" value="0" />
+                              <label class="form-check-label" for="p8-sedatif-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-sedatif" id="p8-sedatif-1" value="1" />
+                              <label class="form-check-label" for="p8-sedatif-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-sedatif" id="p8-sedatif-2" value="2" />
+                              <label class="form-check-label" for="p8-sedatif-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>h. Halusinogens (LSD, mushrooms, PCP, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-halusinogen" id="p8-halusinogen-0" value="0" />
+                              <label class="form-check-label" for="p8-halusinogen-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-halusinogen" id="p8-halusinogen-1" value="1" />
+                              <label class="form-check-label" for="p8-halusinogen-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-halusinogen" id="p8-halusinogen-2" value="2" />
+                              <label class="form-check-label" for="p8-halusinogen-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>i. Opioid (heroin, putaw, morfin, metadon, kodein, dll)</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-opioid" id="p8-opioid-0" value="0" />
+                              <label class="form-check-label" for="p8-opioid-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-opioid" id="p8-opioid-1" value="1" />
+                              <label class="form-check-label" for="p8-opioid-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-opioid" id="p8-opioid-2" value="2" />
+                              <label class="form-check-label" for="p8-opioid-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>j. Zat-lain, jelaskan:</td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-lain" id="p8-lain-0" value="0" />
+                              <label class="form-check-label" for="p8-lain-0">0</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-lain" id="p8-lain-1" value="1" />
+                              <label class="form-check-label" for="p8-lain-1">1</label>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="p8-lain" id="p8-lain-2" value="2" />
+                              <label class="form-check-label" for="p8-lain-2">2</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <hr class="my-4" />
+                <h5 class="question-title mb-2">Esay</h5>
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 1</h5>
+                  <p>*Berapa kalikah dalam hidup, Anda pernah dirawat di rumah sakit untuk masalah fisik?</p>
+                  <p class="text-muted">Termasuk over dosis (O.D.) dan delirium tremens (D.T.). [cite_start]Tidak termasuk detoks, terapi alkohol/zat, psikiatris dan kelahiran anak (jika tidak ada komplikasi)[cite: 149].</p>
                   <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal8" style="height: 120px"></textarea>
-                    <label for="soal8">Tulis jawaban Anda di sini...</label>
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m1" style="height: 120px"></textarea>
+                    <label for="m1">Tulis jawaban Anda di sini...</label>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 9:</h5>
-                  <p>Setiap program pasti memiliki tantangan. Menurut Anda, apa salah satu potensi keterbatasan dari pendekatan 'E-Counseling PsikoGius'?</p>
+                  <h5 class="question-title mb-2">Pertanyaan No 2</h5>
+                  <p>Kapan terakhir kali Anda dirawat di rumah sakit untuk masalah di atas?</p>
                   <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal9" style="height: 120px"></textarea>
-                    <label for="soal9">Tulis jawaban Anda di sini...</label>
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m2" style="height: 120px"></textarea>
+                    <label for="m2">Tulis jawaban Anda di sini...</label>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <div class="mb-4">
-                  <h5 class="question-title mb-2">Soal 10:</h5>
-                  <p>Tuliskan kepanjangan dari 'Napza' dan jelaskan secara singkat apa perbedaannya dengan istilah 'Narkoba'!</p>
+                  <h5 class="question-title mb-2">Pertanyaan No 3</h5>
+                  <p>Apakah Anda menderita masalah kesehatan Kronis* yang terus mempengaruhi hidup Anda?</p>
+                  [cite_start]
+                  <p class="text-muted">* Kondisi kesehatan kronis adalah kondisi fisik serius yang memerlukan perawatan teratur (misal: pengobatan, pengaturan makanan), menghambat kualitas hidup yang optimal[cite: 171].</p>
                   <div class="form-floating">
-                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="soal10" style="height: 120px"></textarea>
-                    <label for="soal10">Tulis jawaban Anda di sini...</label>
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m3" style="height: 120px"></textarea>
+                    <label for="m3">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 4</h5>
+                  <p>Apakah Anda menggunakan obat yang diresepkan secara teratur untuk gangguan fisik?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m4" style="height: 120px"></textarea>
+                    <label for="m4">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 5</h5>
+                  <p>Apakah Anda menerima dukungan finansial untuk kecacatan fisik?</p>
+                  <p class="text-muted">*Termasuk kompensasi pekerja, pensiun dini bagi kecacatan medis. [cite_start]*Tidak termasuk kecacatan psikiatri[cite: 185, 186].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m5" style="height: 120px"></textarea>
+                    <label for="m5">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 6</h5>
+                  <p>Berapa harikah Anda mempunyai masalah kesehatan dalam 30 hari terakhir?</p>
+                  <p class="text-muted">
+                    Termasuk flu, masuk angin, dll. [cite_start]Termasuk penyakit serius berhubungan dengan zat, yang akan terus berlanjut walaupun pasien abstinen (e.g., sirosis hati, abses karena pemakaian jarum, dll)[cite: 188].
+                  </p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m6" style="height: 120px"></textarea>
+                    <label for="m6">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 7</h5>
+                  <p>Seberapa terganggukah Anda oleh masalah kesehatan dalam 30 hari terakhir?</p>
+                  [cite_start]
+                  <p class="text-muted">Batasi respons pada hari-hari bermasalah dari Pertanyaan M6[cite: 192].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m7" style="height: 120px"></textarea>
+                    <label for="m7">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 8</h5>
+                  <p>Seberapa pentingkah bagi Anda saat ini pengobatan untuk masalah medis tersebut?</p>
+                  [cite_start]
+                  <p class="text-muted">Jika klien saat ini mendapat terapi medis, maka yang dimaksud adalah kebutuhan pasien akan terapi medis tambahan[cite: 194].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m8" style="height: 120px"></textarea>
+                    <label for="m8">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 9</h5>
+                  <p>Pasien memberikan keterangan yang salah?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m10" style="height: 120px"></textarea>
+                    <label for="m10">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 10</h5>
+                  <p>Ketidakmampuan pasien untuk memahami pertanyaan?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m11" style="height: 120px"></textarea>
+                    <label for="m11">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 11</h5>
+                  <p>Apakah Anda pernah di tes untuk hepatitis C?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m12" style="height: 120px"></textarea>
+                    <label for="m12">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 12</h5>
+                  <p>Jika ya, apakah hasilnya?</p>
+                  <p class="text-muted">1 = Negatif (tidak terinfeksi); 2 = Positif (terinfeksi); [cite_start]3 = Tidak tahu[cite: 167, 200].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m12a" style="height: 120px"></textarea>
+                    <label for="m12a">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 13</h5>
+                  <p>Apakah Anda ingin memperoleh tes Hepatitis C?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m12b" style="height: 120px"></textarea>
+                    <label for="m12b">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 14</h5>
+                  <p>Apakah Anda pernah di tes untuk HIV?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m13" style="height: 120px"></textarea>
+                    <label for="m13">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 15</h5>
+                  <p>Jika ya, apakah hasilnya?</p>
+                  <p class="text-muted">1 = Negatif (tidak terinfeksi); 2 = Positif (terinfeksi); [cite_start]3 = Tidak tahu[cite: 206, 207].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m13a" style="height: 120px"></textarea>
+                    <label for="m13a">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 16</h5>
+                  <p>Apakah Anda menginginkan bantuan memperoleh tes HIV?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m13b" style="height: 120px"></textarea>
+                    <label for="m13b">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 17</h5>
+                  <p>Apakah Anda saat ini sedang mengandung?</p>
+                  [cite_start]
+                  <p class="text-muted">Jika pasien adalah pria, beri kode "N"[cite: 211].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m14" style="height: 120px"></textarea>
+                    <label for="m14">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 18</h5>
+                  <p>Jika sedang mengandung, apakah Anda melakukan pemeriksaan prenatal?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m14a" style="height: 120px"></textarea>
+                    <label for="m14a">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 19</h5>
+                  <p>Jika tidak yakin maukah Anda bersedia melakukan tes kehamilan?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="m14b" style="height: 120px"></textarea>
+                    <label for="m14b">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 20</h5>
+                  <p>Pendidikan yang diselesaikan:</p>
+                  [cite_start]
+                  <p class="text-muted">
+                    level 0 tidak sekolah; level 1 kelas 1-6 SD; level 2 kelas 1-3 SMP; level 3 kelas 1-3 SMU; level 4 diploma/akademi/college; level 5 srata 1; level 6 strata 2 dan 3 (termasuk program doktoral) [cite: 225, 226, 229-233].
+                  </p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e1" style="height: 120px"></textarea>
+                    <label for="e1">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 21</h5>
+                  <p>Tingkat pendidikan tertinggi yang dicapai, Jelaskan:</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e1a" style="height: 120px"></textarea>
+                    <label for="e1a">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 22</h5>
+                  <p>Pelatihan atau Pendidikan Keterampilan yang selesai:</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e2" style="height: 120px"></textarea>
+                    <label for="e2">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 23</h5>
+                  <p>Apakah pilihan pekerjaan Anda dibatasi oleh ketiadaan transportasi?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e4a" style="height: 120px"></textarea>
+                    <label for="e4a">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 24</h5>
+                  <p>Berapa lamakah pekerjaan penuh waktu Anda yang paling lama?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e6" style="height: 120px"></textarea>
+                    <label for="e6">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 25</h5>
+                  <p>Jenis pekerjaan terakhir (yang biasanya)?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e7" style="height: 120px"></textarea>
+                    <label for="e7">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 26</h5>
+                  <p>Apakah ada seseorang yang memberikan dukungan terbesar pada Anda?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e9" style="height: 120px"></textarea>
+                    <label for="e9">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 27</h5>
+                  <p>Manakah di bawah ini yang mewakili pola pekerjaan Anda yang utama dalam tiga tahun?</p>
+                  <p class="text-muted">
+                    1. Purna waktu (35 jam atau lebih); 2. Paruh waktu (jam-jam tetap); 3. Paruh waktu (jam tidak tentu); 4. Mahasiswa/pelajar; 5. Jasa; 6. Pensiun/Ketidak mampuan; 7. Tidak bekerja; 8. Di dalam lingkungan terkontrol; 9.
+                    [cite_start]Homemaker [cite: 266-273].
+                  </p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e10" style="height: 120px"></textarea>
+                    <label for="e10">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 28</h5>
+                  <p>Berapa harikah Anda bekerja yang digaji dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e11" style="height: 120px"></textarea>
+                    <label for="e11">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 29</h5>
+                  <p>Berapa banyak uang yang Anda terima dari Pekerjaan dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e12" style="height: 120px"></textarea>
+                    <label for="e12">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 30</h5>
+                  <p>Berapa banyak uang yang Anda terima dari Kompensasi bila tidak bekerja dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e13" style="height: 120px"></textarea>
+                    <label for="e13">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 31</h5>
+                  <p>Berapa banyak uang yang Anda terima dari Kesejahteraan sosial dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e14" style="height: 120px"></textarea>
+                    <label for="e14">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 32</h5>
+                  <p>Berapa banyak uang yang Anda terima dari Pensiun, jaminan sosial dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e15" style="height: 120px"></textarea>
+                    <label for="e15">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 33</h5>
+                  <p>Berapa banyak uang yang Anda terima dari Pasangan, keluarga, atau teman-teman dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e16" style="height: 120px"></textarea>
+                    <label for="e16">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 34</h5>
+                  <p>Berapa banyak uang yang Anda terima dari Ilegal dalam 30 hari terakhir?</p>
+                  [cite_start]
+                  <p class="text-muted">Uang kontan diperoleh dari penjualan zat, mencuri, tukang tadah, judi tidak legal, prostitusi, dll.[cite: 290].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e17" style="height: 120px"></textarea>
+                    <label for="e17">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 35</h5>
+                  <p>Berapa jumlah orang yang menggantungkan hidupnya pada Anda untuk makan, tempat tinggal, dll?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e18" style="height: 120px"></textarea>
+                    <label for="e18">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 36</h5>
+                  <p>Berapa jumlah hari Anda mengalami masalah pekerjaan dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e19" style="height: 120px"></textarea>
+                    <label for="e19">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 37</h5>
+                  <p>Seberapa terganggukah Anda dengan masalah pekerjaan ini dalam 30 hari terakhir?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e20" style="height: 120px"></textarea>
+                    <label for="e20">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 38</h5>
+                  <p>Seberapa pentingkah bagi Anda sekarang konseling untuk masalah pekerjaan ini?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e21" style="height: 120px"></textarea>
+                    <label for="e21">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 39</h5>
+                  <p>Salah mengemukakan kenyataan dirinya?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e23" style="height: 120px"></textarea>
+                    <label for="e23">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 40</h5>
+                  <p>Ketidakmampuan pasien untuk memahami?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="e24" style="height: 120px"></textarea>
+                    <label for="e24">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 41</h5>
+                  <p>Berapa kali Anda memperoleh terapi untuk berbagai masalah psikologis atau emosional: Di rumah sakit atau rawat inap?</p>
+                  [cite_start]
+                  <p class="text-muted">Tidak termasuk masalah penyalahgunaan zat, pekerjaan, atau konseling keluarga[cite: 631].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p1" style="height: 120px"></textarea>
+                    <label for="p1">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 42</h5>
+                  <p>Berapa kali Anda memperoleh terapi untuk berbagai masalah psikologis atau emosional: Rawat jalan /pasien pribadi?</p>
+                  [cite_start]
+                  <p class="text-muted">Tidak termasuk masalah penyalahgunaan zat, pekerjaan, atau konseling keluarga[cite: 631].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p2" style="height: 120px"></textarea>
+                    <label for="p2">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 43</h5>
+                  <p>Apakah Anda mendapat dukungan finansial untuk disabilitas psikiatri? Bisa berasal dari Pemerintah atau pemberi kerja,dll.</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p3" style="height: 120px"></textarea>
+                    <label for="p3">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 44</h5>
+                  <p>Apakah Anda pernah mengalami depresi serius-kesedihan, putus asa, kehilangan minat, kesukaran dalam fungsi sehari-hari? (30 hari terakhir dan Sepanjang hidup)</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p4" style="height: 120px"></textarea>
+                    <label for="p4">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 45</h5>
+                  <p>Apakah Anda pernah mengalami ansietas serius / ketegangan, gelisah, merasa khawatir yg berlebihan, ketidakmampuan untuk merasa relaks? (30 hari terakhir dan Sepanjang hidup)</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p5" style="height: 120px"></textarea>
+                    <label for="p5">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 46</h5>
+                  <p>Apakah Anda pernah mengalami halusinasi-melihat atau mendengar sesuatu yang tidak ada obyeknya? (30 hari terakhir dan Sepanjang hidup)</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p6" style="height: 120px"></textarea>
+                    <label for="p6">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 47</h5>
+                  <p>Apakah Anda pernah mengalami kesulitan berkonsentrasi atau mengingat? (30 hari terakhir dan Sepanjang hidup)</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p7" style="height: 120px"></textarea>
+                    <label for="p7">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 48</h5>
+                  <p>Mengalami kesukaran mengontrol perilaku kacau termasuk kemarahan atau kekerasan? (30 hari terakhir dan Sepanjang hidup)</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p8" style="height: 120px"></textarea>
+                    <label for="p8">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 49</h5>
+                  <p>Mengalami pikiran serius untuk bunuh diri?</p>
+                  [cite_start]
+                  <p class="text-muted">Pasien secara serius merencanakan bunuh diri[cite: 661].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p9" style="height: 120px"></textarea>
+                    <label for="p9">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 50</h5>
+                  <p>Mencoba untuk bunuh diri?</p>
+                  [cite_start]
+                  <p class="text-muted">Termasuk tanda-tanda atau usaha bunuh diri yg nyata[cite: 663].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p10" style="height: 120px"></textarea>
+                    <label for="p10">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 51</h5>
+                  <p>Apakah dokter Anda menyarankan untuk minum obat untuk masalah psikologis atau emosional?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p11" style="height: 120px"></textarea>
+                    <label for="p11">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 52</h5>
+                  <p>Berapa harikah dalam 30 hari terakhir Anda mengalami masalah psikologis atau emosional tersebut?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p12" style="height: 120px"></textarea>
+                    <label for="p12">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 53</h5>
+                  <p>Seberapa terganggukah Anda oleh masalah Psikologis/emosional dalam 30 hari terakhir?</p>
+                  [cite_start]
+                  <p class="text-muted">Pasien harus menilai hari-hari bermasalah dari Pertanyaan P12[cite: 672].</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p13" style="height: 120px"></textarea>
+                    <label for="p13">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 54</h5>
+                  <p>Seberapa pentingkah bagi Anda terapi sekarang ini untuk masalah psikologis atau emosional ini?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p14" style="height: 120px"></textarea>
+                    <label for="p14">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 55</h5>
+                  <p>Salah mengemukakan kenyataan diri sendiri?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p22" style="height: 120px"></textarea>
+                    <label for="p22">Tulis jawaban Anda di sini...</label>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <div class="mb-4">
+                  <h5 class="question-title mb-2">Pertanyaan No 56</h5>
+                  <p>Ketidakmampuan pasien untuk memahami?</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Tulis jawaban Anda di sini" id="p23" style="height: 120px"></textarea>
+                    <label for="p23">Tulis jawaban Anda di sini...</label>
                   </div>
                 </div>
 
@@ -231,14 +2941,13 @@
     <script src="assets/js/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- ===================== SCRIPT FIREBASE (JANGAN HAPUS ELEMEN LAIN) ===================== -->
+    <!-- ===================== SCRIPT FIREBASE (FINAL FIX) ===================== -->
     <script type="module">
-      // 1. Impor semua fungsi yang dibutuhkan dari Firebase
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-      import { getDatabase, ref, get, set, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+      import { getDatabase, ref, get, set, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
-      // Konfigurasi Firebase Anda
+      // Konfigurasi Firebase
       const firebaseConfig = {
         apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
         authDomain: "test-online-b48ef.firebaseapp.com",
@@ -250,12 +2959,12 @@
         measurementId: "G-5Q7L6DK68G",
       };
 
-      // Inisialisasi Firebase
+      // Init
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
-      const database = getDatabase(app);
+      const db = getDatabase(app);
 
-      // Ambil semua elemen HTML yang dibutuhkan
+      // Elemen
       const formKuis = document.getElementById("kuisForm");
       const statusDiv = document.getElementById("statusKirim");
       const namaEl = document.getElementById("namaPengguna");
@@ -263,127 +2972,112 @@
       const origBtnHtml = submitBtn ? submitBtn.innerHTML : "Kirim Jawaban";
       const menuLaporan = document.getElementById("menu-laporan");
 
-      // Variabel untuk menyimpan nama pengguna setelah login
       let namaPenggunaSaatLogin = null;
 
-      // --- Penanganan UI Awal ---
-      if (formKuis) formKuis.style.pointerEvents = "none";
-      if (submitBtn) submitBtn.disabled = true;
-      if (namaEl) namaEl.value = "Memuat nama pengguna...";
-
-      // --- Logika Utama ---
+      // --- Cek login user ---
       onAuthStateChanged(auth, (user) => {
         if (user) {
           const uid = user.uid;
-          const userRef = ref(database, `users/${uid}/nama`);
-          const roleRef = ref(database, `users/${uid}/role`);
+          const userRef = ref(db, `users/${uid}/nama`);
+          const roleRef = ref(db, `users/${uid}/role`);
 
-          get(userRef)
-            .then((snapshot) => {
-              if (snapshot.exists()) {
-                namaPenggunaSaatLogin = snapshot.val(); // Simpan nama di variabel
-
-                if (namaEl) {
-                  namaEl.value = namaPenggunaSaatLogin;
-                  namaEl.readOnly = true;
-                }
-
-                // ================================================================
-                // PERBAIKAN: Aktifkan kembali form dan tombol SETELAH nama didapat
-                // ================================================================
-                if (formKuis) formKuis.style.pointerEvents = "auto";
-                if (submitBtn) submitBtn.disabled = false;
-              } else {
-                console.error("GAGAL: Snapshot tidak ada.");
-                if (namaEl) namaEl.value = "Profil tidak ditemukan";
+          get(userRef).then((snap) => {
+            if (snap.exists()) {
+              namaPenggunaSaatLogin = snap.val();
+              if (namaEl) {
+                namaEl.value = namaPenggunaSaatLogin;
+                namaEl.readOnly = true;
               }
-            })
-            .catch((error) => {
-              console.error("GAGAL: Terjadi error saat get(). Pesan:", error.message);
-              if (namaEl) namaEl.value = "Error koneksi database";
-            });
-
-          get(roleRef).then((snapshot) => {
-            if (snapshot.exists()) {
-              const role = snapshot.val();
-              if (role === "admin") {
-                // Jika admin, pastikan menu terlihat
-                console.log("Pengguna adalah Admin, menu laporan ditampilkan.");
-                if (menuLaporan) {
-                  menuLaporan.style.display = "block";
-                }
-              } else {
-                // Jika bukan admin (misal: 'user'), sembunyikan menu
-                console.log("Pengguna adalah User, menu laporan disembunyikan.");
-                if (menuLaporan) {
-                  menuLaporan.style.display = "none";
-                }
-              }
+              if (formKuis) formKuis.style.pointerEvents = "auto";
+              if (submitBtn) submitBtn.disabled = false;
             } else {
-              // Jika data role tidak ada, anggap sebagai user biasa dan sembunyikan menu
-              console.log("Role tidak ditemukan, menu laporan disembunyikan.");
-              if (menuLaporan) {
-                menuLaporan.style.display = "none";
-              }
+              namaEl.value = "Profil tidak ditemukan";
+            }
+          });
+
+          get(roleRef).then((snap) => {
+            if (snap.exists() && snap.val() === "admin") {
+              if (menuLaporan) menuLaporan.style.display = "block";
+            } else {
+              if (menuLaporan) menuLaporan.style.display = "none";
             }
           });
         } else {
-          // Pengguna tidak login, arahkan ke halaman login
-          console.log("Tidak ada pengguna yang login, mengalihkan...");
           window.location.href = "../index.html";
         }
       });
 
-      // --- Proses Pengiriman Form ---
+      // --- Submit form ---
       if (formKuis) {
         formKuis.addEventListener("submit", async (e) => {
           e.preventDefault();
 
-          // Gunakan nama dari variabel yang sudah disimpan, bukan dari input field lagi
-          const namaUntukDisimpan = namaPenggunaSaatLogin;
           const uidPengguna = auth.currentUser ? auth.currentUser.uid : null;
+          const namaUntukDisimpan = namaPenggunaSaatLogin;
 
-          if (!namaUntukDisimpan || !uidPengguna) {
-            if (statusDiv) statusDiv.innerHTML = `<div class="alert alert-danger">Error: Data pengguna tidak lengkap. Silakan refresh halaman.</div>`;
+          if (!uidPengguna || !namaUntukDisimpan) {
+            statusDiv.innerHTML = `<div class="alert alert-danger">Error: Data pengguna tidak lengkap.</div>`;
             return;
           }
 
-          // ... sisa kode pengiriman form Anda (sudah benar) ...
+          let hasil = {
+            nama: namaUntukDisimpan,
+            jawaban: {
+              pilgan: [],
+              esai: [],
+            },
+          };
 
-          // Kumpulkan jawaban
-          let semuaTerisi = true;
-          const jawabanKosong = [];
-          const dataJawaban = {};
+          const pertanyaanEls = formKuis.querySelectorAll(".mb-4");
 
-          for (let i = 1; i <= 10; i++) {
-            const soalEl = document.getElementById(`soal${i}`);
-            if (!soalEl) continue;
+          pertanyaanEls.forEach((block, i) => {
+            const judul = block.querySelector(".question-title")?.innerText || `Pertanyaan ${i + 1}`;
+            const pertanyaan = block.querySelector("p")?.innerText || "";
 
-            const jawabanText = soalEl.value.trim();
-            const pertanyaanEl = soalEl.closest(".mb-4")?.querySelector("p");
-            const pertanyaanText = pertanyaanEl ? pertanyaanEl.innerText.trim() : `Soal ${i}`;
+            let dataPertanyaan = {
+              no: i + 1,
+              judul: judul,
+              pertanyaan: pertanyaan,
+              opsi: [],
+              jawaban: null,
+            };
 
-            if (!jawabanText) {
-              semuaTerisi = false;
-              jawabanKosong.push(i);
+            // Pilihan ganda
+            const rows = block.querySelectorAll("tbody tr");
+            if (rows.length > 0) {
+              rows.forEach((row) => {
+                const teksOpsi = row.querySelector("td")?.innerText.trim();
+                if (teksOpsi) dataPertanyaan.opsi.push(teksOpsi);
+
+                const radio = row.querySelector("input[type=radio]:checked");
+                if (radio) {
+                  dataPertanyaan.jawaban = {
+                    opsi: teksOpsi,
+                    value: radio.value,
+                  };
+                }
+              });
+
+              hasil.jawaban.pilgan.push(dataPertanyaan);
             }
-            dataJawaban[`soal_${i}`] = { pertanyaan: pertanyaanText, jawaban: jawabanText };
-          }
 
-          if (!semuaTerisi) {
-            if (statusDiv) statusDiv.innerHTML = `<div class="alert alert-warning">Harap isi semua jawaban. Soal nomor <strong>${jawabanKosong.join(", ")}</strong> masih kosong.</div>`;
-            document.getElementById(`soal${jawabanKosong[0]}`)?.focus();
-            return;
-          }
+            // Esai
+            const textarea = block.querySelector("textarea, input[type=text]");
+            if (textarea) {
+              dataPertanyaan.opsi = [];
+              dataPertanyaan.jawaban = textarea.value;
+              hasil.jawaban.esai.push(dataPertanyaan);
+            }
+          });
 
-          // UI saat mengirim
+          // UI loading
           if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Mengirim...`;
+            submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Mengirim...`;
           }
 
           try {
-            const kunciKey = push(ref(database, "DATA")).key;
+            const kunciKey = push(ref(db, "DATA")).key;
 
             const dataLaporan = {
               namaPengguna: namaUntukDisimpan,
@@ -392,15 +3086,15 @@
               tanggal: serverTimestamp(),
             };
 
-            await set(ref(database, `DATA/${kunciKey}`), dataJawaban);
-            await set(ref(database, `LAPORAN/${kunciKey}`), dataLaporan);
+            await set(ref(db, `DATA/${kunciKey}`), hasil);
+            await set(ref(db, `LAPORAN/${kunciKey}`), dataLaporan);
 
-            if (statusDiv) statusDiv.innerHTML = `<div class="alert alert-success">Terima kasih! Jawaban Anda telah berhasil dikirim.</div>`;
+            statusDiv.innerHTML = `<div class="alert alert-success">Jawaban berhasil disimpan!</div>`;
             formKuis.reset();
             if (namaEl) namaEl.value = namaPenggunaSaatLogin;
           } catch (err) {
-            console.error("Gagal mengirim data:", err);
-            if (statusDiv) statusDiv.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat mengirim jawaban. Cek konsol untuk detail.</div>`;
+            console.error(err);
+            statusDiv.innerHTML = `<div class="alert alert-danger">Gagal menyimpan jawaban.</div>`;
           } finally {
             if (submitBtn) {
               submitBtn.disabled = false;
@@ -410,6 +3104,7 @@
         });
       }
 
+      // --- Logout ---
       const logoutButton = document.getElementById("logoutBtn");
       if (logoutButton) {
         logoutButton.addEventListener("click", (event) => {

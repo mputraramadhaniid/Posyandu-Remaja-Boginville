@@ -145,8 +145,8 @@
       const urlParams = new URLSearchParams(window.location.search);
       const jawabanKey = urlParams.get("key");
 
-      let currentData = null; // Menyimpan data dari DATA
-      let currentLaporanData = null; // Menyimpan data dari LAPORAN
+      let currentData = null;
+      let currentLaporanData = null;
 
       if (jawabanKey) {
         fetchJawabanData(jawabanKey);
@@ -166,7 +166,6 @@
             currentLaporanData = laporanSnapshot.val();
             currentData = dataSnapshot.val();
 
-            // Menampilkan tombol unduh setelah data berhasil dimuat
             downloadCsvBtn.style.display = "inline-block";
 
             const tanggalFormatted = currentLaporanData.tanggal
@@ -180,39 +179,61 @@
               : "-";
 
             infoPenggunaContainer.innerHTML = `
-              <p class="mb-1"><strong>Nama Pengguna:</strong> ${currentData.nama || "Tidak Ditemukan"}</p>
-              <p class="mb-0"><strong>Tanggal Pengisian:</strong> ${tanggalFormatted}</p>
-            `;
+        <p class="mb-1"><strong>Nama Pengguna:</strong> ${currentData.nama || "Tidak Ditemukan"}</p>
+        <p class="mb-0"><strong>Tanggal Pengisian:</strong> ${tanggalFormatted}</p>
+      `;
 
             jawabanContainer.innerHTML = "";
 
+            // Mengelompokkan jawaban pilihan ganda
+            const groupedPilgan = {};
             if (currentData.jawaban?.pilgan && Array.isArray(currentData.jawaban.pilgan)) {
               currentData.jawaban.pilgan.forEach((item) => {
-                const opsiList = item.opsi?.length ? `<ul>${item.opsi.map((o) => `<li>${o}</li>`).join("")}</ul>` : "";
-                const jawabanHTML = item.jawaban ? `<strong>${item.jawaban.opsi}</strong> (Skor: ${item.jawaban.value})` : `<span class="text-danger fst-italic">(Tidak dijawab)</span>`;
-
-                jawabanContainer.innerHTML += `
-                  <div class="mb-4">
-                    <h5 class="question-title mb-2">${item.judul || "Pertanyaan " + item.no}</h5>
-                    <p class="text-muted">${item.pertanyaan || ""}</p>
-                    ${opsiList}
-                    <div class="p-3 bg-light rounded border">${jawabanHTML}</div>
-                  </div>
-                `;
+                if (!groupedPilgan[item.pertanyaan_utama]) {
+                  groupedPilgan[item.pertanyaan_utama] = [];
+                }
+                groupedPilgan[item.pertanyaan_utama].push(item);
               });
             }
 
+            // Menampilkan jawaban pilihan ganda yang dikelompokkan
+            for (const questionTitle in groupedPilgan) {
+              if (Object.hasOwnProperty.call(groupedPilgan, questionTitle)) {
+                const answers = groupedPilgan[questionTitle];
+                jawabanContainer.innerHTML += `
+            <div class="mb-4">
+              <h5 class="question-title mb-2">${questionTitle}</h5>
+              <div class="p-3 bg-light rounded border">
+                <ul class="list-unstyled">
+                  ${answers
+                    .map(
+                      (item) => `
+                    <li>
+                      <strong>${item.zat}</strong>: Jawaban: ${item.jawaban}
+                    </li>
+                  `
+                    )
+                    .join("")}
+                </ul>
+              </div>
+            </div>
+          `;
+              }
+            }
+
+            // Menampilkan jawaban esai
             if (currentData.jawaban?.esai && Array.isArray(currentData.jawaban.esai)) {
               currentData.jawaban.esai.forEach((item) => {
                 const jawabanHTML = item.jawaban && item.jawaban.trim() !== "" ? `<p>${item.jawaban}</p>` : `<span class="text-danger fst-italic">(Tidak dijawab)</span>`;
+                const questionText = item.pertanyaan ? `<p class="text-muted">${item.pertanyaan}</p>` : "";
 
                 jawabanContainer.innerHTML += `
-                  <div class="mb-4">
-                    <h5 class="question-title mb-2">${item.judul || "Pertanyaan " + item.no}</h5>
-                    <p class="text-muted">${item.pertanyaan || ""}</p>
-                    <div class="p-3 bg-light rounded border">${jawabanHTML}</div>
-                  </div>
-                `;
+            <div class="mb-4">
+              <h5 class="question-title mb-2">Pertanyaan No ${item.no}</h5>
+              ${questionText}
+              <div class="p-3 bg-light rounded border">${jawabanHTML}</div>
+            </div>
+          `;
               });
             }
           } else {
@@ -232,14 +253,9 @@
 
       function downloadCSV(data, laporanData) {
         const rows = [];
+        rows.push(["Nama Pengguna", "Tanggal Pengisian", "Jenis Pertanyaan", "Pertanyaan Utama", "Zat", "Jawaban", "Skor"]);
 
-        // Header CSV
-        rows.push(["Nama Pengguna", "Tanggal Pengisian", "Jenis Pertanyaan", "No", "Judul", "Pertanyaan", "Jawaban", "Skor"]);
-
-        // Data pengguna
         const nama = data.nama || "Tidak Ditemukan";
-
-        // Format tanggal agar sesuai dengan tampilan di halaman web
         const tanggalFormatted = laporanData.tanggal
           ? new Date(laporanData.tanggal).toLocaleString("id-ID", {
               year: "numeric",
@@ -250,26 +266,18 @@
             })
           : "-";
 
-        // Data Pilihan Ganda
         if (data.jawaban?.pilgan && Array.isArray(data.jawaban.pilgan)) {
           data.jawaban.pilgan.forEach((item) => {
-            const jawaban = item.jawaban ? item.jawaban.opsi : "(Tidak dijawab)";
-            const skor = item.jawaban ? item.jawaban.value : 0;
-            const judul = item.judul || "Pertanyaan " + item.no;
-            const pertanyaan = item.pertanyaan || "";
-
-            rows.push([nama, tanggalFormatted, "Pilihan Ganda", item.no, judul, pertanyaan, jawaban, skor]);
+            const jawaban = item.jawaban || "(Tidak dijawab)";
+            const skor = item.jawaban || 0;
+            rows.push([nama, tanggalFormatted, "Pilihan Ganda", item.pertanyaan_utama, item.zat, jawaban, skor]);
           });
         }
 
-        // Data Esai
         if (data.jawaban?.esai && Array.isArray(data.jawaban.esai)) {
           data.jawaban.esai.forEach((item) => {
             const jawaban = item.jawaban && item.jawaban.trim() !== "" ? item.jawaban : "(Tidak dijawab)";
-            const judul = item.judul || "Pertanyaan " + item.no;
-            const pertanyaan = item.pertanyaan || "";
-
-            rows.push([nama, tanggalFormatted, "Esai", item.no, judul, pertanyaan, jawaban, "N/A"]);
+            rows.push([nama, tanggalFormatted, "Esai", item.pertanyaan, "", jawaban, "N/A"]);
           });
         }
 

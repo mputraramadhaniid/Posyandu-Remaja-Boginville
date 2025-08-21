@@ -3017,7 +3017,7 @@
         }
       });
 
-      // --- Submit form ---
+      // --- Submit form (Logic diperbaiki) ---
       if (formKuis) {
         formKuis.addEventListener("submit", async (e) => {
           e.preventDefault();
@@ -3039,44 +3039,40 @@
           };
 
           const pertanyaanEls = formKuis.querySelectorAll(".mb-4");
+          let essayQCounter = 0;
 
-          pertanyaanEls.forEach((block, i) => {
-            const judul = block.querySelector(".question-title")?.innerText || `Pertanyaan ${i + 1}`;
-            const pertanyaan = block.querySelector("p")?.innerText || "";
+          pertanyaanEls.forEach((block) => {
+            const questionTitleEl = block.querySelector(".question-title");
+            const questionTitle = questionTitleEl ? questionTitleEl.innerText.trim() : null;
 
-            let dataPertanyaan = {
-              no: i + 1,
-              judul: judul,
-              pertanyaan: pertanyaan,
-              opsi: [],
-              jawaban: null,
-            };
-
-            // Pilihan ganda
+            // Logika untuk pertanyaan pilihan ganda
             const rows = block.querySelectorAll("tbody tr");
             if (rows.length > 0) {
               rows.forEach((row) => {
-                const teksOpsi = row.querySelector("td")?.innerText.trim();
-                if (teksOpsi) dataPertanyaan.opsi.push(teksOpsi);
+                const substanceName = row.querySelector("td")?.innerText.trim();
+                const selectedRadio = row.querySelector("input[type=radio]:checked");
 
-                const radio = row.querySelector("input[type=radio]:checked");
-                if (radio) {
-                  dataPertanyaan.jawaban = {
-                    opsi: teksOpsi,
-                    value: radio.value,
-                  };
+                if (selectedRadio) {
+                  const radioValue = selectedRadio.value;
+                  hasil.jawaban.pilgan.push({
+                    pertanyaan_utama: questionTitle,
+                    zat: substanceName,
+                    jawaban: radioValue,
+                  });
                 }
               });
-
-              hasil.jawaban.pilgan.push(dataPertanyaan);
             }
 
-            // Esai
-            const textarea = block.querySelector("textarea, input[type=text]");
+            // Logika untuk pertanyaan esai
+            const textarea = block.querySelector("textarea");
             if (textarea) {
-              dataPertanyaan.opsi = [];
-              dataPertanyaan.jawaban = textarea.value;
-              hasil.jawaban.esai.push(dataPertanyaan);
+              essayQCounter++;
+              const questionText = block.querySelector("p")?.innerText.trim();
+              hasil.jawaban.esai.push({
+                no: essayQCounter,
+                pertanyaan: questionText,
+                jawaban: textarea.value,
+              });
             }
           });
 
@@ -3088,7 +3084,6 @@
 
           try {
             const kunciKey = push(ref(db, "DATA")).key;
-
             const dataLaporan = {
               namaPengguna: namaUntukDisimpan,
               uid: uidPengguna,

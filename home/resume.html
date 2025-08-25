@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Resume</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Portal - Bootstrap 5 Admin Dashboard Template For Developers" name="description" />
+    <meta content="Xiaoying Riley at 3rd Wave Media" name="author" />
+    <link href="favicon.ico" rel="shortcut icon" />
+    <script defer="" src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <link href="assets/css/portal.css" id="theme-style" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="app">
+    <header class="app-header fixed-top">
+      <div class="app-header-inner">
+        <div class="container-fluid py-2">
+          <div class="app-header-content">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto">
+                <a class="sidepanel-toggler d-inline-block d-xl-none" href="#" id="sidepanel-toggler">
+                  <svg height="30" role="img" viewbox="0 0 30 30" width="30" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M4 7h22M4 15h22M4 23h22" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path>
+                  </svg>
+                </a>
+              </div>
+              <div class="app-utilities col-auto">
+                <div class="app-utility-item app-user-dropdown dropdown">
+                  <a aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="user-dropdown-toggle" role="button"><img alt="user profile" src="assets/images/user.png" /></a>
+                  <ul aria-labelledby="user-dropdown-toggle" class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" id="logoutBtn">Log Out</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-sidepanel" id="app-sidepanel">
+        <div class="sidepanel-drop" id="sidepanel-drop"></div>
+        <div class="sidepanel-inner d-flex flex-column">
+          <a class="sidepanel-close d-xl-none" href="#" id="sidepanel-close">×</a>
+          <div class="app-branding">
+            <a class="app-logo" href="index.html"><img alt="logo" class="logo-icon me-2" src="assets/images/app-logo.svg" /><span class="logo-text">PORTAL</span></a>
+          </div>
+          <nav class="app-nav app-nav-main flex-grow-1" id="app-nav-main">
+            <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <span class="nav-icon">
+                    <svg class="bi bi-house-door" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"
+                        fill-rule="evenodd"
+                      ></path>
+                      <path d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" fill-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">Home</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="docs.html">
+                  <span class="nav-icon">
+                    <svg class="bi bi-clipboard2-check" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2V1.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z"></path>
+                      <path
+                        d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5-.5h-9a.5.5 0 0 1-.5-.5v-12Z"
+                      ></path>
+                      <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3Z"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">Scanning</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center justify-content-between position-relative" href="intervensi.html">
+                  <span class="d-flex align-items-center">
+                    <span class="nav-icon me-2">
+                      <svg class="bi bi-bullseye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0-1A6 6 0 1 1 8 2a6 6 0 0 1 0 12z" fill-rule="evenodd"></path>
+                        <path d="M8 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-1A4 4 0 1 1 8 4a4 4 0 0 1 0 8z" fill-rule="evenodd"></path>
+                        <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-1A2 2 0 1 1 8 6a2 2 0 0 1 0 4z" fill-rule="evenodd"></path>
+                        <path d="M8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" fill-rule="evenodd"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-link-text">Intervensi</span>
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active d-flex align-items-center justify-content-between position-relative" href="resume.html">
+                  <span class="d-flex align-items-center">
+                    <span class="nav-icon me-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                        <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM13 3L9 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H13z" />
+                        <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                      </svg>
+                    </span>
+                    <span class="nav-link-text">Resume</span>
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item" id="menu-laporan" style="display: none">
+                <a class="nav-link" href="orders.html">
+                  <span class="nav-icon">
+                    <svg class="bi bi-file-earmark-text" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"></path>
+                      <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">Data Laporan</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Resume</h1>
+            </div>
+          </div>
+          <div class="app-card app-card-settings shadow-sm p-4">
+            <div class="app-card-body">
+              <form class="settings-form" id="kuisForm">
+                <div id="step1" style="display: block">
+                  <div class="container mt-5">
+                    <div class="text-center">
+                      <h3>Instrumen Survei</h3>
+                      <h4>Kepuasan Penerima Layanan Rehabilitasi Pecandu, Penyalahguna, dan Korban Penyalahgunaan NAPZA</h4>
+                    </div>
+                    <div class="mb-3">
+                      <label for="hariPelaksanaan" class="form-label">Hari Pelaksanaan</label>
+                      <input type="text" class="form-control" id="hariPelaksanaan" name="hariPelaksanaan" placeholder="Masukkan hari pelaksanaan" />
+                    </div>
+                    <div class="mb-3">
+                      <label for="tanggalPelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
+                      <input type="date" class="form-control" id="tanggalPelaksanaan" name="tanggalPelaksanaan" />
+                    </div>
+                    <div class="mb-3">
+                      <h5>Petunjuk Penggunaan:</h5>
+                      <ol>
+                        <li>Bacalah instrumen dengan seksama.</li>
+                        <li>Silang yang sesuai dengan pendapat anda.</li>
+                        <li>
+                          Penilaian dengan ketentuan sebagai berikut:
+                          <ol type="a">
+                            <li>Diberi nilai 1 (tidak memuaskan) apabila pelaksanaan prosedur pelayanan tidak sederhana, alurnya tidak mudah, loket terlalu banyak, sehingga prosesnya tidak efektif.</li>
+                            <li>Diberi nilai 2 (kurang memuaskan) apabila pelaksanaan prosedur pelayanan masih belum mudah, sehingga prosesnya belum efektif.</li>
+                            <li>Diberi nilai 3 (memuaskan) apabila pelaksanaan prosedur pelayanan dirasa mudah, sederhana, tidak bertele-tele tetapi masih perlu diefektifkan.</li>
+                            <li>Diberi nilai 4 (sangat memuaskan) apabila pelaksanaan prosedur pelayanan dirasa sangat mudah, sangat sederhana, sehingga prosesnya mudah dan efektif.</li>
+                          </ol>
+                        </li>
+                        <li>Semua pendapat anda akan dijaga kerahasiaannya.</li>
+                      </ol>
+                    </div>
+                    <div class="mb-4">
+                      <h5>Bagaimana pendapat saudara mengenai perihal berikut:</h5>
+                      <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                          <thead>
+                            <tr>
+                              <th class="w-10">No</th>
+                              <th class="w-50">Perihal</th>
+                              <th class="text-center">Sangat Memuaskan</th>
+                              <th class="text-center">Memuaskan</th>
+                              <th class="text-center">Kurang Memuaskan</th>
+                              <th class="text-center">Tidak Memuaskan</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>Bagaimana pendapat saudara tentang kemudahan persyaratan administrasi untuk mendapatkan pelayanan rehabilitasi?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p1" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p1" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p1" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p1" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Bagaimana pendapat saudara tentang persyaratan teknis (usia, penyakit penyerta, lama penanganan, hasil urine test) untuk mendapatkan pelayanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p2" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p2" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p2" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p2" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>Bagaimana pendapat saudara tentang kemudahan untuk mendapatkan akses layanan rehabilitasi di lembaga ini?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p3" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p3" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p3" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p3" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>Menurut anda bagaimana tentang pelaksanaan alur layanan rehabilitasi di lembaga rehabilitasi ini?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p4" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p4" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p4" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p4" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>Bagaimana pendapat saudara tentang ketepatan waktu pelayanan yang diberikan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p5" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p5" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p5" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p5" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>Bagaimana pendapat saudara tentang ketepatan waktu pelaksanaan dengan jadwal yang sudah ditentukan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p6" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p6" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p6" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p6" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>Bagaimana pendapat saudara tentang transparansi biaya lain yang sudah dikeluarkan diluar biaya inti?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p7" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p7" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p7" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p7" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>Bagaimana menurut saudara tentang kesesuaian jenis layanan yang diterima dengan rencana terapi?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p8" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p8" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p8" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p8" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>Bagaimana pendapat saudara tentang pemahaman yang dimiliki oleh petugas tentang rehabilitasi?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p9" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p9" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p9" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p9" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>10</td>
+                              <td>Bagaimana pendapat saudara tentang ketanggapan petugas dalam memberikan pelayanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p10" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p10" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p10" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p10" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>11</td>
+                              <td>Bagaimana pendapat saudara tentang komunikasi petugas dalam memberikan pelayanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p11" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p11" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p11" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p11" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>Bagaimana pendapat saudara tentang sikap petugas dalam memberikan pelayanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p12" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p12" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p12" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p12" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>Bagaimana pendapat saudara tentang kedisiplinan petugas dalam memberikan pelayanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p13" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p13" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p13" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p13" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td>Bagaimana menurut saudara tentang kesesuaian antara standar pelayanan yang telah diberikan dengan informasi awal?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p14" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p14" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p14" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p14" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td>Bagaimana pendapat saudara tentang kesesuaian jumlah petugas dalam memberikan pelayanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p15" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p15" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p15" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p15" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>16</td>
+                              <td>Bagaimana pendapat saudara tentang keadilan dalam mendapatkan pelayanan tanpa melihat perbedaan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p16" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p16" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p16" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p16" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>17</td>
+                              <td>Bagaimana pendapat saudara tentang kondisi sarana dan prasarana di unit layanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p17" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p17" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p17" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p17" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>18</td>
+                              <td>Bagaimana pendapat saudara tentang kebersihan di lingkungan unit layanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p18" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p18" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p18" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p18" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td>Bagaimana pendapat saudara tentang penyediaan makanan/minuman di unit layanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p19" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p19" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p19" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p19" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>20</td>
+                              <td>Bagaimana pendapat saudara tentang keamanan lingkungan di unit layanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p20" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p20" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p20" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p20" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>21</td>
+                              <td>Bagaimana pendapat saudara tentang penanganan pengaduan di unit layanan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p21" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p21" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p21" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p21" value="1" /></td>
+                            </tr>
+                            <tr>
+                              <td>22</td>
+                              <td>Bagaimana pendapat saudara tentang tindak lanjut dari pengaduan?</td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p22" value="4" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p22" value="3" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p22" value="2" /></td>
+                              <td class="text-center"><input class="form-check-input" type="radio" name="p22" value="1" /></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <p>Saran dan masukan bagi pelayanan kami yang lebih baik:</p>
+                      <div class="form-floating">
+                        <textarea class="form-control" id="m13b" name="saran" placeholder="Tulis jawaban Anda di sini" style="height: 120px"></textarea>
+                        <label for="m13b">Tulis jawaban Anda di sini...</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="step2">
+                  <div class="container">
+                    <h4 class="text-center mb-1">WHOQOL-BREF - Quality of Life</h4>
+                    <p class="text-center text-muted mb-4">Versi Bahasa Indonesia</p>
+                    <div class="row g-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="form-label">NIK</label>
+                        <input class="form-control" type="text" name="nik" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Kode Peserta</label>
+                        <input class="form-control" type="text" name="kodePeserta" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Nama Pewawancara</label>
+                        <input class="form-control" type="text" name="namaPewawancara" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Tanggal</label>
+                        <input class="form-control" type="text" name="tanggalWawancara" placeholder="DAY/MO/YR" />
+                      </div>
+                      <div class="col-md-12">
+                        <label class="form-label">Waktu Wawancara</label>
+                        <select class="form-select" name="waktuWawancara">
+                          <option value="0">awal</option>
+                          <option value="1">3-bulan, dalam masa rehabilitasi</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <p>Pertanyaan berikut ini menyangkut perasaan anda terhadap kualitas hidup, kesehatan dan hal-hal lain dalam hidup anda.</p>
+                      <p>Saya akan membacakan setiap pertanyaan kepada anda, bersamaan dengan pilihan jawaban. Pilihlah jawaban yang menurut anda paling sesuai.</p>
+                      <p>Jika anda tidak yakin tentang jawaban yang akan anda berikan terhadap pertanyaan yang diberikan, pikiran pertama yang muncul pada benak anda seringkali merupakan jawaban yang terbaik.</p>
+                      <p>Ingatlah dalam pikiran anda segala standar hidup, harapan, kesenangan dan perhatian anda.</p>
+                      <p>Kami akan bertanya apa yang anda pikirkan tentang kehidupan anda satu bulan sebelum wawancara ini dilakukan.</p>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width: 5%">No.</th>
+                            <th>Pertanyaan</th>
+                            <th class="text-center">Sangat buruk</th>
+                            <th class="text-center">Buruk</th>
+                            <th class="text-center">Biasa-biasa saja</th>
+                            <th class="text-center">Baik</th>
+                            <th class="text-center">Sangat baik</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>6.1</td>
+                            <td>Bagaimana menurut anda kualitas hidup anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-1" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-1" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-1" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-1" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-1" value="5" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="table-responsive mt-3">
+                      <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width: 5%">No.</th>
+                            <th>Pertanyaan</th>
+                            <th class="text-center">Sangat tidak memuaskan</th>
+                            <th class="text-center">Tidak memuaskan</th>
+                            <th class="text-center">Biasa-biasa saja</th>
+                            <th class="text-center">Memuaskan</th>
+                            <th class="text-center">Sangat memuaskan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>6.2</td>
+                            <td>Seberapa puas anda terhadap kesehatan anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-2" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-2" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-2" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-2" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-2" value="5" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="page-break"></div>
+                    <p class="mt-4">Pertanyaan berikut adalah tentang seberapa sering anda telah mengalami hal-hal berikut ini dalam satu bulan sebelum wawancara ini dilakukan.</p>
+                    <div class="table-responsive">
+                      <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width: 5%">No.</th>
+                            <th>Pertanyaan</th>
+                            <th class="text-center">Tidak sama sekali</th>
+                            <th class="text-center">Sedikit</th>
+                            <th class="text-center">Cukup</th>
+                            <th class="text-center">Sangat sering</th>
+                            <th class="text-center">Selalu</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>6.3</td>
+                            <td>Seberapa sering rasa sakit fisik anda mencegah anda dalam beraktivitas sesuai kebutuhan anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-3" value="5" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-3" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-3" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-3" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-3" value="1" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.4</td>
+                            <td>Seberapa sering anda membutuhkan terapi medis untuk dapat berfungsi dalam kehidupan sehari-hari anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-4" value="5" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-4" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-4" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-4" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-4" value="1" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.5</td>
+                            <td>Seberapa sering anda menikmati hidup anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-5" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-5" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-5" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-5" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-5" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.6</td>
+                            <td>Seberapa sering anda merasa hidup anda berarti?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-6" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-6" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-6" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-6" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-6" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.7</td>
+                            <td>Seberapa sering anda mampu berkonsentrasi?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-7" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-7" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-7" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-7" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-7" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.8</td>
+                            <td>Secara umum, seberapa aman anda rasakan dalam kehidupan anda sehari-hari?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-8" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-8" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-8" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-8" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-8" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.9</td>
+                            <td>Seberapa sehat lingkungan dimana anda tinggal (berkaitan dengan sarana dan prasarana)</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-9" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-9" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-9" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-9" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-9" value="5" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="page-break"></div>
+                    <p class="mt-4">Pertanyaan berikut ini adalah tentang seberapa penuh anda alami hal-hal berikut ini dalam satu bulan sebelum wawancara ini dilakukan.</p>
+                    <div class="table-responsive">
+                      <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width: 5%">No.</th>
+                            <th>Pertanyaan</th>
+                            <th class="text-center">Tidak sama sekali</th>
+                            <th class="text-center">Sedikit</th>
+                            <th class="text-center">Sedang</th>
+                            <th class="text-center">Seringkali</th>
+                            <th class="text-center">Selalu</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>6.10</td>
+                            <td>Apakah anda memiliki vitalitas yang cukup untuk beraktivitas sehar?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-10" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-10" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-10" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-10" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-10" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.11</td>
+                            <td>Apakah anda dapat menerima penampilan tubuh anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-11" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-11" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-11" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-11" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-11" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.12</td>
+                            <td>Apakah anda memiliki cukup uang untuk memenuhi kebutuhan anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-12" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-12" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-12" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-12" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-12" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.13</td>
+                            <td>Seberapa jauh ketersediaan informasi bagi kehidupan anda dari hari ke hari?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-13" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-13" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-13" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-13" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-13" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.14</td>
+                            <td>Seberapa sering anda memiliki kesempatan untuk bersenang-senang /rekreasi?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-14" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-14" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-14" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-14" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-14" value="5" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="page-break"></div>
+                    <div class="table-responsive mt-3">
+                      <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width: 5%">No.</th>
+                            <th>Pertanyaan</th>
+                            <th class="text-center">Sangat buruk</th>
+                            <th class="text-center">Buruk</th>
+                            <th class="text-center">Biasa-biasa saja</th>
+                            <th class="text-center">Baik</th>
+                            <th class="text-center">Sangat baik</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>6.15</td>
+                            <td>Seberapa baik kemampuan anda dalam bergaul?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-15" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-15" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-15" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-15" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-15" value="5" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="page-break"></div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width: 5%">No.</th>
+                            <th>Pertanyaan</th>
+                            <th class="text-center">Sangat tidak memuaskan</th>
+                            <th class="text-center">Tidak memuaskan</th>
+                            <th class="text-center">Biasa-biasa saja</th>
+                            <th class="text-center">Memuaskan</th>
+                            <th class="text-center">Sangat memuaskan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>6.16</td>
+                            <td>Seberapa puaskah anda dengan tidur anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-16" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-16" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-16" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-16" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-16" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.17</td>
+                            <td>Seberapa puaskah anda dengan kemampuan anda untuk menampilkan aktivitas kehidupan anda sehari-hari?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-17" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-17" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-17" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-17" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-17" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.18</td>
+                            <td>Seberapa puaskah anda dengan kemampuan anda untuk bekerja?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-18" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-18" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-18" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-18" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-18" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.19</td>
+                            <td>Seberapa puaskah anda terhadap diri anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-19" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-19" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-19" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-19" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-19" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.20</td>
+                            <td>Seberapa puaskah anda dengan hubungan personal/sosial anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-20" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-20" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-20" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-20" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-20" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.21</td>
+                            <td>Seberapa puaskah anda dengan kehidupan seksual anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-21" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-21" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-21" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-21" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-21" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.22</td>
+                            <td>Seberapa puaskah anda dengan dukungan yang anda peroleh dari teman anda?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-22" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-22" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-22" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-22" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-22" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.23</td>
+                            <td>Seberapa puaskah anda dengan kondisi tempat anda tinggal saat ini?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-23" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-23" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-23" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-23" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-23" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.24</td>
+                            <td>Seberapa puaskah anda dengan akses anda pada layanan kesehatan?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-24" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-24" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-24" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-24" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-24" value="5" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6.25</td>
+                            <td>Seberapa puaskah anda dengan transportasi yang harus anda jalani?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-25" value="1" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-25" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-25" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-25" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-25" value="5" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="page-break"></div>
+                    <p class="mt-4">Pertanyaan berikut merujuk pada seberapa sering anda merasakan atau mengalami hal-hal berikut dalam satu bulan sebelum wawancara ini dilakukan.</p>
+                    <div class="table-responsive">
+                      <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th style="width: 5%">No.</th>
+                            <th>Pertanyaan</th>
+                            <th class="text-center">Tidak pernah</th>
+                            <th class="text-center">Jarang</th>
+                            <th class="text-center">Cukup sering</th>
+                            <th class="text-center">Sangat sering</th>
+                            <th class="text-center">Selalu</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>6.26</td>
+                            <td>Seberapa sering anda memiliki perasaan negatif seperti 'feeling blue' (kesepian), putus asa, cemas dan depresi?</td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-26" value="5" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-26" value="4" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-26" value="3" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-26" value="2" />
+                            </td>
+                            <td class="text-center">
+                              <input class="form-check-input" type="radio" name="q6-26" value="1" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="page-break"></div>
+                    <div class="mb-4">
+                      <p>Komentar pewawancara tentang penilaian ini?</p>
+                      <textarea class="form-control" name="komentarPewawancara" rows="3"></textarea>
+                    </div>
+                    <div class="mb-4">
+                      <p>[Tabel berikut ini harus dilengkapi setelah wawancara selesai]</p>
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                          <thead class="table-light">
+                            <tr>
+                              <th>Equations for computing domain scores</th>
+                              <th>Raw score</th>
+                              <th>Transformed scores* (0-100)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>6.27 Domain 1</td>
+                              <td>$Q3+Q4+Q10+Q15+Q16+Q17+Q18$</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>6.28 Domain 2</td>
+                              <td>$Q5+Q6+Q7+Q11+Q19+Q26$</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>6.29 Domain 3</td>
+                              <td>$Q20+Q21+Q22$</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>6.30 Domain 4</td>
+                              <td>$Q8+Q9+Q12+Q13+Q14+Q23+Q24+Q25$</td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="step3">
+                  <div class="container">
+                    <h4 class="text-center mb-4">LAPORAN TERMINATE</h4>
+                    <p class="fw-bold">Identitas Penerima Manfaat :</p>
+                    <div class="row mb-2">
+                      <div class="col-3">Nama:</div>
+                      <div class="col-9">
+                        <textarea class="form-control" name="nama" rows="1"></textarea>
+                        <span class="form-control-plaintext"></span>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-3">Pendidikan:</div>
+                      <div class="col-9">
+                        <textarea class="form-control" name="pendidikan" rows="1"></textarea>
+                        <span class="form-control-plaintext"></span>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-3">D.O.A:</div>
+                      <div class="col-9">
+                        <textarea class="form-control" name="doa" rows="1"></textarea>
+                        <span class="form-control-plaintext"></span>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-3">D.O.B:</div>
+                      <div class="col-9">
+                        <textarea class="form-control" name="dob" rows="1"></textarea>
+                        <span class="form-control-plaintext"></span>
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-3">Alamat:</div>
+                      <div class="col-9">
+                        <textarea class="form-control" name="alamat" rows="2"></textarea>
+                        <span class="form-control-plaintext"></span>
+                      </div>
+                    </div>
+                    <p class="mb-3">Sesuai dengan laporan perkembangan Penerima Manfaat, dilihat dari berbagai aspek sebagai berikut :</p>
+                    <div class="mb-3">
+                      <label for="aspekFisik" class="form-label fw-bold">Aspek Fisik</label>
+                      <textarea class="form-control" id="aspekFisik" name="aspekFisik" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="aspekSpiritual" class="form-label fw-bold">Aspek Spiritual</label>
+                      <textarea class="form-control" id="aspekSpiritual" name="aspekSpiritual" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="aspekSosial" class="form-label fw-bold">Aspek Sosial</label>
+                      <textarea class="form-control" id="aspekSosial" name="aspekSosial" rows="3"></textarea>
+                    </div>
+                    <div class="mb-4">
+                      <label for="aspekVocasional" class="form-label fw-bold">Aspek Vocasional</label>
+                      <textarea class="form-control" id="aspekVocasional" name="aspekVocasional" rows="3"></textarea>
+                    </div>
+                    <p class="mb-3">Dari hasil Evaluasi Static Penerima Manfaat sebagai berikut :</p>
+                    <div class="mb-4">
+                      <textarea class="form-control" id="hasilEvaluasi" name="hasilEvaluasi" rows="5"></textarea>
+                    </div>
+                    <p class="mb-5">Demikian laporan Terminate ini saya sampaikan agar menjadi bahan pertimbangan.</p>
+                  </div>
+                  <div class="mb-3" id="statusKirim"></div>
+                  <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary float-end" type="submit" style="color: white">Kirim</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getDatabase, ref, push, set, serverTimestamp, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
+      // 🔹 Konfigurasi Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
+        authDomain: "test-online-b48ef.firebaseapp.com",
+        databaseURL: "https://test-online-b48ef-default-rtdb.firebaseio.com",
+        projectId: "test-online-b48ef",
+        storageBucket: "test-online-b48ef.appspot.com",
+        messagingSenderId: "636551088140",
+        appId: "1:636551088140:web:747fbb116635b4074a4629",
+        measurementId: "G-5Q7L6DK68G",
+      };
+
+      // 🔹 Inisialisasi Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const auth = getAuth(app);
+
+      let userNama = "Pengguna Tidak Dikenal";
+      const menuLaporan = document.getElementById("menu-laporan");
+
+      // 🔹 Cek login user
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const uid = user.uid;
+          userNama = user.displayName || user.email || "Pengguna Baru";
+          console.log("Pengguna login:", userNama);
+
+          try {
+            // 🔹 Ambil role user dari database
+            const roleSnap = await get(ref(db, `users/${uid}/role`));
+            if (roleSnap.exists()) {
+              const role = roleSnap.val();
+              if (role === "admin") {
+                console.log("✅ Admin terdeteksi, menu laporan ditampilkan.");
+                if (menuLaporan) menuLaporan.style.display = "block";
+              } else {
+                console.log("ℹ️ User biasa, menu laporan disembunyikan.");
+                if (menuLaporan) menuLaporan.style.display = "none";
+              }
+            } else {
+              console.log("⚠️ Role tidak ditemukan, sembunyikan menu laporan.");
+              if (menuLaporan) menuLaporan.style.display = "none";
+            }
+          } catch (err) {
+            console.error("❌ Gagal ambil role:", err);
+            if (menuLaporan) menuLaporan.style.display = "none";
+          }
+        } else {
+          userNama = "Pengguna Tidak Dikenal";
+          console.log("🚪 Tidak ada pengguna yang login.");
+          if (menuLaporan) menuLaporan.style.display = "none";
+        }
+      });
+
+      // 🔹 Handle form kuis
+      const kuisForm = document.getElementById("kuisForm");
+
+      kuisForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = {};
+        const inputs = kuisForm.querySelectorAll("input, select, textarea");
+
+        inputs.forEach((input) => {
+          if (input.type === "radio") {
+            if (input.checked) {
+              formData[input.name] = input.value;
+            }
+          } else {
+            const key = input.name || input.id;
+            formData[key] = input.value;
+          }
+        });
+
+        const newRef = push(ref(db, "DATA"));
+        const kunciKey = newRef.key;
+
+        const dataLaporan = {
+          key: kunciKey,
+          nama: userNama,
+          tanggal: formData.tanggalPelaksanaan || "",
+          posisi: "resume",
+          timestamp: serverTimestamp(),
+        };
+
+        try {
+          // 🔹 Simpan ke DATA dan LAPORAN paralel
+          await Promise.all([set(newRef, { ...formData, nama: userNama, timestamp: serverTimestamp() }), set(ref(db, `laporan/${kunciKey}`), dataLaporan)]);
+
+          Swal.fire({
+            icon: "success",
+            title: "Berhasil!",
+            text: "Data berhasil disimpan ke Firebase!",
+            confirmButtonText: "OK",
+          });
+
+          kuisForm.reset();
+          if (typeof showStep === "function") {
+            showStep(1);
+          }
+        } catch (error) {
+          console.error("Firebase Error:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Gagal!",
+            text: "Gagal menyimpan data. Silakan coba lagi.",
+            confirmButtonText: "OK",
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

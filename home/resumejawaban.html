@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Detail Data</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css" />
+  </head>
+  <body class="app">
+    <header class="app-header fixed-top">
+      <div class="app-header-inner">
+        <div class="container-fluid py-2">
+          <div class="app-header-content">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto">
+                <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
+                    <title>Menu</title>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
+                  </svg>
+                </a>
+              </div>
+              <div class="app-search-box col">
+                <form class="app-search-form">
+                  <input type="text" placeholder="Search..." name="search" class="form-control search-input" />
+                  <button type="submit" class="btn search-btn btn-primary" value="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </form>
+              </div>
+              <div class="app-utilities col-auto">
+                <div class="app-utility-item app-user-dropdown dropdown">
+                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <img src="assets/images/user.png" alt="user profile" />
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+                    <li><a class="dropdown-item" href="#">Account</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="app-sidepanel" class="app-sidepanel">
+        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+        <div class="sidepanel-inner d-flex flex-column">
+          <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+          <div class="app-branding">
+            <a class="app-logo" href="index.html">
+              <img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo" />
+              <span class="logo-text">PORTAL</span>
+            </a>
+          </div>
+          <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+            <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+                  <span class="nav-link-text">Home</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="docs.html">
+                  <span class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+                  <span class="nav-link-text">Scanning</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="orders.html">
+                  <span class="nav-icon"><i class="fa-solid fa-file-alt"></i></span>
+                  <span class="nav-link-text">Data Laporan</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Detail Data</h1>
+            </div>
+            <div class="col-auto">
+              <div class="d-flex align-items-center">
+                <a class="btn btn-secondary me-2" href="orders.html">
+                  <i class="fa-solid fa-arrow-left me-1"></i>
+                  Kembali ke Laporan
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="app-card app-card-settings shadow-sm p-4">
+            <div class="app-card-body">
+              <div id="jawaban-container">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="d-inline-block ms-2">Memuat data...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
+        authDomain: "test-online-b48ef.firebaseapp.com",
+        databaseURL: "https://test-online-b48ef-default-rtdb.firebaseio.com",
+        projectId: "test-online-b48ef",
+        storageBucket: "test-online-b48ef.appspot.com",
+        messagingSenderId: "636551088140",
+        appId: "1:636551088140:web:747fbb116635b4074a4629",
+        measurementId: "G-5Q7L6DK68G",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      const jawabanContainer = document.getElementById("jawaban-container");
+      const urlParams = new URLSearchParams(window.location.search);
+      const jawabanKey = urlParams.get("key");
+
+      const questionMapping1 = {
+        p1: "Bagaimana pendapat saudara tentang kemudahan persyaratan administrasi untuk mendapatkan pelayanan rehabilitasi?",
+        p2: "Bagaimana pendapat saudara tentang persyaratan teknis (usia, penyakit penyerta, lama penanganan, hasil urine test) untuk mendapatkan pelayanan?",
+        p3: "Bagaimana pendapat saudara tentang kemudahan untuk mendapatkan akses layanan rehabilitasi di lembaga ini?",
+        p4: "Menurut anda bagaimana tentang pelaksanaan alur layanan rehabilitasi di lembaga rehabilitasi ini?",
+        p5: "Bagaimana pendapat saudara tentang ketepatan waktu pelayanan yang diberikan?",
+        p6: "Bagaimana pendapat saudara tentang ketepatan waktu pelaksanaan dengan jadwal yang sudah ditentukan?",
+        p7: "Bagaimana pendapat saudara tentang transparansi biaya lain yang sudah dikeluarkan diluar biaya inti?",
+        p8: "Bagaimana menurut saudara tentang kesesuaian jenis layanan yang diterima dengan rencana terapi?",
+        p9: "Bagaimana pendapat saudara tentang pemahaman yang dimiliki oleh petugas tentang rehabilitasi?",
+        p10: "Bagaimana pendapat saudara tentang ketanggapan petugas dalam memberikan pelayanan?",
+        p11: "Bagaimana pendapat saudara tentang komunikasi petugas dalam memberikan pelayanan?",
+        p12: "Bagaimana pendapat saudara tentang sikap petugas dalam memberikan pelayanan?",
+        p13: "Bagaimana pendapat saudara tentang kedisiplinan petugas dalam memberikan pelayanan?",
+        p14: "Bagaimana menurut saudara tentang kesesuaian antara standar pelayanan yang telah diberikan dengan informasi awal?",
+        p15: "Bagaimana pendapat saudara tentang kesesuaian jumlah petugas dalam memberikan pelayanan?",
+        p16: "Bagaimana pendapat saudara tentang keadilan dalam mendapatkan pelayanan tanpa melihat perbedaan?",
+        p17: "Bagaimana pendapat saudara tentang kondisi sarana dan prasarana di unit layanan?",
+        p18: "Bagaimana pendapat saudara tentang kebersihan di lingkungan unit layanan?",
+        p19: "Bagaimana pendapat saudara tentang penyediaan makanan/minuman di unit layanan?",
+        p20: "Bagaimana pendapat saudara tentang keamanan lingkungan di unit layanan?",
+        p21: "Bagaimana pendapat saudara tentang penanganan pengaduan di unit layanan?",
+        p22: "Bagaimana pendapat saudara tentang tindak lanjut dari pengaduan?",
+      };
+
+      const questionMapping2 = {
+        "q6-1": "Bagaimana menurut anda kualitas hidup anda?",
+        "q6-2": "Seberapa puas anda terhadap kesehatan anda?",
+        "q6-3": "Seberapa sering rasa sakit fisik anda mencegah anda dalam beraktivitas sesuai kebutuhan anda?",
+        "q6-4": "Seberapa sering anda membutuhkan terapi medis untuk dapat berfungsi dalam kehidupan sehari-hari anda?",
+        "q6-5": "Seberapa sering anda menikmati hidup anda?",
+        "q6-6": "Seberapa sering anda merasa hidup anda berarti?",
+        "q6-7": "Seberapa sering anda mampu berkonsentrasi?",
+        "q6-8": "Secara umum, seberapa aman anda rasakan dalam kehidupan anda sehari-hari?",
+        "q6-9": "Seberapa sehat lingkungan dimana anda tinggal (berkaitan dengan sarana dan prasarana)",
+        "q6-10": "Apakah anda memiliki vitalitas yang cukup untuk beraktivitas sehar?",
+        "q6-11": "Apakah anda dapat menerima penampilan tubuh anda?",
+        "q6-12": "Apakah anda memiliki cukup uang untuk memenuhi kebutuhan anda?",
+        "q6-13": "Seberapa jauh ketersediaan informasi bagi kehidupan anda dari hari ke hari?",
+        "q6-14": "Seberapa sering anda memiliki kesempatan untuk bersenang-senang /rekreasi?",
+        "q6-15": "Seberapa baik kemampuan anda dalam bergaul?",
+        "q6-16": "Seberapa puaskah anda dengan tidur anda?",
+        "q6-17": "Seberapa puaskah anda dengan kemampuan anda untuk menampilkan aktivitas kehidupan anda sehari-hari?",
+        "q6-18": "Seberapa puaskah anda dengan kemampuan anda untuk bekerja?",
+        "q6-19": "Seberapa puaskah anda terhadap diri anda?",
+        "q6-20": "Seberapa puaskah anda dengan hubungan personal/sosial anda?",
+        "q6-21": "Seberapa puaskah anda dengan kehidupan seksual anda?",
+        "q6-22": "Seberapa puaskah anda dengan dukungan yang anda peroleh dari teman anda?",
+        "q6-23": "Seberapa puaskah anda dengan kondisi tempat anda tinggal saat ini?",
+        "q6-24": "Seberapa puaskah anda dengan akses anda pada layanan kesehatan?",
+        "q6-25": "Seberapa puaskah anda dengan transportasi yang harus anda jalani?",
+        "q6-26": "Seberapa sering anda memiliki perasaan negatif seperti 'feeling blue' (kesepian), putus asa, cemas dan depresi?",
+      };
+
+      const ratingLabels1 = {
+        1: "Tidak Memuaskan",
+        2: "Kurang Memuaskan",
+        3: "Memuaskan",
+        4: "Sangat Memuaskan",
+      };
+
+      const ratingLabels2 = {
+        1: "Sangat buruk",
+        2: "Buruk",
+        3: "Biasa-biasa saja",
+        4: "Baik",
+        5: "Sangat baik",
+      };
+
+      const ratingLabels3 = {
+        1: "Tidak sama sekali",
+        2: "Sedikit",
+        3: "Cukup",
+        4: "Sangat sering",
+        5: "Selalu",
+      };
+
+      const ratingLabels4 = {
+        1: "Sangat tidak memuaskan",
+        2: "Tidak memuaskan",
+        3: "Biasa-biasa saja",
+        4: "Memuaskan",
+        5: "Sangat memuaskan",
+      };
+      const ratingLabels5 = {
+        1: "Tidak pernah",
+        2: "Jarang",
+        3: "Cukup sering",
+        4: "Sangat sering",
+        5: "Selalu",
+      };
+
+      if (jawabanKey) {
+        fetchJawabanData(jawabanKey);
+      } else {
+        jawabanContainer.innerHTML = `<div class="alert alert-danger">ID Laporan tidak valid atau tidak ditemukan di URL.</div>`;
+      }
+
+      async function fetchJawabanData(key) {
+        try {
+          const snapshot = await get(ref(db, `DATA/${key}`));
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            renderJawaban(data);
+          } else {
+            jawabanContainer.innerHTML = `<div class="alert alert-warning">Data tidak ditemukan untuk ID Laporan ini.</div>`;
+          }
+        } catch (error) {
+          console.error("Gagal mengambil detail jawaban:", error);
+          jawabanContainer.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat memuat data dari database.</div>`;
+        }
+      }
+
+      function renderJawaban(data) {
+        jawabanContainer.innerHTML = ""; // Bersihkan kontainer
+
+        // Menampilkan Informasi Pengguna
+        jawabanContainer.innerHTML += `
+            <div class="mb-4 border-bottom pb-4">
+                <p class="mb-1"><strong>Nama:</strong> ${data.nama || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>NIK:</strong> ${data.nik || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>Kode Peserta:</strong> ${data.kodePeserta || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>Pendidikan:</strong> ${data.pendidikan || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>D.O.A:</strong> ${data.doa || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>D.O.B:</strong> ${data.dob || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>Alamat:</strong> ${data.alamat || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>Tanggal Pelaksanaan Survei:</strong> ${data.tanggalPelaksanaan || "Tidak Ditemukan"}</p>
+                <p class="mb-1"><strong>Nama Pewawancara:</strong> ${data.namaPewawancara || "Tidak Ditemukan"}</p>
+                <p class="mb-0"><strong>Waktu Wawancara:</strong> ${data.waktuWawancara === "0" ? "Awal" : "3-bulan, dalam masa rehabilitasi"}</p>
+            </div>
+        `;
+
+        // Menampilkan Jawaban Survei Kepuasan (Step 1)
+        jawabanContainer.innerHTML += `
+            <h4 class="mt-4 mb-3">Instrumen Survei Kepuasan</h4>
+        `;
+        const table1 = document.createElement("table");
+        table1.className = "table table-bordered table-striped";
+        table1.innerHTML = `
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Perihal</th>
+                    <th>Jawaban</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        `;
+        const tbody1 = table1.querySelector("tbody");
+
+        for (let i = 1; i <= 22; i++) {
+          const key = `p${i}`;
+          const question = questionMapping1[key];
+          const answerValue = data[key];
+          const answerText = ratingLabels1[answerValue] || "Tidak Dijawab";
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                <td>${i}</td>
+                <td>${question}</td>
+                <td><strong>${answerText}</strong> (${answerValue || "N/A"})</td>
+            `;
+          tbody1.appendChild(row);
+        }
+        jawabanContainer.appendChild(table1);
+
+        jawabanContainer.innerHTML += `
+            <div class="mt-4">
+                <h5>Saran dan Masukan</h5>
+                <div class="p-3 bg-light rounded border">${data.saran || "Tidak ada saran"}</div>
+            </div>
+        `;
+
+        // Menampilkan Jawaban WHOQOL-BREF (Step 2)
+        jawabanContainer.innerHTML += `
+            <h4 class="mt-5 mb-3">WHOQOL-BREF - Quality of Life</h4>
+        `;
+
+        const table2 = document.createElement("table");
+        table2.className = "table table-bordered table-striped";
+        table2.innerHTML = `
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Pertanyaan</th>
+                    <th>Jawaban</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        `;
+        const tbody2 = table2.querySelector("tbody");
+
+        for (const key in questionMapping2) {
+          const question = questionMapping2[key];
+          const answerValue = data[key];
+          let answerText;
+
+          if (["q6-1", "q6-15"].includes(key)) {
+            answerText = ratingLabels2[answerValue] || "Tidak Dijawab";
+          } else if (["q6-2", "q6-16", "q6-17", "q6-18", "q6-19", "q6-20", "q6-21", "q6-22", "q6-23", "q6-24", "q6-25"].includes(key)) {
+            answerText = ratingLabels4[answerValue] || "Tidak Dijawab";
+          } else if (["q6-3", "q6-4"].includes(key)) {
+            answerText = ratingLabels3[answerValue] || "Tidak Dijawab";
+          } else if (["q6-26"].includes(key)) {
+            answerText = ratingLabels5[answerValue] || "Tidak Dijawab";
+          } else {
+            answerText = ratingLabels3[answerValue] || "Tidak Dijawab";
+          }
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                <td>${key.replace("q", "")}</td>
+                <td>${question}</td>
+                <td><strong>${answerText}</strong> (${answerValue || "N/A"})</td>
+            `;
+          tbody2.appendChild(row);
+        }
+        jawabanContainer.appendChild(table2);
+
+        jawabanContainer.innerHTML += `
+            <div class="mt-4">
+                <h5>Komentar Pewawancara</h5>
+                <div class="p-3 bg-light rounded border">${data.komentarPewawancara || "Tidak ada komentar"}</div>
+            </div>
+        `;
+
+        // Menampilkan Laporan Terminate (Step 3)
+        jawabanContainer.innerHTML += `
+            <h4 class="mt-5 mb-3">Laporan Terminate</h4>
+            <div class="mb-3">
+                <h5>Aspek Fisik</h5>
+                <div class="p-3 bg-light rounded border">${data.aspekFisik || "Tidak ada data"}</div>
+            </div>
+            <div class="mb-3">
+                <h5>Aspek Spiritual</h5>
+                <div class="p-3 bg-light rounded border">${data.aspekSpiritual || "Tidak ada data"}</div>
+            </div>
+            <div class="mb-3">
+                <h5>Aspek Sosial</h5>
+                <div class="p-3 bg-light rounded border">${data.aspekSosial || "Tidak ada data"}</div>
+            </div>
+            <div class="mb-3">
+                <h5>Aspek Vocasional</h5>
+                <div class="p-3 bg-light rounded border">${data.aspekVocasional || "Tidak ada data"}</div>
+            </div>
+            <div class="mb-3">
+                <h5>Hasil Evaluasi Static</h5>
+                <div class="p-3 bg-light rounded border">${data.hasilEvaluasi || "Tidak ada data"}</div>
+            </div>
+        `;
+      }
+    </script>
+  </body>
+</html>
+```

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Detail Data Scanning</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="app">
+    <header class="app-header fixed-top">
+      <div class="app-header-inner">
+        <div class="container-fluid py-2">
+          <div class="app-header-content">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto">
+                <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
+                    <title>Menu</title>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
+                  </svg>
+                </a>
+              </div>
+              <div class="app-search-box col">
+                <form class="app-search-form">
+                  <input type="text" placeholder="Search..." name="search" class="form-control search-input" />
+                  <button type="submit" class="btn search-btn btn-primary" value="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </form>
+              </div>
+              <div class="app-utilities col-auto">
+                <div class="app-utility-item app-user-dropdown dropdown">
+                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <img src="assets/images/user.png" alt="user profile" />
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+                    <li><a class="dropdown-item" href="#">Account</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="app-sidepanel" class="app-sidepanel">
+        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+        <div class="sidepanel-inner d-flex flex-column">
+          <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+          <div class="app-branding">
+            <a class="app-logo" href="index.html">
+              <img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo" />
+              <span class="logo-text">PORTAL</span>
+            </a>
+          </div>
+          <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+            <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+                  <span class="nav-link-text">Home</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="docs.html">
+                  <span class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+                  <span class="nav-link-text">Scanning</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="orders.html">
+                  <span class="nav-icon"><i class="fa-solid fa-file-alt"></i></span>
+                  <span class="nav-link-text">Data Laporan</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Detail Data Scanning</h1>
+            </div>
+            <div class="col-auto">
+              <a class="btn btn-secondary" href="orders.html"> <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Laporan </a>
+            </div>
+          </div>
+          <div class="app-card app-card-settings shadow-sm p-4">
+            <div class="app-card-body" id="jawaban-container">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <p class="d-inline-block ms-2">Memuat data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
+        authDomain: "test-online-b48ef.firebaseapp.com",
+        databaseURL: "https://test-online-b48ef-default-rtdb.firebaseio.com",
+        projectId: "test-online-b48ef",
+        storageBucket: "test-online-b48ef.appspot.com",
+        messagingSenderId: "636551088140",
+        appId: "1:636551088140:web:747fbb116635b4074a4629",
+        measurementId: "G-5Q7L6DK68G",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const jawabanContainer = document.getElementById("jawaban-container");
+      const urlParams = new URLSearchParams(window.location.search);
+      const jawabanKey = urlParams.get("key");
+
+      async function fetchJawabanData(key) {
+        try {
+          const snapshot = await get(ref(db, `DATA_SCANNING/${key}`));
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            renderJawaban(data);
+          } else {
+            jawabanContainer.innerHTML = `<div class="alert alert-warning">Data tidak ditemukan untuk ID Laporan ini.</div>`;
+          }
+        } catch (error) {
+          console.error("Gagal mengambil detail jawaban:", error);
+          jawabanContainer.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat memuat data dari database.</div>`;
+        }
+      }
+
+      function renderJawaban(data) {
+        let content = "";
+
+        const capitalize = (str) => {
+          if (!str) return "Tidak Diisi";
+          return str
+            .split("_")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+        };
+
+        const getSafe = (path, defaultValue = "Tidak Diisi") => {
+          return path.split(".").reduce((o, i) => (o ? o[i] : defaultValue), data);
+        };
+
+        // Biodata Klien (Step 1)
+        content += `
+            <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+                <div class="app-card-body">
+                    <h5 class="mb-3">A. Klien</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Nama:</b> ${getSafe("klien_nama")}</div>
+                        <div class="col-md-6"><b>Tempat/Tgl Lahir:</b> ${getSafe("klien_ttl")}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Status Perkawinan:</b> ${getSafe("klien_status")}</div>
+                        <div class="col-md-6"><b>Agama:</b> ${getSafe("klien_agama")}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Jenis Kelamin:</b> ${getSafe("klien_jk")}</div>
+                        <div class="col-md-6"><b>Anak Ke:</b> ${getSafe("klien_anakke")}</div>
+                    </div>
+                    <div class="mb-3"><b>Alamat Rumah:</b> ${getSafe("klien_alamat")}</div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Pendidikan Terakhir:</b> ${getSafe("klien_pendidikan")}</div>
+                        <div class="col-md-6"><b>Pekerjaan:</b> ${getSafe("klien_pekerjaan")}</div>
+                    </div>
+                    <h5 class="mt-4">B. Keluarga</h5>
+                    <h6>1. Ayah</h6>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Nama Ayah:</b> ${getSafe("ayah_nama")}</div>
+                        <div class="col-md-6"><b>Tempat/Tgl Lahir:</b> ${getSafe("ayah_ttl")}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Agama:</b> ${getSafe("ayah_agama")}</div>
+                        <div class="col-md-6"><b>Pekerjaan:</b> ${getSafe("ayah_pekerjaan")}</div>
+                    </div>
+                    <div class="mb-3"><b>Alamat:</b> ${getSafe("ayah_alamat")}</div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>No. Telp/HP:</b> ${getSafe("ayah_telp")}</div>
+                    </div>
+                    <h6 class="mt-3">2. Ibu</h6>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Nama Ibu:</b> ${getSafe("ibu_nama")}</div>
+                        <div class="col-md-6"><b>Tempat/Tgl Lahir:</b> ${getSafe("ibu_ttl")}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Agama:</b> ${getSafe("ibu_agama")}</div>
+                        <div class="col-md-6"><b>Pekerjaan:</b> ${getSafe("ibu_pekerjaan")}</div>
+                    </div>
+                    <div class="mb-3"><b>Alamat:</b> ${getSafe("ibu_alamat")}</div>
+                    <div class="mb-3"><b>No. Telp/HP:</b> ${getSafe("ibu_telp")}</div>
+                    <h5 class="mt-4">C. Wali/Pengampu/Penjamin</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Nama:</b> ${getSafe("wali_nama")}</div>
+                        <div class="col-md-6"><b>Tempat/Tgl Lahir:</b> ${getSafe("wali_ttl")}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Agama:</b> ${getSafe("wali_agama")}</div>
+                        <div class="col-md-6"><b>Pekerjaan:</b> ${getSafe("wali_pekerjaan")}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Hubungan dengan Klien:</b> ${getSafe("wali_hubungan")}</div>
+                        <div class="col-md-6"><b>No. Telp/HP:</b> ${getSafe("wali_telp")}</div>
+                    </div>
+                    <div class="mb-3"><b>Alamat:</b> ${getSafe("wali_alamat")}</div>
+                </div>
+            </div>
+        `;
+
+        // Hasil Pemeriksaan Urine (Step 2)
+        content += `
+            <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+                <div class="app-card-body">
+                    <h4 class="text-center mb-3">HASIL PEMERIKSAAN URINE</h4>
+                    <p class="text-center">DIVISI MEDIS</p>
+                    <div class="mb-3"><b>No Surat:</b> ${getSafe("no_surat")}</div>
+                    <h5 class="mt-4">Identitas Klien</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Nama:</b> ${getSafe("urine_nama")}</div>
+                        <div class="col-md-3"><b>Umur:</b> ${getSafe("urine_umur")}</div>
+                        <div class="col-md-3"><b>Jenis Kelamin:</b> ${getSafe("urine_jk")}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><b>Pekerjaan:</b> ${getSafe("urine_pekerjaan")}</div>
+                        <div class="col-md-6"><b>Alamat:</b> ${getSafe("urine_alamat")}</div>
+                    </div>
+                    <h5 class="mt-4">Waktu Pemeriksaan</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-4"><b>Hari:</b> ${getSafe("urine_hari")}</div>
+                        <div class="col-md-4"><b>Tanggal:</b> ${getSafe("urine_tanggal")}</div>
+                        <div class="col-md-4"><b>Jam:</b> ${getSafe("urine_jam")}</div>
+                    </div>
+                    <h5 class="mt-4">Hasil Tes Urine</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr><th>No</th><th>Jenis Zat</th><th class="text-center">Hasil</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Amphetamine (AMP)</td><td class="text-center">${getSafe("amp")}</td></tr>
+                                <tr><td>2</td><td>Ganja / Marijuana (THC)</td><td class="text-center">${getSafe("thc")}</td></tr>
+                                <tr><td>3</td><td>Morphine / Putaw (MOP)</td><td class="text-center">${getSafe("mop")}</td></tr>
+                                <tr><td>4</td><td>Cocaine (COC)</td><td class="text-center">${getSafe("coc")}</td></tr>
+                                <tr><td>5</td><td>Metaphetamine (MET)</td><td class="text-center">${getSafe("met")}</td></tr>
+                                <tr><td>6</td><td>Benzodiazepine / Obat Penenang</td><td class="text-center">${getSafe("bzo")}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end mt-5"><p>Pemeriksa</p><b>${getSafe("pemeriksa")}</b></div>
+                </div>
+            </div>
+        `;
+
+        // ASSIST Questions (Step 3)
+        const getAssistLabel = (questionNum, value) => {
+          const labels = {
+            1: { 0: "Tidak", 3: "Ya" },
+            2: { 0: "Tidak pernah", 2: "Satu atau dua kali", 3: "Bulanan", 4: "Mingguan", 6: "Harian atau hampir tiap hari" },
+            3: { 0: "Tidak pernah", 3: "Satu atau dua kali", 4: "Bulanan", 5: "Mingguan", 6: "Harian atau hampir tiap hari" },
+            4: { 0: "Tidak pernah", 4: "Satu atau dua kali", 5: "Bulanan", 6: "Mingguan", 7: "Harian atau hampir tiap hari" },
+            5: { 0: "Tidak pernah", 5: "Satu atau dua kali", 6: "Bulanan", 7: "Mingguan", 8: "Harian atau hampir tiap hari" },
+            6: { 0: "Tidak", 3: "Ya, tapi tidak dalam 3 bulan terakhir", 6: "Ya, dalam 3 bulan terakhir" },
+            7: { 0: "Tidak", 3: "Ya, tapi tidak dalam 3 bulan terakhir", 6: "Ya, dalam 3 bulan terakhir" },
+            8: { 0: "Tidak", 1: "Ya, tapi tidak dalam 3 bulan terakhir", 2: "Ya, dalam 3 bulan terakhir" },
+          };
+          return labels[questionNum][value] || "Tidak Diisi";
+        };
+
+        content += `
+            <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+                <div class="app-card-body">
+                    <h4 class="text-center mb-3">ASSESSMENT AWAL</h4>
+        `;
+        const assistItems = ["tembakau", "alkohol", "kanabis", "kokain", "stimulan", "inhalansia", "sedatif", "halusinogen", "opioid", "lain"];
+        for (let i = 1; i <= 8; i++) {
+          content += `<h5 class="mt-4">Pertanyaan ${i}</h5><div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Zat</th><th class="text-center">Jawaban</th></tr></thead><tbody>`;
+          assistItems.forEach((item) => {
+            const key = `p${i}_${item}`;
+            content += `<tr><td>${capitalize(item)}</td><td class="text-center">${getAssistLabel(i, data[key])}</td></tr>`;
+          });
+          content += `</tbody></table></div>`;
+        }
+        content += `</div></div>`;
+
+        // URICA (Step 4)
+        const uricaLabels = { 1: "Sangat Tidak Setuju", 2: "Tidak Setuju", 3: "Ragu-ragu", 4: "Setuju", 5: "Sangat Setuju" };
+        content += `
+            <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+                <div class="app-card-body">
+                    <h4 class="text-center mb-3">URICA</h4>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4"><b>Kode Klien:</b> ${getSafe("urica_kode_klien")}</div>
+                        <div class="col-md-4"><b>Tanggal:</b> ${getSafe("urica_tanggal")}</div>
+                        <div class="col-md-4"><b>Waktu Wawancara:</b> ${getSafe("urica_waktu")} ${getSafe("urica_bulan_lanjutan") ? `(${getSafe("urica_bulan_lanjutan")} bulan)` : ""}</div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-light"><tr><th style="width: 5%">No</th><th>Pernyataan</th><th class="text-center" style="width: 30%">Jawaban</th></tr></thead>
+                            <tbody>
+        `;
+        const uricaQuestions = [
+          "Sejauh yang saya ketahui, saya tidak mempunyai masalah penyalahgunaan zat yang memerlukan perubahan.",
+          "Saya pikir saya mungkin siap untuk memperbaiki diri saya.",
+          "Saya sedang melakukan sesuatu terkait masalah penyalahgunaan zat yang telah lama mengganggu saya.",
+          "Mungkin akan bermakna untuk memperbaiki masalah penyalahgunaan zat saya.",
+          "Saya tidak punya masalah penyalahgunaan zat. Tidak seharusnya saya berada di tempat rehab ini.",
+          "Saya khawatir saya akan kembali pakai zat setelah saya berubah. Jadi saya di tempat rehab ini untuk mencari pertolongan.",
+          "Akhirnya saya saat ini melakukan sesuatu terkait masalah penyalahgunaan zat saya.",
+          "Sudah lama saya berpikir bahwa saya mungkin menginginkan perubahan atas diri saya.",
+          "Saya telah berhasil mengatasi masalah penyalahgunaan zat saya tetapi saya tidak yakin saya bisa mempertahankan upaya itu sendirian.",
+          "Ada saatnya masalah penyalahgunaan zat saya sulit, tetapi saat ini saya sedang mencoba mengatasinya.",
+          "Berada di tempat rehab ini cukup banyak membuang waktu saya karena masalah penyalahgunaan saya tidak ada hubungannya dengan saya.",
+          "Saya berharap tempat rehab ini dapat membuat saya lebih memahami diri saya.",
+          "Saya kira saya memiliki kesalahan tetapi tidak ada sesuatu yang benar-benar harus saya ubah.",
+          "Saya benar-benar bekerja keras untuk berubah.",
+          "Saya memiliki masalah penyalahgunaan zat dan saya pikir saya harus mengatasinya.",
+          "Saya tidak menindaklanjuti apa yang telah saya ubah dan harapkan, saya di tempat ini untuk mencegah kekambuhan dari masalah penyalahgunaan zat.",
+          "Walau saya tidak selalu berhasil merubah diri, paling tidak saya berusaha mengatasi masalah penyalahgunaan zat saya.",
+          "Saya pikir sekali saya berhasil menyelesaikan penyalahgunaan zat saya, maka saya akan sepenuhnya bebas, tetapi ternyata kadang saya masih harus berjuang untuk mengatasi masalah penyalahgunaan zat tersebut.",
+          "Saya berharap saya memiliki lebih banyak ide (cara) untuk menyelesaikan masalah penyalahgunaan zat saya.",
+          "Saya sudah mulai mengerjakan masalah penyalahgunaan zat saya tapi saya ingin mendapatkan bantuan.",
+          "Mungkin tempat rehab ini akan dapat menolong saya.",
+          "Saya mungkin memerlukan sesuatu untuk mendorong saya mempertahan perubahan yang saat ini telah saya lakukan.",
+          "Saya mungkin bermasalah dengan penyalahgunaan zat tetapi saya pikir sesungguhnya saya tidak ada masalah dengan hal itu.",
+          "Saya berharap seseorang di tempat rehab ini mempunyai nasehat-nasehat yang berguna bagi saya.",
+          "Siapa saja dapat bicara tentang perubahan; namun saat ini saya benar-benar sedang menjalani perubahan tersebut.",
+          "Semua pembicaraan tentang psikologis ini membosankan. Mengapa orang tidak bisa begitu saja melupakan masalah penyalahgunaan zat mereka?",
+          "Saya di sini untuk mencegah diri saya dari kekambuhan terhadap masalah penyalahgunaan zat saya.",
+          "Memang membuat frustrasi, namun saya pikir saya bakal kembali menyalahgunakan zat yang saya pikir telah selesai saya atasi.",
+          "Saya memiliki kekhawatiran begitu juga orang di sekitar saya. Jadi mengapa saya harus menghabiskan waktu memikirkan mereka?",
+          "Saat ini saya sedang aktif berusaha mengatasi masalah penyalahgunaan zat saya.",
+          "Saya lebih memilih menyesuaikan diri dengan kesalahan saya daripada mencoba mengubahnya.",
+          "Setelah semua yang telah saya lakukan untuk berubah dari masalah penyalahgunaan zat saya, seringkali masalah tersebut kembali dan menghantui diri saya.",
+        ];
+        for (let i = 1; i <= 32; i++) {
+          const qKey = `urica_q${i}`;
+          content += `<tr><td>${i}</td><td>${uricaQuestions[i - 1]}</td><td class="text-center">${uricaLabels[getSafe(qKey)] || "Tidak Diisi"}</td></tr>`;
+        }
+        content += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `;
+
+        // WHOQOL-BREF (Step 5)
+        content += `
+        <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+            <div class="app-card-body">
+                <h4 class="text-center mb-3">WHOQOL-BREF - Quality of Life</h4>
+                <h5 class="mt-4">Informasi Klien</h5>
+                <div class="row mb-3">
+                    <div class="col-md-6"><b>NIK:</b> ${getSafe("whoqol_nik")}</div>
+                    <div class="col-md-6"><b>Kode Peserta:</b> ${getSafe("whoqol_kodePeserta")}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6"><b>Nama Pewawancara:</b> ${getSafe("whoqol_namaPewawancara")}</div>
+                    <div class="col-md-6"><b>Tanggal Wawancara:</b> ${getSafe("whoqol_tanggalWawancara")}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12"><b>Waktu Wawancara:</b> ${getSafe("whoqol_waktuWawancara")}</div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light"><tr><th style="width: 5%">No.</th><th>Pertanyaan</th><th class="text-center">Jawaban</th></tr></thead>
+                        <tbody>
+    `;
+        const whoqolQuestions = [
+          "Bagaimana menurut anda kualitas hidup anda?",
+          "Seberapa puas anda terhadap kesehatan anda?",
+          "Seberapa sering rasa sakit fisik anda mencegah anda dalam beraktivitas sesuai kebutuhan anda?",
+          "Seberapa sering anda membutuhkan terapi medis untuk dapat berfungsi dalam kehidupan sehari-hari anda?",
+          "Seberapa sering anda menikmati hidup anda?",
+          "Seberapa sering anda merasa hidup anda berarti?",
+          "Seberapa sering anda mampu berkonsentrasi?",
+          "Secara umum, seberapa aman anda rasakan dalam kehidupan anda sehari-hari?",
+          "Seberapa sehat lingkungan dimana anda tinggal (berkaitan dengan sarana dan prasarana)",
+          "Apakah anda memiliki vitalitas yang cukup untuk beraktivitas sehar?",
+          "Apakah anda dapat menerima penampilan tubuh anda?",
+          "Apakah anda memiliki cukup uang untuk memenuhi kebutuhan anda?",
+          "Seberapa jauh ketersediaan informasi bagi kehidupan anda dari hari ke hari?",
+          "Seberapa sering anda memiliki kesempatan untuk bersenang-senang /rekreasi?",
+          "Seberapa baik kemampuan anda dalam bergaul?",
+          "Seberapa puaskah anda dengan tidur anda?",
+          "Seberapa puaskah anda dengan kemampuan anda untuk menampilkan aktivitas kehidupan anda sehari-hari?",
+          "Seberapa puaskah anda dengan kemampuan anda untuk bekerja?",
+          "Seberapa puaskah anda terhadap diri anda?",
+          "Seberapa puaskah anda dengan hubungan personal/sosial anda?",
+          "Seberapa puaskah anda dengan kehidupan seksual anda?",
+          "Seberapa puaskah anda dengan dukungan yang anda peroleh dari teman anda?",
+          "Seberapa puaskah anda dengan kondisi tempat anda tinggal saat ini?",
+          "Seberapa puaskah anda dengan akses anda pada layanan kesehatan?",
+          "Seberapa puaskah anda dengan transportasi yang harus anda jalani?",
+          "Seberapa sering anda memiliki perasaan negatif seperti 'feeling blue' (kesepian), putus asa, cemas dan depresi?",
+        ];
+
+        const whoqolLabels = {
+          q6_1: ["Sangat buruk", "Buruk", "Biasa-biasa saja", "Baik", "Sangat baik"],
+          q6_2: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_3: ["Tidak sama sekali", "Sedikit", "Cukup", "Sangat sering", "Selalu"],
+          q6_4: ["Tidak sama sekali", "Sedikit", "Cukup", "Sangat sering", "Selalu"],
+          q6_5: ["Tidak sama sekali", "Sedikit", "Cukup", "Sangat sering", "Selalu"],
+          q6_6: ["Tidak sama sekali", "Sedikit", "Cukup", "Sangat sering", "Selalu"],
+          q6_7: ["Tidak sama sekali", "Sedikit", "Cukup", "Sangat sering", "Selalu"],
+          q6_8: ["Tidak sama sekali", "Sedikit", "Cukup", "Sangat sering", "Selalu"],
+          q6_9: ["Tidak sama sekali", "Sedikit", "Cukup", "Sangat sering", "Selalu"],
+          q6_10: ["Sangat buruk", "Buruk", "Biasa-biasa saja", "Baik", "Sangat baik"],
+          q6_11: ["Sangat buruk", "Buruk", "Biasa-biasa saja", "Baik", "Sangat baik"],
+          q6_12: ["Sangat buruk", "Buruk", "Biasa-biasa saja", "Baik", "Sangat baik"],
+          q6_13: ["Sangat buruk", "Buruk", "Biasa-biasa saja", "Baik", "Sangat baik"],
+          q6_14: ["Sangat buruk", "Buruk", "Biasa-biasa saja", "Baik", "Sangat baik"],
+          q6_15: ["Sangat buruk", "Buruk", "Biasa-biasa saja", "Baik", "Sangat baik"],
+          q6_16: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_17: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_18: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_19: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_20: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_21: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_22: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_23: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_24: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_25: ["Sangat tidak memuaskan", "Tidak memuaskan", "Biasa-biasa saja", "Memuaskan", "Sangat memuaskan"],
+          q6_26: ["Tidak pernah", "Jarang", "Cukup sering", "Sangat sering", "Selalu"],
+        };
+
+        for (let i = 1; i <= 26; i++) {
+          const qKey = `whoqol_q6_${i}`;
+          const rawValue = getSafe(qKey);
+          const label = whoqolLabels[qKey]?.[parseInt(rawValue) - 1] || rawValue;
+          content += `<tr><td>6.${i}</td><td>${whoqolQuestions[i - 1]}</td><td class="text-center">${label}</td></tr>`;
+        }
+        content += `
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Komentar pewawancara:</label>
+                    <div class="form-control-plaintext border rounded p-2">${getSafe("whoqol_komentar_pewawancara")}</div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Equations for computing domain scores</th>
+                                <th>Raw score</th>
+                                <th>Transformed scores* (0-100)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>6.27 Domain 1</td><td>${getSafe("whoqol_domain1_raw")}</td><td>${getSafe("whoqol_domain1_transformed")}</td></tr>
+                            <tr><td>6.28 Domain 2</td><td>${getSafe("whoqol_domain2_raw")}</td><td>${getSafe("whoqol_domain2_transformed")}</td></tr>
+                            <tr><td>6.29 Domain 3</td><td>${getSafe("whoqol_domain3_raw")}</td><td>${getSafe("whoqol_domain3_transformed")}</td></tr>
+                            <tr><td>6.30 Domain 4</td><td>${getSafe("whoqol_domain4_raw")}</td><td>${getSafe("whoqol_domain4_transformed")}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `;
+
+        // Rekam Medis (Step 6)
+        content += `
+        <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+            <div class="app-card-body">
+                <h4 class="text-center mb-4">REKAM MEDIS</h4>
+                <div class="row mb-3">
+                    <div class="col-md-6"><b>Nomor Rekam Medis:</b> ${getSafe("rekam_medis_no_rekam")}</div>
+                    <div class="col-md-6"><b>Tanggal Pemeriksaan:</b> ${getSafe("rekam_medis_tgl_periksa")}</div>
+                </div>
+                <h5 class="mt-4">I. Identitas Pasien</h5>
+                <div class="row g-3">
+                    <div class="col-md-6"><b>Nama:</b> ${getSafe("rekam_medis_nama")}</div>
+                    <div class="col-md-6"><b>Tempat/Tanggal Lahir:</b> ${getSafe("rekam_medis_ttl")}</div>
+                    <div class="col-md-6"><b>Jenis Kelamin:</b> ${getSafe("rekam_medis_jk")}</div>
+                    <div class="col-md-6"><b>Agama:</b> ${getSafe("rekam_medis_agama")}</div>
+                    <div class="col-md-6"><b>Pekerjaan:</b> ${getSafe("rekam_medis_pekerjaan")}</div>
+                    <div class="col-md-6"><b>Status Perkawinan:</b> ${getSafe("rekam_medis_status")}</div>
+                    <div class="col-md-6"><b>Pendidikan Terakhir:</b> ${getSafe("rekam_medis_pendidikan")}</div>
+                    <div class="col-md-6"><b>Alamat:</b> ${getSafe("rekam_medis_alamat")}</div>
+                </div>
+                <h5 class="mt-4">II. Anamnesis (Autoanamnesa / Alloanamnesa)</h5>
+                <div class="mb-3"><b>Keluhan Utama:</b> ${getSafe("rekam_medis_keluhan_utama")}</div>
+                <div class="mb-3"><b>Keluhan Tambahan:</b> ${getSafe("rekam_medis_keluhan_tambahan")}</div>
+                <div class="mb-3"><b>Riwayat Perjalanan Penyakit:</b> ${getSafe("rekam_medis_riwayat_penyakit")}</div>
+                <h6>Riwayat Penyakit Dahulu (Termasuk Overdosis)</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light"><tr><th>No.</th><th>Jenis Penyakit</th><th>Tahun</th><th>Keterangan</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>${getSafe("rekam_medis_penyakit1")}</td><td>${getSafe("rekam_medis_tahun1")}</td><td>${getSafe("rekam_medis_ket1")}</td></tr>
+                            <tr><td>2</td><td>${getSafe("rekam_medis_penyakit2")}</td><td>${getSafe("rekam_medis_tahun2")}</td><td>${getSafe("rekam_medis_ket2")}</td></tr>
+                            <tr><td>3</td><td>${getSafe("rekam_medis_penyakit3")}</td><td>${getSafe("rekam_medis_tahun3")}</td><td>${getSafe("rekam_medis_ket3")}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h6>Riwayat pemeriksaan laboratorium</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light"><tr><th>No.</th><th>Jenis Pemeriksaan</th><th>Hasil</th><th>Keterangan</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>${getSafe("rekam_medis_lab_jenis1")}</td><td>${getSafe("rekam_medis_lab_hasil1")}</td><td>${getSafe("rekam_medis_lab_ket1")}</td></tr>
+                            <tr><td>2</td><td>${getSafe("rekam_medis_lab_jenis2")}</td><td>${getSafe("rekam_medis_lab_hasil2")}</td><td>${getSafe("rekam_medis_lab_ket2")}</td></tr>
+                            <tr><td>3</td><td>${getSafe("rekam_medis_lab_jenis3")}</td><td>${getSafe("rekam_medis_lab_hasil3")}</td><td>${getSafe("rekam_medis_lab_ket3")}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h5 class="mt-4">III. Pemeriksaan Fisik</h5>
+                <h6>Tanda tanda vital sign</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light"><tr><th>No.</th><th>Jenis Pemeriksaan</th><th>Hasil Pemeriksaan</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>${getSafe("rekam_medis_vital_jenis1")}</td><td>${getSafe("rekam_medis_vital_hasil1")}</td></tr>
+                            <tr><td>2</td><td>${getSafe("rekam_medis_vital_jenis2")}</td><td>${getSafe("rekam_medis_vital_hasil2")}</td></tr>
+                            <tr><td>3</td><td>${getSafe("rekam_medis_vital_jenis3")}</td><td>${getSafe("rekam_medis_vital_hasil3")}</td></tr>
+                            <tr><td>4</td><td>${getSafe("rekam_medis_vital_jenis4")}</td><td>${getSafe("rekam_medis_vital_hasil4")}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h6>Pemeriksaan sistemik</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light"><tr><th>No.</th><th>Jenis Pemeriksaan</th><th>Hasil</th><th>Keterangan</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>${getSafe("rekam_medis_sistemik_jenis1")}</td><td>${getSafe("rekam_medis_sistemik_hasil1")}</td><td>${getSafe("rekam_medis_sistemik_ket1")}</td></tr>
+                            <tr><td>2</td><td>${getSafe("rekam_medis_sistemik_jenis2")}</td><td>${getSafe("rekam_medis_sistemik_hasil2")}</td><td>${getSafe("rekam_medis_sistemik_ket2")}</td></tr>
+                            <tr><td>3</td><td>${getSafe("rekam_medis_sistemik_jenis3")}</td><td>${getSafe("rekam_medis_sistemik_hasil3")}</td><td>${getSafe("rekam_medis_sistemik_ket3")}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h6>Status Psikiatris</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light"><tr><th>No.</th><th>Masalah yang dialami</th><th>Ya</th><th>Tidak</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>${getSafe("rekam_medis_psikiatris_masalah1")}</td><td>${getSafe("rekam_medis_psikiatris_ya1")}</td><td>${getSafe("rekam_medis_psikiatris_tidak1")}</td></tr>
+                            <tr><td>2</td><td>${getSafe("rekam_medis_psikiatris_masalah2")}</td><td>${getSafe("rekam_medis_psikiatris_ya2")}</td><td>${getSafe("rekam_medis_psikiatris_tidak2")}</td></tr>
+                            <tr><td>3</td><td>${getSafe("rekam_medis_psikiatris_masalah3")}</td><td>${getSafe("rekam_medis_psikiatris_ya3")}</td><td>${getSafe("rekam_medis_psikiatris_tidak3")}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h5 class="mt-4">IV. Pemeriksaan Tambahan lainnya</h5>
+                <div class="mb-3">${getSafe("rekam_medis_pemeriksaan_tambahan1")}</div>
+                <h5 class="mt-4">V. Pemeriksaan Tambahan lainnya</h5>
+                <h6 class="mt-3">Diagonis Lainnya:</h6>
+                <div class="mb-3">${getSafe("rekam_medis_diagnosa_lainnya1")}</div>
+            </div>
+        </div>
+    `;
+
+        // Pemeriksaan Psikologi (Step 7)
+        content += `
+        <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+            <div class="app-card-body">
+                <h4 class="text-center mb-4">PEMERIKSAAN PSIKOLOGI</h4>
+                <h5>Data Identitas</h5>
+                <div class="row g-3">
+                    <div class="col-md-4"><b>NRM:</b> ${getSafe("psikologi_nrm")}</div>
+                    <div class="col-md-4"><b>Nama:</b> ${getSafe("psikologi_nama")}</div>
+                    <div class="col-md-4"><b>Tanggal Lahir:</b> ${getSafe("psikologi_tgl_lahir")}</div>
+                    <div class="col-md-4"><b>Pendidikan:</b> ${getSafe("psikologi_pendidikan")}</div>
+                    <div class="col-md-4"><b>Agama:</b> ${getSafe("psikologi_agama")}</div>
+                    <div class="col-md-4"><b>Jenis Kelamin:</b> ${getSafe("psikologi_jk")}</div>
+                    <div class="col-md-6"><b>Alamat:</b> ${getSafe("psikologi_alamat")}</div>
+                    <div class="col-md-6"><b>Pekerjaan:</b> ${getSafe("psikologi_pekerjaan")}</div>
+                    <div class="col-md-6"><b>Urutan Kelahiran:</b> ${getSafe("psikologi_urutan_kelahiran")}</div>
+                    <div class="col-md-6"><b>Tanggal Pemeriksaan:</b> ${getSafe("psikologi_tgl_periksa")}</div>
+                </div>
+                <h5 class="mt-4">Riwayat Penyakit</h5>
+                <div class="mb-3"><b>Diagnosa Dokter:</b> ${getSafe("psikologi_diagnosa_dokter")}</div>
+                <div class="mb-3"><b>Keluhan Fisik:</b> ${getSafe("psikologi_keluhan_fisik")}</div>
+                <div class="mb-3"><b>Keluhan Psikologis:</b> ${getSafe("psikologi_keluhan_psikologis")}</div>
+                <h5 class="mt-4">Asesmen</h5>
+                <p><strong>Observasi</strong></p>
+                <div class="mb-3"><b>Deskripsi Umum:</b> ${getSafe("psikologi_deskripsi_umum")}</div>
+                <div class="row g-3">
+                    <div class="col-md-6"><b>Penampilan Umum:</b> ${getSafe("psikologi_penampilan")}</div>
+                    <div class="col-md-6"><b>Perilaku &amp; Psikomotor:</b> ${getSafe("psikologi_psikomotor")}</div>
+                    <div class="col-md-6"><b>Sikap terhadap pemeriksa:</b> ${getSafe("psikologi_sikap")}</div>
+                    <div class="col-md-6"><b>Afek:</b> ${getSafe("psikologi_afek")}</div>
+                    <div class="col-md-6"><b>Roman Muka:</b> ${getSafe("psikologi_roman_muka")}</div>
+                    <div class="col-md-6"><b>Proses Pikir:</b> ${getSafe("psikologi_pikir")}</div>
+                    <div class="col-md-6"><b>Gangguan Persepsi:</b> ${getSafe("psikologi_persepsi")}</div>
+                </div>
+                <h6>Fungsi Psikologi</h6>
+                <div class="row g-3">
+                    <div class="col-md-3"><b>Memori:</b> ${getSafe("psikologi_memori")}</div>
+                    <div class="col-md-3"><b>Konsentrasi:</b> ${getSafe("psikologi_konsentrasi")}</div>
+                    <div class="col-md-3"><b>Orientasi:</b> ${getSafe("psikologi_orientasi")}</div>
+                    <div class="col-md-3"><b>Kemampuan Verbal:</b> ${getSafe("psikologi_verbal")}</div>
+                </div>
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6"><b>Emosi:</b> ${getSafe("psikologi_emosi")}</div>
+                    <div class="col-md-6"><b>Perilaku:</b> ${getSafe("psikologi_perilaku")}</div>
+                </div>
+                <h6 class="mt-3">Psikotes Pendukung</h6>
+                <ol>
+                    <li>${getSafe("psikologi_psikotes1")}</li>
+                    <li>${getSafe("psikologi_psikotes2")}</li>
+                    <li>${getSafe("psikologi_psikotes3")}</li>
+                    <li>${getSafe("psikologi_psikotes4")}</li>
+                </ol>
+                <div class="mb-3"><b>Hasil Tes:</b> ${getSafe("psikologi_hasil_tes")}</div>
+                <h6 class="mt-3">Simptom</h6>
+                <ul class="list-unstyled d-flex flex-wrap">
+    `;
+        const symptomKeys = [
+          "simptom_sakit_kepala",
+          "simptom_kurang_nafsu_makan",
+          "simptom_sulit_tidur",
+          "simptom_mudah_takut",
+          "simptom_tegang",
+          "simptom_cemas",
+          "simptom_gemetar",
+          "simptom_gangguan_perut",
+          "simptom_sulit_konsentrasi",
+          "simptom_sedih",
+          "simptom_sulit_mengambil_keputusan",
+          "simptom_kehilangan_minat",
+          "simptom_merasa_tidak_berguna",
+          "simptom_merasa_bersalah",
+          "simptom_mudah_lelah",
+          "simptom_putus_asa",
+          "simptom_mudah_marah",
+          "simptom_mudah_tersinggung",
+          "simptom_mimpi_buruk",
+          "simptom_tidak_percaya_diri",
+        ];
+        symptomKeys.forEach((key) => {
+          if (getSafe(key)) {
+            content += `<li class="col-md-4">${capitalize(key.replace("simptom_", "").replace(/_/g, " "))}</li>`;
+          }
+        });
+        content += `
+                </ul>
+                <h5 class="mt-4">Diagnosa Psikologi</h5>
+                <div class="row g-3">
+                    <div class="col-md-6"><b>Gangguan Kognitif:</b> ${getSafe("psikologi_gangguan_kognitif")}</div>
+                    <div class="col-md-6"><b>Gangguan Kepribadian:</b> ${getSafe("psikologi_gangguan_kepribadian")}</div>
+                    <div class="col-md-6"><b>Gangguan Perilaku:</b> ${getSafe("psikologi_gangguan_perilaku")}</div>
+                    <div class="col-md-6"><b>Gangguan Tumbuh Kembang:</b> ${getSafe("psikologi_gangguan_tumbuh")}</div>
+                    <div class="col-md-6"><b>Gangguan Emosi:</b> ${getSafe("psikologi_gangguan_emosi")}</div>
+                </div>
+                <h5 class="mt-4">Rencana Intervensi Psikologi</h5>
+                <div class="mb-3">${getSafe("psikologi_rencana")}</div>
+                <h5>Intervensi Psikologi</h5>
+                <div class="mb-3">${getSafe("psikologi_intervensi")}</div>
+            </div>
+        </div>
+    `;
+
+        // ASESMEN MEDIS DAN PSIKOSOSIAL (Step 8)
+        content += `
+        <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+            <div class="app-card-body">
+                <h4 class="text-center mb-4">ASESMEN MEDIS DAN PSIKOSOSIAL</h4>
+    `;
+        const medisQuestions = [
+          "Berapa kalikah dalam hidup, Anda pernah dirawat di rumah sakit untuk masalah fisik?",
+          "Kapan terakhir kali Anda dirawat di rumah sakit untuk masalah di atas?",
+          "Apakah Anda menderita masalah kesehatan Kronis* yang terus mempengaruhi hidup Anda?",
+          "Apakah Anda menggunakan obat yang diresepkan secara teratur untuk gangguan fisik?",
+          "Apakah Anda menerima dukungan finansial untuk kecacatan fisik?",
+          "Berapa harikah Anda mempunyai masalah kesehatan dalam 30 hari terakhir?",
+          "Seberapa terganggukah Anda oleh masalah kesehatan dalam 30 hari terakhir?",
+          "Seberapa pentingkah bagi Anda saat ini pengobatan untuk masalah medis tersebut?",
+          "Pasien memberikan keterangan yang salah?",
+          "Ketidakmampuan pasien untuk memahami pertanyaan?",
+          "Apakah Anda pernah di tes untuk hepatitis C?",
+          "Jika ya, apakah hasilnya?",
+          "Apakah Anda ingin memperoleh tes Hepatitis C?",
+          "Apakah Anda pernah di tes untuk HIV?",
+          "Jika ya, apakah hasilnya?",
+          "Apakah Anda menginginkan bantuan memperoleh tes HIV?",
+          "Apakah Anda saat ini sedang mengandung?",
+          "Jika sedang mengandung, apakah Anda melakukan pemeriksaan prenatal?",
+          "Jika tidak yakin maukah Anda bersedia melakukan tes kehamilan?",
+          "Pendidikan yang diselesaikan:",
+          "Tingkat pendidikan tertinggi yang dicapai, Jelaskan:",
+          "Pelatihan atau Pendidikan Keterampilan yang selesai:",
+          "Apakah pilihan pekerjaan Anda dibatasi oleh ketiadaan transportasi?",
+          "Berapa lamakah pekerjaan penuh waktu Anda yang paling lama?",
+          "Jenis pekerjaan terakhir (yang biasanya)?",
+          "Apakah ada seseorang yang memberikan dukungan terbesar pada Anda?",
+          "Manakah di bawah ini yang mewakili pola pekerjaan Anda yang utama dalam tiga tahun?",
+          "Berapa harikah Anda bekerja yang digaji dalam 30 hari terakhir?",
+          "Berapa banyak uang yang Anda terima dari Pekerjaan dalam 30 hari terakhir?",
+          "Berapa banyak uang yang Anda terima dari Kompensasi bila tidak bekerja dalam 30 hari terakhir?",
+          "Berapa banyak uang yang Anda terima dari Kesejahteraan sosial dalam 30 hari terakhir?",
+          "Berapa banyak uang yang Anda terima dari Pensiun, jaminan sosial dalam 30 hari terakhir?",
+          "Berapa banyak uang yang Anda terima dari Pasangan, keluarga, atau teman-teman dalam 30 hari terakhir?",
+          "Berapa banyak uang yang Anda terima dari Ilegal dalam 30 hari terakhir?",
+          "Berapa jumlah orang yang menggantungkan hidupnya pada Anda untuk makan, tempat tinggal, dll?",
+          "Berapa jumlah hari Anda mengalami masalah pekerjaan dalam 30 hari terakhir?",
+          "Seberapa terganggukah Anda dengan masalah pekerjaan ini dalam 30 hari terakhir?",
+          "Seberapa pentingkah bagi Anda sekarang konseling untuk masalah pekerjaan ini?",
+          "Salah mengemukakan kenyataan dirinya?",
+          "Ketidakmampuan pasien untuk memahami?",
+          "Berapa kali Anda memperoleh terapi untuk berbagai masalah psikologis atau emosional: Di rumah sakit atau rawat inap?",
+          "Berapa kali Anda memperoleh terapi untuk berbagai masalah psikologis atau emosional: Rawat jalan /pasien pribadi?",
+          "Apakah Anda mendapat dukungan finansial untuk disabilitas psikiatri?",
+          "Apakah Anda pernah mengalami depresi serius-kesedihan, putus asa, kehilangan minat, kesukaran dalam fungsi sehari-hari? (30 hari terakhir dan Sepanjang hidup)",
+          "Apakah Anda pernah mengalami ansietas serius / ketegangan, gelisah, merasa khawatir yg berlebihan, ketidakmampuan untuk merasa relaks? (30 hari terakhir dan Sepanjang hidup)",
+          "Apakah Anda pernah mengalami halusinasi-melihat atau mendengar sesuatu yang tidak ada obyeknya? (30 hari terakhir dan Sepanjang hidup)",
+          "Apakah Anda pernah mengalami kesulitan berkonsentrasi atau mengingat? (30 hari terakhir dan Sepanjang hidup)",
+          "Mengalami kesukaran mengontrol perilaku kacau termasuk kemarahan atau kekerasan? (30 hari terakhir dan Sepanjang hidup)",
+          "Mengalami pikiran serius untuk bunuh diri?",
+          "Mencoba untuk bunuh diri?",
+          "Apakah dokter Anda menyarankan untuk minum obat untuk masalah psikologis atau emosional?",
+          "Berapa harikah dalam 30 hari terakhir Anda mengalami masalah psikologis atau emosional tersebut?",
+          "Seberapa terganggukah Anda oleh masalah Psikologis/emosional dalam 30 hari terakhir?",
+          "Seberapa pentingkah bagi Anda terapi sekarang ini untuk masalah psikologis atau emosional ini?",
+          "Salah mengemukakan kenyatan diri sendiri?",
+          "Ketidakmampuan pasien untuk memahami?",
+        ];
+        for (let i = 1; i <= 56; i++) {
+          const qKey = `medis_q${i}`;
+          content += `
+            <div class="mb-4">
+                <h5 class="question-title mb-2">Pertanyaan No ${i}</h5>
+                <p>${medisQuestions[i - 1]}</p>
+                <div class="form-control-plaintext border rounded p-2">${getSafe(qKey)}</div>
+            </div>
+            <hr class="my-4" />
+        `;
+        }
+        content += `</div></div>`;
+
+        // Resume Screening dan Assessment Awal (Step 9)
+        content += `
+        <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+            <div class="app-card-body">
+                <h4 class="text-center mb-4">RESUME SCREENING DAN ASSESSMENT AWAL</h4>
+                <h5 class="mt-4">Identitas Klien</h5>
+                <div class="row g-3">
+                    <div class="col-md-6"><b>Nama:</b> ${getSafe("nama")}</div>
+                    <div class="col-md-3"><b>Usia:</b> ${getSafe("usia")}</div>
+                    <div class="col-md-3"><b>Jenis Kelamin:</b> ${getSafe("jk")}</div>
+                    <div class="col-md-4"><b>Agama:</b> ${getSafe("agama")}</div>
+                    <div class="col-md-8"><b>Alamat:</b> ${getSafe("alamat")}</div>
+                    <div class="col-md-4"><b>Tanggal Masuk:</b> ${getSafe("tgl_masuk")}</div>
+                </div>
+                <h5 class="mt-4">Hasil Pemeriksaan</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 5%">No.</th>
+                                <th>Jenis Pemeriksaan</th>
+                                <th style="width: 40%">Hasil Pemeriksaan / Interpretasi</th>
+                                <th style="width: 25%">Tanda Tangan Pemeriksa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Assist</td>
+                                <td>${getSafe("assist")}</td>
+                                <td>${getSafe("ttd_assist")}</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Pemeriksaan Medis</td>
+                                <td>${getSafe("medis")}</td>
+                                <td>${getSafe("ttd_medis")}</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Pemeriksaan Psikologis</td>
+                                <td>
+                                    <ol>
+                                        <li>${getSafe("psiko1")}</li>
+                                        <li>${getSafe("psiko2")}</li>
+                                    </ol>
+                                </td>
+                                <td>${getSafe("ttd_psiko")}</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>URICA</td>
+                                <td>${getSafe("urica")}</td>
+                                <td>${getSafe("ttd_urica")}</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>WHO-QOL</td>
+                                <td>${getSafe("whoqol")}</td>
+                                <td>${getSafe("ttd_whoqol")}</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>ASI Version 3.0</td>
+                                <td>${getSafe("asi")}</td>
+                                <td>${getSafe("ttd_asi")}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h5 class="mt-4">Catatan</h5>
+                <div class="mb-3">${getSafe("catatan")}</div>
+            </div>
+        </div>
+    `;
+
+        jawabanContainer.innerHTML = content;
+      }
+
+      if (jawabanKey) {
+        fetchJawabanData(jawabanKey);
+      } else {
+        jawabanContainer.innerHTML = `<div class="alert alert-danger">ID Laporan tidak valid atau tidak ditemukan di URL.</div>`;
+      }
+    </script>
+  </body>
+</html>

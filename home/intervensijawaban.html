@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Detail Data Intervensi</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css" />
+  </head>
+  <body class="app">
+    <header class="app-header fixed-top">
+      <div class="app-header-inner">
+        <div class="container-fluid py-2">
+          <div class="app-header-content">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto">
+                <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
+                    <title>Menu</title>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
+                  </svg>
+                </a>
+              </div>
+              <div class="app-search-box col">
+                <form class="app-search-form">
+                  <input type="text" placeholder="Search..." name="search" class="form-control search-input" />
+                  <button type="submit" class="btn search-btn btn-primary" value="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </form>
+              </div>
+              <div class="app-utilities col-auto">
+                <div class="app-utility-item app-user-dropdown dropdown">
+                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <img src="assets/images/user.png" alt="user profile" />
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+                    <li><a class="dropdown-item" href="#">Account</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="app-sidepanel" class="app-sidepanel">
+        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+        <div class="sidepanel-inner d-flex flex-column">
+          <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+          <div class="app-branding">
+            <a class="app-logo" href="index.html">
+              <img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo" />
+              <span class="logo-text">PORTAL</span>
+            </a>
+          </div>
+          <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+            <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+                  <span class="nav-link-text">Home</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="docs.html">
+                  <span class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+                  <span class="nav-link-text">Scanning</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="orders.html">
+                  <span class="nav-icon"><i class="fa-solid fa-file-alt"></i></span>
+                  <span class="nav-link-text">Data Laporan</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Detail Data Intervensi</h1>
+            </div>
+            <div class="col-auto">
+              <div class="d-flex align-items-center">
+                <a class="btn btn-secondary me-2" href="orders.html">
+                  <i class="fa-solid fa-arrow-left me-1"></i>
+                  Kembali ke Laporan
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="app-card app-card-settings shadow-sm p-4">
+            <div class="app-card-body" id="jawaban-container">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <p class="d-inline-block ms-2">Memuat data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+      // Konfigurasi Firebase Anda
+      const firebaseConfig = {
+        apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
+        authDomain: "test-online-b48ef.firebaseapp.com",
+        databaseURL: "https://test-online-b48ef-default-rtdb.firebaseio.com",
+        projectId: "test-online-b48ef",
+        storageBucket: "test-online-b48ef.appspot.com",
+        messagingSenderId: "636551088140",
+        appId: "1:636551088140:web:747fbb116635b4074a4629",
+        measurementId: "G-5Q7L6DK68G",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      const jawabanContainer = document.getElementById("jawaban-container");
+      const urlParams = new URLSearchParams(window.location.search);
+      const jawabanKey = urlParams.get("key");
+
+      async function fetchJawabanData(key) {
+        try {
+          const snapshot = await get(ref(db, `DATA_INTERVENSI/${key}`));
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            renderJawaban(data);
+          } else {
+            jawabanContainer.innerHTML = `<div class="alert alert-warning">Data tidak ditemukan untuk ID Laporan ini.</div>`;
+          }
+        } catch (error) {
+          console.error("Gagal mengambil detail jawaban:", error);
+          jawabanContainer.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat memuat data dari database.</div>`;
+        }
+      }
+
+      function renderJawaban(data) {
+        jawabanContainer.innerHTML = `
+          <div id="step1-view">
+            <h4 class="text-center mb-4">FORMULIR RENCANA TERAPI</h4>
+            <div class="row mb-2">
+              <div class="col-3">Hari/Tanggal:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.hari || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Nama:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.nama_klien || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">D.O.A:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.doa || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Rencana Terapi ke:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.rencana_terapi_ke || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-3">Status Program:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.status_program || "Tidak Diisi"}</span></div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-bold">1. Tujuan:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.tujuan || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">2. Sasaran:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.sasaran || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">3. Kekuatan:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.kekuatan || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">4. Hambatan:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.hambatan || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">5. Intervensi:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.intervensi || "Tidak Diisi"}</div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Rencana Intervensi</th>
+                    <th>Tanggal Pelaksanaan</th>
+                    <th>Tanggal Selesai Pelaksanaan</th>
+                    <th>Penanggung Jawab</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>${data.rencana_intervensi_1 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_pelaksanaan_1 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_selesai_1 || "Tidak Diisi"}</td>
+                    <td>${data.penanggung_jawab_1 || "Tidak Diisi"}</td>
+                  </tr>
+                  <tr>
+                    <td>${data.rencana_intervensi_2 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_pelaksanaan_2 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_selesai_2 || "Tidak Diisi"}</td>
+                    <td>${data.penanggung_jawab_2 || "Tidak Diisi"}</td>
+                  </tr>
+                  <tr>
+                    <td>${data.rencana_intervensi_3 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_pelaksanaan_3 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_selesai_3 || "Tidak Diisi"}</td>
+                    <td>${data.penanggung_jawab_3 || "Tidak Diisi"}</td>
+                  </tr>
+                  <tr>
+                    <td>${data.rencana_intervensi_4 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_pelaksanaan_4 || "Tidak Diisi"}</td>
+                    <td>${data.tgl_selesai_4 || "Tidak Diisi"}</td>
+                    <td>${data.penanggung_jawab_4 || "Tidak Diisi"}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <hr class="my-4"/>
+
+          <div id="step2-view">
+            <h4 class="text-center mb-4">FORM PENCATATAN KONSELING</h4>
+            <div class="row mb-2">
+              <div class="col-3">Nama:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.konseling_nama || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Jenis Kelamin:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.jenis_kelamin || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">D.O.A:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.konseling_doa || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Pertemuan ke:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.pertemuan_ke || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-3">Tanggal/bulan/tahun:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.konseling_tanggal || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Hasil Konseling</label>
+              <div class="form-control-plaintext border rounded p-2" style="height: 120px">${data.hasil_konseling || "Tidak Diisi"}</div>
+            </div>
+          </div>
+
+          <hr class="my-4"/>
+
+          <div id="step3-view">
+            <h4 class="text-center mb-4">FORMULIR KONSELING KELOMPOK</h4>
+            <div class="row mb-2">
+              <div class="col-3">Hari/Tanggal:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.kelompok_tanggal || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Fasilitator:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.kelompok_fasilitator || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Tempat:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.kelompok_tempat || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Nama</th>
+                    <th>Permasalahan</th>
+                    <th>Feedback</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>${data.konseling_kelompok_nama_1 || "Tidak Diisi"}</td>
+                    <td>${data.konseling_kelompok_permasalahan_1 || "Tidak Diisi"}</td>
+                    <td>${data.konseling_kelompok_feedback_1 || "Tidak Diisi"}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Kesimpulan</label>
+              <div class="form-control-plaintext border rounded p-2">${data.kelompok_kesimpulan || "Tidak Diisi"}</div>
+            </div>
+          </div>
+
+          <hr class="my-4"/>
+          
+          <div id="step4-view">
+            <h4 class="text-center mb-4">FORMULIR LEMBAR TERAPI KELOMPOK</h4>
+            <div class="row mb-2">
+              <div class="col-3">Peserta:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.lembar_terapi_peserta || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Fasilitator:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.lembar_terapi_fasilitator || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Hari/Tanggal:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.lembar_terapi_tanggal || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Materi</label>
+              <div class="form-control-plaintext border rounded p-2">${data.lembar_terapi_materi || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Hasil</label>
+              <div class="form-control-plaintext border rounded p-2">${data.lembar_terapi_hasil || "Tidak Diisi"}</div>
+            </div>
+            <h4 class="text-center mb-4">DAFTAR HADIR PESERTA TERAPI KELOMPOK</h4>
+            <div class="row mb-2">
+              <div class="col-3">Fasilitator:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.daftar_hadir_fasilitator || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Tempat:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.daftar_hadir_tempat || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Waktu:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.daftar_hadir_waktu || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Judul:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.daftar_hadir_judul || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th style="width: 10%">No</th>
+                    <th>Nama</th>
+                    <th>Paraf</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>${data.daftar_hadir_nama_1 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_1 || "Tidak Diisi"}</td></tr>
+                  <tr><td>2</td><td>${data.daftar_hadir_nama_2 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_2 || "Tidak Diisi"}</td></tr>
+                  <tr><td>3</td><td>${data.daftar_hadir_nama_3 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_3 || "Tidak Diisi"}</td></tr>
+                  <tr><td>4</td><td>${data.daftar_hadir_nama_4 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_4 || "Tidak Diisi"}</td></tr>
+                  <tr><td>5</td><td>${data.daftar_hadir_nama_5 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_5 || "Tidak Diisi"}</td></tr>
+                  <tr><td>6</td><td>${data.daftar_hadir_nama_6 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_6 || "Tidak Diisi"}</td></tr>
+                  <tr><td>7</td><td>${data.daftar_hadir_nama_7 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_7 || "Tidak Diisi"}</td></tr>
+                  <tr><td>8</td><td>${data.daftar_hadir_nama_8 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_8 || "Tidak Diisi"}</td></tr>
+                  <tr><td>9</td><td>${data.daftar_hadir_nama_9 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_9 || "Tidak Diisi"}</td></tr>
+                  <tr><td>10</td><td>${data.daftar_hadir_nama_10 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_10 || "Tidak Diisi"}</td></tr>
+                  <tr><td>11</td><td>${data.daftar_hadir_nama_11 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_11 || "Tidak Diisi"}</td></tr>
+                  <tr><td>12</td><td>${data.daftar_hadir_nama_12 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_12 || "Tidak Diisi"}</td></tr>
+                  <tr><td>13</td><td>${data.daftar_hadir_nama_13 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_13 || "Tidak Diisi"}</td></tr>
+                  <tr><td>14</td><td>${data.daftar_hadir_nama_14 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_14 || "Tidak Diisi"}</td></tr>
+                  <tr><td>15</td><td>${data.daftar_hadir_nama_15 || "Tidak Diisi"}</td><td>${data.daftar_hadir_paraf_15 || "Tidak Diisi"}</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <hr class="my-4"/>
+
+          <div id="step5-view">
+            <h4 class="text-center mb-4">FORMULIR PENCATATAN PENDEKATAN KELUARGA</h4>
+            <div class="row mb-2">
+              <div class="col-3">NAMA KLIEN:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.keluarga_nama_klien || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">NAMA ORANG TUA/WALI:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.keluarga_nama_ortu || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">PERTEMUAN KE:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.keluarga_pertemuan_ke || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">TANGGAL/BULAN/TAHUN:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.keluarga_tanggal || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Hasil Pemeriksaan Dan Konseling</th>
+                    <th>Rencana Terapi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><div class="form-control-plaintext">${data.hasil_keluarga || "Tidak Diisi"}</div></td>
+                    <td><div class="form-control-plaintext">${data.rencana_keluarga || "Tidak Diisi"}</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Kesimpulan/diagnosa</label>
+              <div class="form-control-plaintext border rounded p-2">${data.keluarga_kesimpulan || "Tidak Diisi"}</div>
+            </div>
+          </div>
+
+          <hr class="my-4"/>
+
+          <div id="step6-view">
+            <h4 class="text-center mb-4">FORMULIR EDUKASI KELOMPOK</h4>
+            <div class="row mb-2">
+              <div class="col-3">Nama Klien:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.edukasi_nama_klien || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Nama Fasilitator:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.edukasi_nama_fasilitator || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Tanggal Terapi:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.edukasi_tanggal_terapi || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Tujuan:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.edukasi_tujuan || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Terapi yang diberikan:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.edukasi_terapi || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Hasil Terapi:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.edukasi_hasil || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Rencana Tindak Lanjut:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.edukasi_rencana || "Tidak Diisi"}</div>
+            </div>
+          </div>
+
+          <hr class="my-4"/>
+
+          <div id="step7-view">
+            <h4 class="text-center mb-4">CATATAN TEMU BAHAS KASUS</h4>
+            <div class="row mb-2">
+              <div class="col-3">Tanggal:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_tanggal || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Nama Klien:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_nama_klien || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Umur:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_umur || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Tanggal masuk:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_tgl_masuk || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Nama Peksos/Petugas:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_nama_peksos || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">I. Masalah yang perlu di CC:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_masalah || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">II. Tanggapan dari para ahli:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_tanggapan_ahli || "Tidak Diisi"}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Pekerja Sosial/Konselor:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_peksos_tanggapan || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Staf Pendamping:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_staf_tanggapan || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Dokter:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_dokter_tanggapan || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Psikolog:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_psikolog_tanggapan || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Profesi lain:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_profesi_lain || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">III. Kesimpulan:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_kesimpulan || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">IV. Langkah-langkah pemecahan masalah:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_pemecahan || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">V. Rencana Tindak Lanjut:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_rencana_lanjut || "Tidak Diisi"}</div>
+            </div>
+          </div>
+          
+          <hr class="my-4"/>
+
+          <div id="step8-view">
+            <h4 class="text-center mb-4">CATATAN TEMU BAHAS KASUS</h4>
+            <div class="row mb-2">
+              <div class="col-3">Tanggal:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_tanggal_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Nama Klien:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_nama_klien_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Umur:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_umur_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Tanggal masuk:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_tgl_masuk_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Nama Peksos/Petugas:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_nama_peksos_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">I. Masalah yang perlu di CC:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_masalah_2 || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">II. Tanggapan dari para ahli:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_tanggapan_ahli_2 || "Tidak Diisi"}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Pekerja Sosial/Konselor:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_peksos_tanggapan_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Staf Pendamping:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_staf_tanggapan_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Dokter:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_dokter_tanggapan_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Psikolog:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_psikolog_tanggapan_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Profesi lain:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_profesi_lain_2 || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">III. Kesimpulan:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_kesimpulan_2 || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">IV. Langkah-langkah pemecahan masalah:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_pemecahan_2 || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">V. Rencana Tindak Lanjut:</label>
+              <div class="form-control-plaintext border rounded p-2">${data.bahas_kasus_rencana_lanjut_2 || "Tidak Diisi"}</div>
+            </div>
+          </div>
+          
+          <hr class="my-4"/>
+
+          <div id="step9-view">
+            <h4 class="text-center mb-4">FORMULIR TERAPI SPIRITUAL</h4>
+            <div class="row mb-2">
+              <div class="col-3">Nama Klien:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.spiritual_nama_klien || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Fasilitator:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.spiritual_fasilitator || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">Hari/Tanggal:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.spiritual_tanggal || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Materi</label>
+              <div class="form-control-plaintext border rounded p-2">${data.spiritual_materi || "Tidak Diisi"}</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Hasil</label>
+              <div class="form-control-plaintext border rounded p-2">${data.spiritual_hasil || "Tidak Diisi"}</div>
+            </div>
+          </div>
+
+          <hr class="my-4"/>
+
+          <div id="step10-view">
+            <h4 class="text-center mb-4">FORMULIR PEMANTAUAN MEDIS & PSIKOLOGIS</h4>
+            <div class="row mb-2">
+              <div class="col-3">Nama:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.pemantauan_nama || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">D.O.A:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.pemantauan_doa || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-3">Tanggal/bulan/tahun:</div>
+              <div class="col-9"><span class="form-control-plaintext">${data.pemantauan_tanggal || "Tidak Diisi"}</span></div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th style="align-items: center; display: flex; justify-content: center">HASIL PEMANTAUAN</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><div class="form-control-plaintext" style="height: 120px">${data.hasil_pemantauan || "Tidak Diisi"}</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }
+
+      // Memanggil fungsi untuk mengambil data saat halaman dimuat
+      if (jawabanKey) {
+        fetchJawabanData(jawabanKey);
+      } else {
+        jawabanContainer.innerHTML = `<div class="alert alert-danger">ID Laporan tidak valid atau tidak ditemukan di URL.</div>`;
+      }
+    </script>
+  </body>
+</html>

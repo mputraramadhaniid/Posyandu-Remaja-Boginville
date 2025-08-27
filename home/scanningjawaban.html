@@ -94,7 +94,16 @@
               <h1 class="app-page-title mb-0">Detail Data Scanning</h1>
             </div>
             <div class="col-auto">
-              <a class="btn btn-secondary" href="orders.html"> <i class="fa-solid fa-arrow-left me-1"></i> Kembali ke Laporan </a>
+              <div class="d-flex align-items-center">
+                <button id="download-csv-btn" class="btn btn-primary me-2">
+                  <i class="fa-solid fa-download me-1"></i>
+                  Download CSV
+                </button>
+                <a class="btn btn-secondary" href="orders.html">
+                  <i class="fa-solid fa-arrow-left me-1"></i>
+                  Kembali ke Laporan
+                </a>
+              </div>
             </div>
           </div>
           <div class="app-card app-card-settings shadow-sm p-4">
@@ -130,21 +139,27 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
       const jawabanContainer = document.getElementById("jawaban-container");
+      const downloadBtn = document.getElementById("download-csv-btn");
       const urlParams = new URLSearchParams(window.location.search);
       const jawabanKey = urlParams.get("key");
+      let currentData = null;
 
       async function fetchJawabanData(key) {
         try {
           const snapshot = await get(ref(db, `DATA_SCANNING/${key}`));
           if (snapshot.exists()) {
             const data = snapshot.val();
+            currentData = data;
             renderJawaban(data);
+            downloadBtn.style.display = "block";
           } else {
             jawabanContainer.innerHTML = `<div class="alert alert-warning">Data tidak ditemukan untuk ID Laporan ini.</div>`;
+            downloadBtn.style.display = "none";
           }
         } catch (error) {
           console.error("Gagal mengambil detail jawaban:", error);
           jawabanContainer.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat memuat data dari database.</div>`;
+          downloadBtn.style.display = "none";
         }
       }
 
@@ -272,7 +287,7 @@
             </div>
         `;
 
-        // ASSIST Questions (Step 3)
+        // ASSESSMENT AWAL (ASSIST) (Step 3)
         const getAssistLabel = (questionNum, value) => {
           const labels = {
             1: { 0: "Tidak", 3: "Ya" },
@@ -358,12 +373,12 @@
           content += `<tr><td>${i}</td><td>${uricaQuestions[i - 1]}</td><td class="text-center">${uricaLabels[getSafe(qKey)] || "Tidak Diisi"}</td></tr>`;
         }
         content += `
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
+        `;
 
         // WHOQOL-BREF (Step 5)
         content += `
@@ -386,7 +401,7 @@
                     <table class="table table-bordered align-middle">
                         <thead class="table-light"><tr><th style="width: 5%">No.</th><th>Pertanyaan</th><th class="text-center">Jawaban</th></tr></thead>
                         <tbody>
-    `;
+        `;
         const whoqolQuestions = [
           "Bagaimana menurut anda kualitas hidup anda?",
           "Seberapa puas anda terhadap kesehatan anda?",
@@ -478,7 +493,7 @@
                 </div>
             </div>
         </div>
-    `;
+        `;
 
         // Rekam Medis (Step 6)
         content += `
@@ -568,7 +583,7 @@
                 <div class="mb-3">${getSafe("rekam_medis_diagnosa_lainnya1")}</div>
             </div>
         </div>
-    `;
+        `;
 
         // Pemeriksaan Psikologi (Step 7)
         content += `
@@ -625,7 +640,7 @@
                 <div class="mb-3"><b>Hasil Tes:</b> ${getSafe("psikologi_hasil_tes")}</div>
                 <h6 class="mt-3">Simptom</h6>
                 <ul class="list-unstyled d-flex flex-wrap">
-    `;
+        `;
         const symptomKeys = [
           "simptom_sakit_kepala",
           "simptom_kurang_nafsu_makan",
@@ -669,14 +684,14 @@
                 <div class="mb-3">${getSafe("psikologi_intervensi")}</div>
             </div>
         </div>
-    `;
+        `;
 
         // ASESMEN MEDIS DAN PSIKOSOSIAL (Step 8)
         content += `
         <div class="app-card app-card-settings shadow-sm p-4 mb-4">
             <div class="app-card-body">
                 <h4 class="text-center mb-4">ASESMEN MEDIS DAN PSIKOSOSIAL</h4>
-    `;
+        `;
         const medisQuestions = [
           "Berapa kalikah dalam hidup, Anda pernah dirawat di rumah sakit untuk masalah fisik?",
           "Kapan terakhir kali Anda dirawat di rumah sakit untuk masalah di atas?",
@@ -822,15 +837,344 @@
                 <div class="mb-3">${getSafe("catatan")}</div>
             </div>
         </div>
-    `;
+        `;
 
         jawabanContainer.innerHTML = content;
       }
+
+      // Hide the download button initially
+      downloadBtn.style.display = "none";
 
       if (jawabanKey) {
         fetchJawabanData(jawabanKey);
       } else {
         jawabanContainer.innerHTML = `<div class="alert alert-danger">ID Laporan tidak valid atau tidak ditemukan di URL.</div>`;
+      }
+
+      // Add event listener for the download button
+      downloadBtn.addEventListener("click", () => {
+        if (currentData) {
+          downloadCSV(currentData);
+        }
+      });
+
+      function downloadCSV(data) {
+        const fieldMappings = {
+          klien_nama: "Nama Klien",
+          klien_ttl: "Tempat/Tgl Lahir Klien",
+          klien_status: "Status Perkawinan Klien",
+          klien_agama: "Agama Klien",
+          klien_jk: "Jenis Kelamin Klien",
+          klien_anakke: "Anak Ke Klien",
+          klien_alamat: "Alamat Rumah Klien",
+          klien_pendidikan: "Pendidikan Terakhir Klien",
+          klien_pekerjaan: "Pekerjaan Klien",
+          ayah_nama: "Nama Ayah",
+          ayah_ttl: "Tempat/Tgl Lahir Ayah",
+          ayah_agama: "Agama Ayah",
+          ayah_pekerjaan: "Pekerjaan Ayah",
+          ayah_alamat: "Alamat Ayah",
+          ayah_telp: "No. Telp/HP Ayah",
+          ibu_nama: "Nama Ibu",
+          ibu_ttl: "Tempat/Tgl Lahir Ibu",
+          ibu_agama: "Agama Ibu",
+          ibu_pekerjaan: "Pekerjaan Ibu",
+          ibu_alamat: "Alamat Ibu",
+          ibu_telp: "No. Telp/HP Ibu",
+          wali_nama: "Nama Wali",
+          wali_ttl: "Tempat/Tgl Lahir Wali",
+          wali_agama: "Agama Wali",
+          wali_pekerjaan: "Pekerjaan Wali",
+          wali_hubungan: "Hubungan dengan Klien",
+          wali_telp: "No. Telp/HP Wali",
+          wali_alamat: "Alamat Wali",
+          no_surat: "No Surat",
+          urine_nama: "Nama Klien (Urine)",
+          urine_umur: "Umur Klien (Urine)",
+          urine_jk: "Jenis Kelamin Klien (Urine)",
+          urine_pekerjaan: "Pekerjaan Klien (Urine)",
+          urine_alamat: "Alamat Klien (Urine)",
+          urine_hari: "Hari Pemeriksaan Urine",
+          urine_tanggal: "Tanggal Pemeriksaan Urine",
+          urine_jam: "Jam Pemeriksaan Urine",
+          amp: "Amphetamine (AMP) Result",
+          thc: "Ganja / Marijuana (THC) Result",
+          mop: "Morphine / Putaw (MOP) Result",
+          coc: "Cocaine (COC) Result",
+          met: "Metaphetamine (MET) Result",
+          bzo: "Benzodiazepine (BZO) Result",
+          pemeriksa: "Nama Pemeriksa Urine",
+          // ASSIST Questions
+          p1_tembakau: "ASSIST Q1 Tembakau",
+          p1_alkohol: "ASSIST Q1 Alkohol",
+          p1_kanabis: "ASSIST Q1 Kanabis",
+          p1_kokain: "ASSIST Q1 Kokain",
+          p1_stimulan: "ASSIST Q1 Stimulan",
+          p1_inhalansia: "ASSIST Q1 Inhalansia",
+          p1_sedatif: "ASSIST Q1 Sedatif",
+          p1_halusinogen: "ASSIST Q1 Halusinogen",
+          p1_opioid: "ASSIST Q1 Opioid",
+          p1_lain: "ASSIST Q1 Lain",
+          p2_tembakau: "ASSIST Q2 Tembakau",
+          p2_alkohol: "ASSIST Q2 Alkohol",
+          p2_kanabis: "ASSIST Q2 Kanabis",
+          p2_kokain: "ASSIST Q2 Kokain",
+          p2_stimulan: "ASSIST Q2 Stimulan",
+          p2_inhalansia: "ASSIST Q2 Inhalansia",
+          p2_sedatif: "ASSIST Q2 Sedatif",
+          p2_halusinogen: "ASSIST Q2 Halusinogen",
+          p2_opioid: "ASSIST Q2 Opioid",
+          p2_lain: "ASSIST Q2 Lain",
+          p3_tembakau: "ASSIST Q3 Tembakau",
+          p3_alkohol: "ASSIST Q3 Alkohol",
+          p3_kanabis: "ASSIST Q3 Kanabis",
+          p3_kokain: "ASSIST Q3 Kokain",
+          p3_stimulan: "ASSIST Q3 Stimulan",
+          p3_inhalansia: "ASSIST Q3 Inhalansia",
+          p3_sedatif: "ASSIST Q3 Sedatif",
+          p3_halusinogen: "ASSIST Q3 Halusinogen",
+          p3_opioid: "ASSIST Q3 Opioid",
+          p3_lain: "ASSIST Q3 Lain",
+          p4_tembakau: "ASSIST Q4 Tembakau",
+          p4_alkohol: "ASSIST Q4 Alkohol",
+          p4_kanabis: "ASSIST Q4 Kanabis",
+          p4_kokain: "ASSIST Q4 Kokain",
+          p4_stimulan: "ASSIST Q4 Stimulan",
+          p4_inhalansia: "ASSIST Q4 Inhalansia",
+          p4_sedatif: "ASSIST Q4 Sedatif",
+          p4_halusinogen: "ASSIST Q4 Halusinogen",
+          p4_opioid: "ASSIST Q4 Opioid",
+          p4_lain: "ASSIST Q4 Lain",
+          p5_tembakau: "ASSIST Q5 Tembakau",
+          p5_alkohol: "ASSIST Q5 Alkohol",
+          p5_kanabis: "ASSIST Q5 Kanabis",
+          p5_kokain: "ASSIST Q5 Kokain",
+          p5_stimulan: "ASSIST Q5 Stimulan",
+          p5_inhalansia: "ASSIST Q5 Inhalansia",
+          p5_sedatif: "ASSIST Q5 Sedatif",
+          p5_halusinogen: "ASSIST Q5 Halusinogen",
+          p5_opioid: "ASSIST Q5 Opioid",
+          p5_lain: "ASSIST Q5 Lain",
+          p6_tembakau: "ASSIST Q6 Tembakau",
+          p6_alkohol: "ASSIST Q6 Alkohol",
+          p6_kanabis: "ASSIST Q6 Kanabis",
+          p6_kokain: "ASSIST Q6 Kokain",
+          p6_stimulan: "ASSIST Q6 Stimulan",
+          p6_inhalansia: "ASSIST Q6 Inhalansia",
+          p6_sedatif: "ASSIST Q6 Sedatif",
+          p6_halusinogen: "ASSIST Q6 Halusinogen",
+          p6_opioid: "ASSIST Q6 Opioid",
+          p6_lain: "ASSIST Q6 Lain",
+          p7_tembakau: "ASSIST Q7 Tembakau",
+          p7_alkohol: "ASSIST Q7 Alkohol",
+          p7_kanabis: "ASSIST Q7 Kanabis",
+          p7_kokain: "ASSIST Q7 Kokain",
+          p7_stimulan: "ASSIST Q7 Stimulan",
+          p7_inhalansia: "ASSIST Q7 Inhalansia",
+          p7_sedatif: "ASSIST Q7 Sedatif",
+          p7_halusinogen: "ASSIST Q7 Halusinogen",
+          p7_opioid: "ASSIST Q7 Opioid",
+          p7_lain: "ASSIST Q7 Lain",
+          p8_tembakau: "ASSIST Q8 Tembakau",
+          p8_alkohol: "ASSIST Q8 Alkohol",
+          p8_kanabis: "ASSIST Q8 Kanabis",
+          p8_kokain: "ASSIST Q8 Kokain",
+          p8_stimulan: "ASSIST Q8 Stimulan",
+          p8_inhalansia: "ASSIST Q8 Inhalansia",
+          p8_sedatif: "ASSIST Q8 Sedatif",
+          p8_halusinogen: "ASSIST Q8 Halusinogen",
+          p8_opioid: "ASSIST Q8 Opioid",
+          p8_lain: "ASSIST Q8 Lain",
+          // URICA Questions
+          urica_kode_klien: "URICA Kode Klien",
+          urica_tanggal: "URICA Tanggal",
+          urica_waktu: "URICA Waktu Wawancara",
+          urica_bulan_lanjutan: "URICA Bulan Lanjutan",
+          ...Object.fromEntries([...Array(32).keys()].map((i) => [`urica_q${i + 1}`, `URICA Q${i + 1}`])),
+          // WHOQOL-BREF
+          whoqol_nik: "WHOQOL NIK",
+          whoqol_kodePeserta: "WHOQOL Kode Peserta",
+          whoqol_namaPewawancara: "WHOQOL Nama Pewawancara",
+          whoqol_tanggalWawancara: "WHOQOL Tanggal Wawancara",
+          whoqol_waktuWawancara: "WHOQOL Waktu Wawancara",
+          ...Object.fromEntries([...Array(26).keys()].map((i) => [`whoqol_q6_${i + 1}`, `WHOQOL Q6.${i + 1}`])),
+          whoqol_komentar_pewawancara: "WHOQOL Komentar Pewawancara",
+          whoqol_domain1_raw: "WHOQOL Domain 1 Raw Score",
+          whoqol_domain1_transformed: "WHOQOL Domain 1 Transformed Score",
+          whoqol_domain2_raw: "WHOQOL Domain 2 Raw Score",
+          whoqol_domain2_transformed: "WHOQOL Domain 2 Transformed Score",
+          whoqol_domain3_raw: "WHOQOL Domain 3 Raw Score",
+          whoqol_domain3_transformed: "WHOQOL Domain 3 Transformed Score",
+          whoqol_domain4_raw: "WHOQOL Domain 4 Raw Score",
+          whoqol_domain4_transformed: "WHOQOL Domain 4 Transformed Score",
+          // Rekam Medis
+          rekam_medis_no_rekam: "Rekam Medis No. Rekam Medis",
+          rekam_medis_tgl_periksa: "Rekam Medis Tanggal Pemeriksaan",
+          rekam_medis_nama: "Rekam Medis Nama Pasien",
+          rekam_medis_ttl: "Rekam Medis Tempat/Tgl Lahir",
+          rekam_medis_jk: "Rekam Medis Jenis Kelamin",
+          rekam_medis_agama: "Rekam Medis Agama",
+          rekam_medis_pekerjaan: "Rekam Medis Pekerjaan",
+          rekam_medis_status: "Rekam Medis Status Perkawinan",
+          rekam_medis_pendidikan: "Rekam Medis Pendidikan Terakhir",
+          rekam_medis_alamat: "Rekam Medis Alamat",
+          rekam_medis_keluhan_utama: "Rekam Medis Keluhan Utama",
+          rekam_medis_keluhan_tambahan: "Rekam Medis Keluhan Tambahan",
+          rekam_medis_riwayat_penyakit: "Rekam Medis Riwayat Perjalanan Penyakit",
+          rekam_medis_penyakit1: "Rekam Medis Penyakit 1",
+          rekam_medis_tahun1: "Rekam Medis Tahun 1",
+          rekam_medis_ket1: "Rekam Medis Keterangan 1",
+          rekam_medis_penyakit2: "Rekam Medis Penyakit 2",
+          rekam_medis_tahun2: "Rekam Medis Tahun 2",
+          rekam_medis_ket2: "Rekam Medis Keterangan 2",
+          rekam_medis_penyakit3: "Rekam Medis Penyakit 3",
+          rekam_medis_tahun3: "Rekam Medis Tahun 3",
+          rekam_medis_ket3: "Rekam Medis Keterangan 3",
+          rekam_medis_lab_jenis1: "Rekam Medis Lab Jenis 1",
+          rekam_medis_lab_hasil1: "Rekam Medis Lab Hasil 1",
+          rekam_medis_lab_ket1: "Rekam Medis Lab Keterangan 1",
+          rekam_medis_lab_jenis2: "Rekam Medis Lab Jenis 2",
+          rekam_medis_lab_hasil2: "Rekam Medis Lab Hasil 2",
+          rekam_medis_lab_ket2: "Rekam Medis Lab Keterangan 2",
+          rekam_medis_lab_jenis3: "Rekam Medis Lab Jenis 3",
+          rekam_medis_lab_hasil3: "Rekam Medis Lab Hasil 3",
+          rekam_medis_lab_ket3: "Rekam Medis Lab Keterangan 3",
+          rekam_medis_vital_jenis1: "Rekam Medis Vital Sign 1",
+          rekam_medis_vital_hasil1: "Rekam Medis Vital Sign Hasil 1",
+          rekam_medis_vital_jenis2: "Rekam Medis Vital Sign 2",
+          rekam_medis_vital_hasil2: "Rekam Medis Vital Sign Hasil 2",
+          rekam_medis_vital_jenis3: "Rekam Medis Vital Sign 3",
+          rekam_medis_vital_hasil3: "Rekam Medis Vital Sign Hasil 3",
+          rekam_medis_vital_jenis4: "Rekam Medis Vital Sign 4",
+          rekam_medis_vital_hasil4: "Rekam Medis Vital Sign Hasil 4",
+          rekam_medis_sistemik_jenis1: "Rekam Medis Sistemik 1",
+          rekam_medis_sistemik_hasil1: "Rekam Medis Sistemik Hasil 1",
+          rekam_medis_sistemik_ket1: "Rekam Medis Sistemik Keterangan 1",
+          rekam_medis_sistemik_jenis2: "Rekam Medis Sistemik 2",
+          rekam_medis_sistemik_hasil2: "Rekam Medis Sistemik Hasil 2",
+          rekam_medis_sistemik_ket2: "Rekam Medis Sistemik Keterangan 2",
+          rekam_medis_sistemik_jenis3: "Rekam Medis Sistemik 3",
+          rekam_medis_sistemik_hasil3: "Rekam Medis Sistemik Hasil 3",
+          rekam_medis_sistemik_ket3: "Rekam Medis Sistemik Keterangan 3",
+          rekam_medis_psikiatris_masalah1: "Rekam Medis Psikiatris 1",
+          rekam_medis_psikiatris_ya1: "Rekam Medis Psikiatris Ya 1",
+          rekam_medis_psikiatris_tidak1: "Rekam Medis Psikiatris Tidak 1",
+          rekam_medis_psikiatris_masalah2: "Rekam Medis Psikiatris 2",
+          rekam_medis_psikiatris_ya2: "Rekam Medis Psikiatris Ya 2",
+          rekam_medis_psikiatris_tidak2: "Rekam Medis Psikiatris Tidak 2",
+          rekam_medis_psikiatris_masalah3: "Rekam Medis Psikiatris 3",
+          rekam_medis_psikiatris_ya3: "Rekam Medis Psikiatris Ya 3",
+          rekam_medis_psikiatris_tidak3: "Rekam Medis Psikiatris Tidak 3",
+          rekam_medis_pemeriksaan_tambahan1: "Rekam Medis Pemeriksaan Tambahan 1",
+          rekam_medis_diagnosa_lainnya1: "Rekam Medis Diagnosa Lainnya",
+          // Psikologi
+          psikologi_nrm: "Psikologi NRM",
+          psikologi_nama: "Psikologi Nama",
+          psikologi_tgl_lahir: "Psikologi Tanggal Lahir",
+          psikologi_pendidikan: "Psikologi Pendidikan",
+          psikologi_agama: "Psikologi Agama",
+          psikologi_jk: "Psikologi Jenis Kelamin",
+          psikologi_alamat: "Psikologi Alamat",
+          psikologi_pekerjaan: "Psikologi Pekerjaan",
+          psikologi_urutan_kelahiran: "Psikologi Urutan Kelahiran",
+          psikologi_tgl_periksa: "Psikologi Tanggal Pemeriksaan",
+          psikologi_diagnosa_dokter: "Psikologi Diagnosa Dokter",
+          psikologi_keluhan_fisik: "Psikologi Keluhan Fisik",
+          psikologi_keluhan_psikologis: "Psikologi Keluhan Psikologis",
+          psikologi_deskripsi_umum: "Psikologi Deskripsi Umum",
+          psikologi_penampilan: "Psikologi Penampilan Umum",
+          psikologi_psikomotor: "Psikologi Perilaku & Psikomotor",
+          psikologi_sikap: "Psikologi Sikap terhadap pemeriksa",
+          psikologi_afek: "Psikologi Afek",
+          psikologi_roman_muka: "Psikologi Roman Muka",
+          psikologi_pikir: "Psikologi Proses Pikir",
+          psikologi_persepsi: "Psikologi Gangguan Persepsi",
+          psikologi_memori: "Psikologi Memori",
+          psikologi_konsentrasi: "Psikologi Konsentrasi",
+          psikologi_orientasi: "Psikologi Orientasi",
+          psikologi_verbal: "Psikologi Kemampuan Verbal",
+          psikologi_emosi: "Psikologi Emosi",
+          psikologi_perilaku: "Psikologi Perilaku",
+          psikologi_psikotes1: "Psikologi Psikotes 1",
+          psikologi_psikotes2: "Psikologi Psikotes 2",
+          psikologi_psikotes3: "Psikologi Psikotes 3",
+          psikologi_psikotes4: "Psikologi Psikotes 4",
+          psikologi_hasil_tes: "Psikologi Hasil Tes",
+          simptom_sakit_kepala: "Simptom Sakit Kepala",
+          simptom_kurang_nafsu_makan: "Simptom Kurang Nafsu Makan",
+          simptom_sulit_tidur: "Simptom Sulit Tidur",
+          simptom_mudah_takut: "Simptom Mudah Takut",
+          simptom_tegang: "Simptom Tegang",
+          simptom_cemas: "Simptom Cemas",
+          simptom_gemetar: "Simptom Gemetar",
+          simptom_gangguan_perut: "Simptom Gangguan Perut",
+          simptom_sulit_konsentrasi: "Simptom Sulit Konsentrasi",
+          simptom_sedih: "Simptom Sedih",
+          simptom_sulit_mengambil_keputusan: "Simptom Sulit Mengambil Keputusan",
+          simptom_kehilangan_minat: "Simptom Kehilangan Minat",
+          simptom_merasa_tidak_berguna: "Simptom Merasa Tidak Berguna",
+          simptom_merasa_bersalah: "Simptom Merasa Bersalah",
+          simptom_mudah_lelah: "Simptom Mudah Lelah",
+          simptom_putus_asa: "Simptom Putus Asa",
+          simptom_mudah_marah: "Simptom Mudah Marah",
+          simptom_mudah_tersinggung: "Simptom Mudah Tersinggung",
+          simptom_mimpi_buruk: "Simptom Mimpi Buruk",
+          simptom_tidak_percaya_diri: "Simptom Tidak Percaya Diri",
+          psikologi_gangguan_kognitif: "Psikologi Gangguan Kognitif",
+          psikologi_gangguan_kepribadian: "Psikologi Gangguan Kepribadian",
+          psikologi_gangguan_perilaku: "Psikologi Gangguan Perilaku",
+          psikologi_gangguan_tumbuh: "Psikologi Gangguan Tumbuh Kembang",
+          psikologi_gangguan_emosi: "Psikologi Gangguan Emosi",
+          psikologi_rencana: "Psikologi Rencana Intervensi",
+          psikologi_intervensi: "Psikologi Intervensi",
+          // Medis dan Psikososial
+          ...Object.fromEntries([...Array(56).keys()].map((i) => [`medis_q${i + 1}`, `Medis Q${i + 1}`])),
+          // Resume Screening
+          nama: "Nama Klien (Resume)",
+          usia: "Usia Klien (Resume)",
+          jk: "Jenis Kelamin Klien (Resume)",
+          agama: "Agama Klien (Resume)",
+          alamat: "Alamat Klien (Resume)",
+          tgl_masuk: "Tanggal Masuk Klien (Resume)",
+          assist: "Hasil Assist (Resume)",
+          ttd_assist: "TTD Assist (Resume)",
+          medis: "Hasil Pemeriksaan Medis (Resume)",
+          ttd_medis: "TTD Pemeriksaan Medis (Resume)",
+          psiko1: "Hasil Psikologis 1 (Resume)",
+          psiko2: "Hasil Psikologis 2 (Resume)",
+          ttd_psiko: "TTD Psikologis (Resume)",
+          urica: "Hasil URICA (Resume)",
+          ttd_urica: "TTD URICA (Resume)",
+          whoqol: "Hasil WHO-QOL (Resume)",
+          ttd_whoqol: "TTD WHO-QOL (Resume)",
+          asi: "Hasil ASI Version 3.0 (Resume)",
+          ttd_asi: "TTD ASI Version 3.0 (Resume)",
+          catatan: "Catatan (Resume)",
+        };
+
+        const headers = ["Field", "Value"];
+        const rows = [];
+
+        for (const key in fieldMappings) {
+          let value = data[key];
+          if (typeof value === "string" && value.includes(",")) {
+            value = `"${value}"`;
+          }
+          rows.push([fieldMappings[key], value || "Tidak Diisi"]);
+        }
+
+        let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\r\n";
+        rows.forEach((row) => {
+          csvContent += row.join(",") + "\r\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `Data-Scanning-${jawabanKey}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
     </script>
   </body>

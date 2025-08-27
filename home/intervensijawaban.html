@@ -93,7 +93,11 @@
             </div>
             <div class="col-auto">
               <div class="d-flex align-items-center">
-                <a class="btn btn-secondary me-2" href="orders.html">
+                <button id="download-csv-btn" class="btn btn-primary me-2">
+                  <i class="fa-solid fa-download me-1"></i>
+                  Download CSV
+                </button>
+                <a class="btn btn-secondary" href="orders.html">
                   <i class="fa-solid fa-arrow-left me-1"></i>
                   Kembali ke Laporan
                 </a>
@@ -135,21 +139,27 @@
       const db = getDatabase(app);
 
       const jawabanContainer = document.getElementById("jawaban-container");
+      const downloadBtn = document.getElementById("download-csv-btn");
       const urlParams = new URLSearchParams(window.location.search);
       const jawabanKey = urlParams.get("key");
+      let currentData = null;
 
       async function fetchJawabanData(key) {
         try {
           const snapshot = await get(ref(db, `DATA_INTERVENSI/${key}`));
           if (snapshot.exists()) {
             const data = snapshot.val();
+            currentData = data;
             renderJawaban(data);
+            downloadBtn.style.display = "block";
           } else {
             jawabanContainer.innerHTML = `<div class="alert alert-warning">Data tidak ditemukan untuk ID Laporan ini.</div>`;
+            downloadBtn.style.display = "none";
           }
         } catch (error) {
           console.error("Gagal mengambil detail jawaban:", error);
           jawabanContainer.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan saat memuat data dari database.</div>`;
+          downloadBtn.style.display = "none";
         }
       }
 
@@ -493,7 +503,7 @@
             </div>
             <div class="row mb-2">
               <div class="col-3">Staf Pendamping:</div>
-              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_staf_tanggapan || "Tidak Diisi"}</span></div>
+              <div class="col-9"><span class="form-control-plaintext">${data.bahas_kasus_staf_tanggapan || "Tidak Diisi"}</div>
             </div>
             <div class="row mb-2">
               <div class="col-3">Dokter:</div>
@@ -645,6 +655,175 @@
             </div>
           </div>
         `;
+      }
+
+      // Handler untuk tombol download CSV
+      downloadBtn.addEventListener("click", () => {
+        if (currentData) {
+          downloadCSV(currentData);
+        }
+      });
+
+      function downloadCSV(data) {
+        const fieldMappings = {
+          hari: "Hari/Tanggal (Rencana Terapi)",
+          nama_klien: "Nama (Rencana Terapi)",
+          doa: "D.O.A (Rencana Terapi)",
+          rencana_terapi_ke: "Rencana Terapi ke",
+          status_program: "Status Program",
+          tujuan: "Tujuan",
+          sasaran: "Sasaran",
+          kekuatan: "Kekuatan",
+          hambatan: "Hambatan",
+          intervensi: "Intervensi",
+          rencana_intervensi_1: "Rencana Intervensi 1",
+          tgl_pelaksanaan_1: "Tanggal Pelaksanaan 1",
+          tgl_selesai_1: "Tanggal Selesai 1",
+          penanggung_jawab_1: "Penanggung Jawab 1",
+          rencana_intervensi_2: "Rencana Intervensi 2",
+          tgl_pelaksanaan_2: "Tanggal Pelaksanaan 2",
+          tgl_selesai_2: "Tanggal Selesai 2",
+          penanggung_jawab_2: "Penanggung Jawab 2",
+          rencana_intervensi_3: "Rencana Intervensi 3",
+          tgl_pelaksanaan_3: "Tanggal Pelaksanaan 3",
+          tgl_selesai_3: "Tanggal Selesai 3",
+          penanggung_jawab_3: "Penanggung Jawab 3",
+          rencana_intervensi_4: "Rencana Intervensi 4",
+          tgl_pelaksanaan_4: "Tanggal Pelaksanaan 4",
+          tgl_selesai_4: "Tanggal Selesai 4",
+          penanggung_jawab_4: "Penanggung Jawab 4",
+          konseling_nama: "Nama (Konseling)",
+          jenis_kelamin: "Jenis Kelamin",
+          konseling_doa: "D.O.A (Konseling)",
+          pertemuan_ke: "Pertemuan ke",
+          konseling_tanggal: "Tanggal/bulan/tahun (Konseling)",
+          hasil_konseling: "Hasil Konseling",
+          kelompok_tanggal: "Hari/Tanggal (Kelompok)",
+          kelompok_fasilitator: "Fasilitator (Kelompok)",
+          kelompok_tempat: "Tempat (Kelompok)",
+          konseling_kelompok_nama_1: "Nama (Konseling Kelompok)",
+          konseling_kelompok_permasalahan_1: "Permasalahan (Konseling Kelompok)",
+          konseling_kelompok_feedback_1: "Feedback (Konseling Kelompok)",
+          kelompok_kesimpulan: "Kesimpulan (Konseling Kelompok)",
+          lembar_terapi_peserta: "Peserta (Lembar Terapi)",
+          lembar_terapi_fasilitator: "Fasilitator (Lembar Terapi)",
+          lembar_terapi_tanggal: "Hari/Tanggal (Lembar Terapi)",
+          lembar_terapi_materi: "Materi (Lembar Terapi)",
+          lembar_terapi_hasil: "Hasil (Lembar Terapi)",
+          daftar_hadir_fasilitator: "Fasilitator (Daftar Hadir)",
+          daftar_hadir_tempat: "Tempat (Daftar Hadir)",
+          daftar_hadir_waktu: "Waktu (Daftar Hadir)",
+          daftar_hadir_judul: "Judul (Daftar Hadir)",
+          daftar_hadir_nama_1: "Nama Peserta 1",
+          daftar_hadir_paraf_1: "Paraf Peserta 1",
+          daftar_hadir_nama_2: "Nama Peserta 2",
+          daftar_hadir_paraf_2: "Paraf Peserta 2",
+          daftar_hadir_nama_3: "Nama Peserta 3",
+          daftar_hadir_paraf_3: "Paraf Peserta 3",
+          daftar_hadir_nama_4: "Nama Peserta 4",
+          daftar_hadir_paraf_4: "Paraf Peserta 4",
+          daftar_hadir_nama_5: "Nama Peserta 5",
+          daftar_hadir_paraf_5: "Paraf Peserta 5",
+          daftar_hadir_nama_6: "Nama Peserta 6",
+          daftar_hadir_paraf_6: "Paraf Peserta 6",
+          daftar_hadir_nama_7: "Nama Peserta 7",
+          daftar_hadir_paraf_7: "Paraf Peserta 7",
+          daftar_hadir_nama_8: "Nama Peserta 8",
+          daftar_hadir_paraf_8: "Paraf Peserta 8",
+          daftar_hadir_nama_9: "Nama Peserta 9",
+          daftar_hadir_paraf_9: "Paraf Peserta 9",
+          daftar_hadir_nama_10: "Nama Peserta 10",
+          daftar_hadir_paraf_10: "Paraf Peserta 10",
+          daftar_hadir_nama_11: "Nama Peserta 11",
+          daftar_hadir_paraf_11: "Paraf Peserta 11",
+          daftar_hadir_nama_12: "Nama Peserta 12",
+          daftar_hadir_paraf_12: "Paraf Peserta 12",
+          daftar_hadir_nama_13: "Nama Peserta 13",
+          daftar_hadir_paraf_13: "Paraf Peserta 13",
+          daftar_hadir_nama_14: "Nama Peserta 14",
+          daftar_hadir_paraf_14: "Paraf Peserta 14",
+          daftar_hadir_nama_15: "Nama Peserta 15",
+          daftar_hadir_paraf_15: "Paraf Peserta 15",
+          keluarga_nama_klien: "Nama Klien (Keluarga)",
+          keluarga_nama_ortu: "Nama Ortu/Wali (Keluarga)",
+          keluarga_pertemuan_ke: "Pertemuan ke (Keluarga)",
+          keluarga_tanggal: "Tanggal (Keluarga)",
+          hasil_keluarga: "Hasil Pemeriksaan & Konseling (Keluarga)",
+          rencana_keluarga: "Rencana Terapi (Keluarga)",
+          keluarga_kesimpulan: "Kesimpulan/Diagnosa (Keluarga)",
+          edukasi_nama_klien: "Nama Klien (Edukasi)",
+          edukasi_nama_fasilitator: "Nama Fasilitator (Edukasi)",
+          edukasi_tanggal_terapi: "Tanggal Terapi (Edukasi)",
+          edukasi_tujuan: "Tujuan (Edukasi)",
+          edukasi_terapi: "Terapi yang diberikan (Edukasi)",
+          edukasi_hasil: "Hasil Terapi (Edukasi)",
+          edukasi_rencana: "Rencana Tindak Lanjut (Edukasi)",
+          bahas_kasus_tanggal: "Tanggal (Bahas Kasus 1)",
+          bahas_kasus_nama_klien: "Nama Klien (Bahas Kasus 1)",
+          bahas_kasus_umur: "Umur (Bahas Kasus 1)",
+          bahas_kasus_tgl_masuk: "Tanggal Masuk (Bahas Kasus 1)",
+          bahas_kasus_nama_peksos: "Nama Peksos/Petugas (Bahas Kasus 1)",
+          bahas_kasus_masalah: "Masalah yang perlu di CC (Bahas Kasus 1)",
+          bahas_kasus_tanggapan_ahli: "Tanggapan dari para ahli (Bahas Kasus 1)",
+          bahas_kasus_peksos_tanggapan: "Tanggapan Pekerja Sosial/Konselor (Bahas Kasus 1)",
+          bahas_kasus_staf_tanggapan: "Tanggapan Staf Pendamping (Bahas Kasus 1)",
+          bahas_kasus_dokter_tanggapan: "Tanggapan Dokter (Bahas Kasus 1)",
+          bahas_kasus_psikolog_tanggapan: "Tanggapan Psikolog (Bahas Kasus 1)",
+          bahas_kasus_profesi_lain: "Tanggapan Profesi lain (Bahas Kasus 1)",
+          bahas_kasus_kesimpulan: "Kesimpulan (Bahas Kasus 1)",
+          bahas_kasus_pemecahan: "Langkah-langkah pemecahan masalah (Bahas Kasus 1)",
+          bahas_kasus_rencana_lanjut: "Rencana Tindak Lanjut (Bahas Kasus 1)",
+          bahas_kasus_tanggal_2: "Tanggal (Bahas Kasus 2)",
+          bahas_kasus_nama_klien_2: "Nama Klien (Bahas Kasus 2)",
+          bahas_kasus_umur_2: "Umur (Bahas Kasus 2)",
+          bahas_kasus_tgl_masuk_2: "Tanggal Masuk (Bahas Kasus 2)",
+          bahas_kasus_nama_peksos_2: "Nama Peksos/Petugas (Bahas Kasus 2)",
+          bahas_kasus_masalah_2: "Masalah yang perlu di CC (Bahas Kasus 2)",
+          bahas_kasus_tanggapan_ahli_2: "Tanggapan dari para ahli (Bahas Kasus 2)",
+          bahas_kasus_peksos_tanggapan_2: "Tanggapan Pekerja Sosial/Konselor (Bahas Kasus 2)",
+          bahas_kasus_staf_tanggapan_2: "Tanggapan Staf Pendamping (Bahas Kasus 2)",
+          bahas_kasus_dokter_tanggapan_2: "Tanggapan Dokter (Bahas Kasus 2)",
+          bahas_kasus_psikolog_tanggapan_2: "Tanggapan Psikolog (Bahas Kasus 2)",
+          bahas_kasus_profesi_lain_2: "Tanggapan Profesi lain (Bahas Kasus 2)",
+          bahas_kasus_kesimpulan_2: "Kesimpulan (Bahas Kasus 2)",
+          bahas_kasus_pemecahan_2: "Langkah-langkah pemecahan masalah (Bahas Kasus 2)",
+          bahas_kasus_rencana_lanjut_2: "Rencana Tindak Lanjut (Bahas Kasus 2)",
+          spiritual_nama_klien: "Nama Klien (Spiritual)",
+          spiritual_fasilitator: "Fasilitator (Spiritual)",
+          spiritual_tanggal: "Hari/Tanggal (Spiritual)",
+          spiritual_materi: "Materi (Spiritual)",
+          spiritual_hasil: "Hasil (Spiritual)",
+          pemantauan_nama: "Nama (Pemantauan Medis & Psikologis)",
+          pemantauan_doa: "D.O.A (Pemantauan Medis & Psikologis)",
+          pemantauan_tanggal: "Tanggal (Pemantauan Medis & Psikologis)",
+          hasil_pemantauan: "Hasil Pemantauan Medis & Psikologis",
+        };
+
+        const headers = ["Field", "Value"];
+        const rows = [];
+
+        for (const key in fieldMappings) {
+          if (data.hasOwnProperty(key)) {
+            let value = data[key];
+            if (typeof value === "string" && value.includes(",")) {
+              value = `"${value}"`;
+            }
+            rows.push([fieldMappings[key], value]);
+          }
+        }
+
+        let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\r\n";
+        rows.forEach((row) => {
+          csvContent += row.join(",") + "\r\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `Data-Intervensi-${jawabanKey}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
 
       // Memanggil fungsi untuk mengambil data saat halaman dimuat

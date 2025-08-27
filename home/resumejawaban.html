@@ -92,7 +92,11 @@
             </div>
             <div class="col-auto">
               <div class="d-flex align-items-center">
-                <a class="btn btn-secondary me-2" href="orders.html">
+                <button id="download-csv" class="btn btn-primary me-2">
+                  <i class="fa-solid fa-download me-1"></i>
+                  Download CSV
+                </button>
+                <a class="btn btn-secondary" href="orders.html">
                   <i class="fa-solid fa-arrow-left me-1"></i>
                   Kembali ke Laporan
                 </a>
@@ -229,6 +233,8 @@
         5: "Selalu",
       };
 
+      let currentData = null;
+
       if (jawabanKey) {
         fetchJawabanData(jawabanKey);
       } else {
@@ -240,6 +246,7 @@
           const snapshot = await get(ref(db, `DATA/${key}`));
           if (snapshot.exists()) {
             const data = snapshot.val();
+            currentData = data;
             renderJawaban(data);
           } else {
             jawabanContainer.innerHTML = `<div class="alert alert-warning">Data tidak ditemukan untuk ID Laporan ini.</div>`;
@@ -255,35 +262,35 @@
 
         // Menampilkan Informasi Pengguna
         jawabanContainer.innerHTML += `
-            <div class="mb-4 border-bottom pb-4">
-                <p class="mb-1"><strong>Nama:</strong> ${data.nama || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>NIK:</strong> ${data.nik || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>Kode Peserta:</strong> ${data.kodePeserta || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>Pendidikan:</strong> ${data.pendidikan || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>D.O.A:</strong> ${data.doa || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>D.O.B:</strong> ${data.dob || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>Alamat:</strong> ${data.alamat || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>Tanggal Pelaksanaan Survei:</strong> ${data.tanggalPelaksanaan || "Tidak Ditemukan"}</p>
-                <p class="mb-1"><strong>Nama Pewawancara:</strong> ${data.namaPewawancara || "Tidak Ditemukan"}</p>
-                <p class="mb-0"><strong>Waktu Wawancara:</strong> ${data.waktuWawancara === "0" ? "Awal" : "3-bulan, dalam masa rehabilitasi"}</p>
-            </div>
+          <div class="mb-4 border-bottom pb-4">
+            <p class="mb-1"><strong>Nama:</strong> ${data.nama || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>NIK:</strong> ${data.nik || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>Kode Peserta:</strong> ${data.kodePeserta || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>Pendidikan:</strong> ${data.pendidikan || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>D.O.A:</strong> ${data.doa || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>D.O.B:</strong> ${data.dob || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>Alamat:</strong> ${data.alamat || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>Tanggal Pelaksanaan Survei:</strong> ${data.tanggalPelaksanaan || "Tidak Ditemukan"}</p>
+            <p class="mb-1"><strong>Nama Pewawancara:</strong> ${data.namaPewawancara || "Tidak Ditemukan"}</p>
+            <p class="mb-0"><strong>Waktu Wawancara:</strong> ${data.waktuWawancara === "0" ? "Awal" : "3-bulan, dalam masa rehabilitasi"}</p>
+          </div>
         `;
 
         // Menampilkan Jawaban Survei Kepuasan (Step 1)
         jawabanContainer.innerHTML += `
-            <h4 class="mt-4 mb-3">Instrumen Survei Kepuasan</h4>
+          <h4 class="mt-4 mb-3">Instrumen Survei Kepuasan</h4>
         `;
         const table1 = document.createElement("table");
         table1.className = "table table-bordered table-striped";
         table1.innerHTML = `
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Perihal</th>
-                    <th>Jawaban</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Perihal</th>
+              <th>Jawaban</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
         `;
         const tbody1 = table1.querySelector("tbody");
 
@@ -294,37 +301,37 @@
           const answerText = ratingLabels1[answerValue] || "Tidak Dijawab";
           const row = document.createElement("tr");
           row.innerHTML = `
-                <td>${i}</td>
-                <td>${question}</td>
-                <td><strong>${answerText}</strong> (${answerValue || "N/A"})</td>
-            `;
+            <td>${i}</td>
+            <td>${question}</td>
+            <td><strong>${answerText}</strong> (${answerValue || "N/A"})</td>
+          `;
           tbody1.appendChild(row);
         }
         jawabanContainer.appendChild(table1);
 
         jawabanContainer.innerHTML += `
-            <div class="mt-4">
-                <h5>Saran dan Masukan</h5>
-                <div class="p-3 bg-light rounded border">${data.saran || "Tidak ada saran"}</div>
-            </div>
+          <div class="mt-4">
+            <h5>Saran dan Masukan</h5>
+            <div class="p-3 bg-light rounded border">${data.saran || "Tidak ada saran"}</div>
+          </div>
         `;
 
         // Menampilkan Jawaban WHOQOL-BREF (Step 2)
         jawabanContainer.innerHTML += `
-            <h4 class="mt-5 mb-3">WHOQOL-BREF - Quality of Life</h4>
+          <h4 class="mt-5 mb-3">WHOQOL-BREF - Quality of Life</h4>
         `;
 
         const table2 = document.createElement("table");
         table2.className = "table table-bordered table-striped";
         table2.innerHTML = `
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Pertanyaan</th>
-                    <th>Jawaban</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Pertanyaan</th>
+              <th>Jawaban</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
         `;
         const tbody2 = table2.querySelector("tbody");
 
@@ -347,47 +354,128 @@
 
           const row = document.createElement("tr");
           row.innerHTML = `
-                <td>${key.replace("q", "")}</td>
-                <td>${question}</td>
-                <td><strong>${answerText}</strong> (${answerValue || "N/A"})</td>
-            `;
+            <td>${key.replace("q", "")}</td>
+            <td>${question}</td>
+            <td><strong>${answerText}</strong> (${answerValue || "N/A"})</td>
+          `;
           tbody2.appendChild(row);
         }
         jawabanContainer.appendChild(table2);
 
         jawabanContainer.innerHTML += `
-            <div class="mt-4">
-                <h5>Komentar Pewawancara</h5>
-                <div class="p-3 bg-light rounded border">${data.komentarPewawancara || "Tidak ada komentar"}</div>
-            </div>
+          <div class="mt-4">
+            <h5>Komentar Pewawancara</h5>
+            <div class="p-3 bg-light rounded border">${data.komentarPewawancara || "Tidak ada komentar"}</div>
+          </div>
         `;
 
         // Menampilkan Laporan Terminate (Step 3)
         jawabanContainer.innerHTML += `
-            <h4 class="mt-5 mb-3">Laporan Terminate</h4>
-            <div class="mb-3">
-                <h5>Aspek Fisik</h5>
-                <div class="p-3 bg-light rounded border">${data.aspekFisik || "Tidak ada data"}</div>
-            </div>
-            <div class="mb-3">
-                <h5>Aspek Spiritual</h5>
-                <div class="p-3 bg-light rounded border">${data.aspekSpiritual || "Tidak ada data"}</div>
-            </div>
-            <div class="mb-3">
-                <h5>Aspek Sosial</h5>
-                <div class="p-3 bg-light rounded border">${data.aspekSosial || "Tidak ada data"}</div>
-            </div>
-            <div class="mb-3">
-                <h5>Aspek Vocasional</h5>
-                <div class="p-3 bg-light rounded border">${data.aspekVocasional || "Tidak ada data"}</div>
-            </div>
-            <div class="mb-3">
-                <h5>Hasil Evaluasi Static</h5>
-                <div class="p-3 bg-light rounded border">${data.hasilEvaluasi || "Tidak ada data"}</div>
-            </div>
+          <h4 class="mt-5 mb-3">Laporan Terminate</h4>
+          <div class="mb-3">
+            <h5>Aspek Fisik</h5>
+            <div class="p-3 bg-light rounded border">${data.aspekFisik || "Tidak ada data"}</div>
+          </div>
+          <div class="mb-3">
+            <h5>Aspek Spiritual</h5>
+            <div class="p-3 bg-light rounded border">${data.aspekSpiritual || "Tidak ada data"}</div>
+          </div>
+          <div class="mb-3">
+            <h5>Aspek Sosial</h5>
+            <div class="p-3 bg-light rounded border">${data.aspekSosial || "Tidak ada data"}</div>
+          </div>
+          <div class="mb-3">
+            <h5>Aspek Vocasional</h5>
+            <div class="p-3 bg-light rounded border">${data.aspekVocasional || "Tidak ada data"}</div>
+          </div>
+          <div class="mb-3">
+            <h5>Hasil Evaluasi Static</h5>
+            <div class="p-3 bg-light rounded border">${data.hasilEvaluasi || "Tidak ada data"}</div>
+          </div>
         `;
+      }
+
+      document.getElementById("download-csv").addEventListener("click", () => {
+        if (currentData) {
+          downloadCSV(currentData);
+        }
+      });
+
+      function downloadCSV(data) {
+        const headers = ["Field", "Value"];
+        const rows = [];
+
+        // Add user info
+        rows.push(["Nama", data.nama || ""]);
+        rows.push(["NIK", data.nik || ""]);
+        rows.push(["Kode Peserta", data.kodePeserta || ""]);
+        rows.push(["Pendidikan", data.pendidikan || ""]);
+        rows.push(["D.O.A", data.doa || ""]);
+        rows.push(["D.O.B", data.dob || ""]);
+        rows.push(["Alamat", data.alamat || ""]);
+        rows.push(["Tanggal Pelaksanaan Survei", data.tanggalPelaksanaan || ""]);
+        rows.push(["Nama Pewawancara", data.namaPewawancara || ""]);
+        rows.push(["Waktu Wawancara", data.waktuWawancara === "0" ? "Awal" : "3-bulan, dalam masa rehabilitasi"]);
+
+        // Add Survey 1 data
+        rows.push(["", ""]);
+        rows.push(["Instrumen Survei Kepuasan", ""]);
+        for (let i = 1; i <= 22; i++) {
+          const key = `p${i}`;
+          const question = questionMapping1[key];
+          const answerValue = data[key];
+          const answerText = ratingLabels1[answerValue] || "Tidak Dijawab";
+          rows.push([`P${i}: ${question}`, `"${answerText} (${answerValue || "N/A"})"`]);
+        }
+        rows.push(["Saran dan Masukan", `"${data.saran || "Tidak ada saran"}"`]);
+
+        // Add Survey 2 data
+        rows.push(["", ""]);
+        rows.push(["WHOQOL-BREF - Quality of Life", ""]);
+        for (const key in questionMapping2) {
+          const question = questionMapping2[key];
+          const answerValue = data[key];
+          let answerText;
+
+          if (["q6-1", "q6-15"].includes(key)) {
+            answerText = ratingLabels2[answerValue] || "Tidak Dijawab";
+          } else if (["q6-2", "q6-16", "q6-17", "q6-18", "q6-19", "q6-20", "q6-21", "q6-22", "q6-23", "q6-24", "q6-25"].includes(key)) {
+            answerText = ratingLabels4[answerValue] || "Tidak Dijawab";
+          } else if (["q6-3", "q6-4"].includes(key)) {
+            answerText = ratingLabels3[answerValue] || "Tidak Dijawab";
+          } else if (["q6-26"].includes(key)) {
+            answerText = ratingLabels5[answerValue] || "Tidak Dijawab";
+          } else {
+            answerText = ratingLabels3[answerValue] || "Tidak Dijawab";
+          }
+
+          rows.push([`${key.replace("q", "Q")}: ${question}`, `"${answerText} (${answerValue || "N/A"})"`]);
+        }
+        rows.push(["Komentar Pewawancara", `"${data.komentarPewawancara || "Tidak ada komentar"}"`]);
+
+        // Add Terminate Report data
+        rows.push(["", ""]);
+        rows.push(["Laporan Terminate", ""]);
+        rows.push(["Aspek Fisik", `"${data.aspekFisik || "Tidak ada data"}"`]);
+        rows.push(["Aspek Spiritual", `"${data.aspekSpiritual || "Tidak ada data"}"`]);
+        rows.push(["Aspek Sosial", `"${data.aspekSosial || "Tidak ada data"}"`]);
+        rows.push(["Aspek Vocasional", `"${data.aspekVocasional || "Tidak ada data"}"`]);
+        rows.push(["Hasil Evaluasi Static", `"${data.hasilEvaluasi || "Tidak ada data"}"`]);
+
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += headers.join(",") + "\r\n";
+        rows.forEach((row) => {
+          csvContent += row.join(",") + "\r\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `Data-Laporan-${jawabanKey}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
     </script>
   </body>
 </html>
-```

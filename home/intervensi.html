@@ -903,110 +903,122 @@
       const db = getDatabase(app);
       const auth = getAuth(app);
 
-      let userNama = "Pengguna Tidak Dikenal";
-
-      // Element untuk tampilan
+      // Variabel untuk menyimpan data pengguna yang sudah terotentikasi
+      let loggedInUser = null;
       const namaDisplayEl = document.getElementById("namaPenggunaSaatLogin");
       const menuLaporan = document.getElementById("menu-laporan");
 
+      // Auth State Listener
       onAuthStateChanged(auth, async (user) => {
         if (user) {
+          loggedInUser = user;
           const uid = user.uid;
 
           try {
-            // === Ambil Nama dari DB ===
             const namaSnap = await get(ref(db, `users/${uid}/nama`));
             if (namaSnap.exists()) {
-              userNama = namaSnap.val();
+              const userNama = namaSnap.val();
+              if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
+              console.log("✅ Nama pengguna:", userNama);
             } else {
-              // fallback ke displayName atau email
-              userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
+              const userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
+              if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
             }
-            if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
-            console.log("✅ Nama pengguna:", userNama);
 
-            // === Ambil Role ===
             const roleSnap = await get(ref(db, `users/${uid}/role`));
-            if (roleSnap.exists()) {
-              const role = roleSnap.val();
-              if (role === "admin") {
-                console.log("✅ Admin terdeteksi, menu laporan ditampilkan.");
-                if (menuLaporan) menuLaporan.style.display = "block";
-              } else {
-                console.log("ℹ️ User biasa, menu laporan disembunyikan.");
-                if (menuLaporan) menuLaporan.style.display = "none";
-              }
+            if (roleSnap.exists() && roleSnap.val() === "admin") {
+              console.log("✅ Admin terdeteksi, menu laporan ditampilkan.");
+              if (menuLaporan) menuLaporan.style.display = "block";
             } else {
-              console.log("⚠️ Role tidak ditemukan, sembunyikan menu laporan.");
+              console.log("ℹ️ User biasa, menu laporan disembunyikan.");
               if (menuLaporan) menuLaporan.style.display = "none";
             }
           } catch (err) {
             console.error("❌ Gagal ambil data user:", err);
-            userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
+            const userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
             if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
             if (menuLaporan) menuLaporan.style.display = "none";
           }
+
+          // Memastikan event listener form hanya dipasang setelah pengguna login
+          setupFormListener();
         } else {
-          userNama = "Pengguna Tidak Dikenal";
+          loggedInUser = null;
           console.log("🚪 Tidak ada pengguna yang login, redirect ke login...");
-          window.location.href = "../index.html"; // redirect ke login
+          window.location.href = "../index.html";
         }
       });
 
-      // === Form Handler ===
-      const kuisForm = document.getElementById("kuisForm");
+      // Fungsi untuk memasang event listener form
+      function setupFormListener() {
+        const kuisForm = document.getElementById("kuisForm");
 
-      if (kuisForm) {
-        kuisForm.addEventListener("submit", function (e) {
-          e.preventDefault();
+        if (kuisForm) {
+          kuisForm.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-          const formData = {};
-          const inputs = kuisForm.querySelectorAll("input, select, textarea");
+            // Mengambil nama pengguna dari objek loggedInUser
+            const userNama = loggedInUser.displayName || loggedInUser.email || "Pengguna Tidak Dikenal";
 
-          inputs.forEach((input) => {
-            const key = input.name || input.id;
-            if (input.type === "radio") {
-              if (input.checked) formData[key] = input.value;
-            } else if (input.type === "checkbox") {
-              if (input.checked) formData[key] = true;
-            } else {
-              formData[key] = input.value;
-            }
-          });
+            const formData = {};
+            const inputs = kuisForm.querySelectorAll("input, select, textarea");
 
-          const newRef = push(ref(db, "DATA_SCANNING"));
-          const kunciKey = newRef.key;
+            inputs.forEach((input) => {
+              const key = input.name || input.id;
+              if (input.type === "radio") {
+                if (input.checked) formData[key] = input.value;
+              } else if (input.type === "checkbox") {
+                if (input.checked) formData[key] = true;
+              } else {
+                formData[key] = input.value;
+              }
+            });
 
-          const dataLaporan = {
-            key: kunciKey,
-            nama: formData.klien_nama || "Tidak ada nama",
-            tanggal: formData.klien_tanggal || formData.urica_tanggal || formData.rekam_medis_tgl_periksa || formData.psikologi_tgl_periksa || new Date().toISOString(),
-            posisi: "scanning",
-            timestamp: serverTimestamp(),
-          };
-
-          Promise.all([set(newRef, { ...formData, nama_pengisi: userNama, timestamp: serverTimestamp() }), set(ref(db, `laporan/${kunciKey}`), dataLaporan)])
-            .then(() => {
-              Swal.fire({
-                icon: "success",
-                title: "Berhasil!",
-                text: "Data berhasil disimpan ke Firebase!",
-                confirmButtonText: "OK",
-              }).then(() => {
-                kuisForm.reset();
-                if (typeof showStep === "function") showStep(1);
-              });
-            })
-            .catch((error) => {
-              console.error("❌ Gagal menyimpan data:", error);
+            // Validasi minimal sebelum menyimpan
+            if (!formData.nama_klien || !formData.hari) {
               Swal.fire({
                 icon: "error",
                 title: "Gagal!",
-                text: "Gagal menyimpan data. Silakan coba lagi.",
+                text: "Nama Klien dan Tanggal harus diisi.",
                 confirmButtonText: "OK",
               });
-            });
-        });
+              return;
+            }
+
+            const newRef = push(ref(db, "DATA_INTERVENSI"));
+            const kunciKey = newRef.key;
+
+            const dataLaporan = {
+              key: kunciKey,
+              nama: formData.nama_klien || "Tidak ada nama",
+              tanggal: formData.hari || new Date().toISOString(),
+              posisi: "Intervensi", // Diperbaiki: 'scanning' menjadi 'intervensi'
+              timestamp: serverTimestamp(),
+            };
+
+            Promise.all([set(newRef, { ...formData, nama_pengisi: userNama, timestamp: serverTimestamp() }), set(ref(db, `laporan/${kunciKey}`), dataLaporan)])
+              .then(() => {
+                Swal.fire({
+                  icon: "success",
+                  title: "Berhasil!",
+                  text: "Data berhasil disimpan ke Firebase!",
+                  confirmButtonText: "OK",
+                }).then(() => {
+                  kuisForm.reset();
+                  if (typeof showStep === "function") showStep(1);
+                });
+              })
+              .catch((error) => {
+                console.error("❌ Gagal menyimpan data:", error);
+                Swal.fire({
+                  icon: "error",
+                  title: "Gagal!",
+                  text: "Gagal menyimpan data. Silakan coba lagi.",
+                  confirmButtonText: "OK",
+                });
+              });
+          });
+        }
       }
     </script>
   </body>

@@ -4716,10 +4716,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getDatabase, ref, push, set, get, serverTimestamp } 
-    from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
-  import { getAuth, onAuthStateChanged } 
-    from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  import { getDatabase, ref, push, set, get, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
   // Konfigurasi Firebase Anda
   const firebaseConfig = {
@@ -4738,60 +4736,44 @@
   const auth = getAuth(app);
 
   let userNama = "Pengguna Tidak Dikenal";
-
-  // Element untuk tampilan
   const namaDisplayEl = document.getElementById("namaPenggunaSaatLogin");
   const menuLaporan = document.getElementById("menu-laporan");
+  const kuisForm = document.getElementById("kuisForm");
 
+  // 🔹 Cek status login pengguna saat ini
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       const uid = user.uid;
-
       try {
-        // === Ambil Nama dari DB ===
         const namaSnap = await get(ref(db, `users/${uid}/nama`));
         if (namaSnap.exists()) {
           userNama = namaSnap.val();
         } else {
-          // fallback ke displayName atau email
           userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
         }
         if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
         console.log("✅ Nama pengguna:", userNama);
 
-        // === Ambil Role ===
         const roleSnap = await get(ref(db, `users/${uid}/role`));
-        if (roleSnap.exists()) {
-          const role = roleSnap.val();
-          if (role === "admin") {
-            console.log("✅ Admin terdeteksi, menu laporan ditampilkan.");
-            if (menuLaporan) menuLaporan.style.display = "block";
-          } else {
-            console.log("ℹ️ User biasa, menu laporan disembunyikan.");
-            if (menuLaporan) menuLaporan.style.display = "none";
-          }
+        if (roleSnap.exists() && roleSnap.val() === "admin") {
+          if (menuLaporan) menuLaporan.style.display = "block";
         } else {
-          console.log("⚠️ Role tidak ditemukan, sembunyikan menu laporan.");
           if (menuLaporan) menuLaporan.style.display = "none";
         }
-
       } catch (err) {
-        console.error("❌ Gagal ambil data user:", err);
-        userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
-        if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
+        console.error("❌ Gagal mengambil data user:", err);
+        if (namaDisplayEl) namaDisplayEl.textContent = "Pengguna Tidak Dikenal!";
         if (menuLaporan) menuLaporan.style.display = "none";
       }
 
     } else {
       userNama = "Pengguna Tidak Dikenal";
       console.log("🚪 Tidak ada pengguna yang login, redirect ke login...");
-      window.location.href = "../index.html"; // redirect ke login
+      window.location.href = "../index.html";
     }
   });
 
-  // === Form Handler ===
-  const kuisForm = document.getElementById("kuisForm");
-
+  // 🔹 Handle form submission
   if (kuisForm) {
     kuisForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -4810,18 +4792,29 @@
         }
       });
 
+      // Validasi minimal: pastikan nama klien terisi.
+      const namaKlien = formData.klien_nama || "Tanpa Nama";
+      if (!namaKlien || namaKlien.trim() === "") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal!',
+          text: 'Nama klien harus diisi.',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+      
+      const safeNamaKlien = namaKlien.replace(/[.#$[\]]/g, "");
+
       const newRef = push(ref(db, "DATA_SCANNING"));
       const kunciKey = newRef.key;
 
       const dataLaporan = {
         key: kunciKey,
-        nama: formData.klien_nama || "Tidak ada nama",
-        tanggal: formData.klien_tanggal 
-              || formData.urica_tanggal 
-              || formData.rekam_medis_tgl_periksa 
-              || formData.psikologi_tgl_periksa 
-              || new Date().toISOString(),
-        posisi: "scanning",
+        nama: safeNamaKlien,
+        tanggal: formData.klien_tanggal || new Date().toISOString(),
+        posisi: "scanning", // Posisi disesuaikan dengan "scanning"
+        nama_pengisi: userNama,
         timestamp: serverTimestamp(),
       };
 

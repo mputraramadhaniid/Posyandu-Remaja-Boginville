@@ -3,7 +3,6 @@
   <head>
     <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
 
-    <!-- Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,10 +11,8 @@
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
     <link rel="shortcut icon" href="favicon.ico" />
 
-    <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
 
-    <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css" />
   </head>
 
@@ -33,140 +30,28 @@
                   </svg>
                 </a>
               </div>
-              <!--//col-->
               <div class="search-mobile-trigger d-sm-none col">
                 <i class="search-mobile-trigger-icon fa-solid fa-magnifying-glass"></i>
               </div>
-              <!--//col-->
               <div class="app-search-box col">
                 <form class="app-search-form">
                   <input type="text" placeholder="Search..." name="search" class="form-control search-input" />
                   <button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
               </div>
-              <!--//app-search-box-->
-
               <div class="app-utilities col-auto">
-                <div class="app-utility-item app-notifications-dropdown dropdown">
-                  <!--//dropdown-toggle-->
-                  <!--<div class="dropdown-menu p-0" aria-labelledby="notifications-dropdown-toggle">
-                    <div class="dropdown-menu-header p-3">
-                      <h5 class="dropdown-menu-title mb-0">Notifications</h5>
-                    </div>
-                    <div class="dropdown-menu-content">
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <img class="profile-image" src="assets/images/profiles/profile-1.png" alt="" />
-                          </div>
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">Amy shared a file with you. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                              <div class="meta">2 hrs ago</div>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <div class="app-icon-holder">
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-receipt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z"
-                                />
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">You have a new invoice. Proin venenatis interdum est.</div>
-                              <div class="meta">1 day ago</div>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <div class="app-icon-holder icon-holder-mono">
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">Your report is ready. Proin venenatis interdum est.</div>
-                              <div class="meta">3 days ago</div>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <img class="profile-image" src="assets/images/profiles/profile-2.png" alt="" />
-                          </div>
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">James sent you a new message.</div>
-                              <div class="meta">7 days ago</div>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                    </div>
-                    <div class="dropdown-menu-footer p-2 text-center">
-                      <a href="notifications.html">View all</a>
-                    </div>
-                  </div>-->
-                </div>
-                <!--<div class="app-utility-item">
-                  <a href="settings.html" title="Settings">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        fill-rule="evenodd"
-                        d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"
-                      />
-                      <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
-                    </svg>
-                  </a>
-                </div>-->
+                <div class="app-utility-item app-notifications-dropdown dropdown"></div>
                 <div class="app-utility-item app-user-dropdown dropdown">
                   <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile" /></a>
                   <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                    <!--<li><a class="dropdown-item" href="account.html">Account</a></li>
-                    <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                    <li>
-                      <hr class="dropdown-divider" />
-                    </li>-->
                     <li><a class="dropdown-item" href="#" id="logoutBtn">Log Out</a></li>
                   </ul>
                 </div>
-                <!--//app-user-dropdown-->
               </div>
-              <!--//app-utilities-->
             </div>
-            <!--//row-->
           </div>
-          <!--//app-header-content-->
         </div>
-        <!--//container-fluid-->
       </div>
-      <!--//app-header-inner-->
       <div id="app-sidepanel" class="app-sidepanel sidepanel-hidden">
         <div id="sidepanel-drop" class="sidepanel-drop"></div>
         <div class="sidepanel-inner d-flex flex-column">
@@ -174,7 +59,6 @@
           <div class="app-branding">
             <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo" /><span class="logo-text">PORTAL</span></a>
           </div>
-          <!--//app-branding-->
           <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
             <ul class="app-menu list-unstyled accordion" id="menu-accordion">
               <li class="nav-item">
@@ -244,135 +128,6 @@
                   <span class="nav-link-text">Data Laporan</span>
                 </a>
               </li>
-              <!--
-              <li class="nav-item has-submenu">
-                <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
-                  <span class="nav-icon">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z" />
-                      <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z" />
-                    </svg>
-                  </span>
-                  <span class="nav-link-text">Pages</span>
-                  <span class="submenu-arrow">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                    </svg> </span
-                  ></a
-                >
-                <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
-                  <ul class="submenu-list list-unstyled">
-                    <li class="submenu-item"><a class="submenu-link" href="notifications.html">Notifications</a></li>
-                    <li class="submenu-item"><a class="submenu-link" href="account.html">Account</a></li>
-                    <li class="submenu-item"><a class="submenu-link" href="settings.html">Settings</a></li>
-                  </ul>
-                </div>
-              </li> -->
-              <!--
-              <li class="nav-item has-submenu">
-                <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
-                  <span class="nav-icon">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-columns-gap" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        fill-rule="evenodd"
-                        d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="nav-link-text">External</span>
-                  <span class="submenu-arrow">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                    </svg> </span
-                  > </a
-                >
-                <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
-                  <ul class="submenu-list list-unstyled">
-                    <li class="submenu-item"><a class="submenu-link" href="login.html">Login</a></li>
-                    <li class="submenu-item"><a class="submenu-link" href="signup.html">Signup</a></li>
-                    <li class="submenu-item"><a class="submenu-link" href="reset-password.html">Reset password</a></li>
-                    <li class="submenu-item"><a class="submenu-link" href="404.html">404 page</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                  <span class="nav-icon">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        fill-rule="evenodd"
-                        d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="nav-link-text">Charts</span> </a
-                >
-              </li>
-
-              <li class="nav-item">
-              
-                <a class="nav-link" href="help.html">
-                  <span class="nav-icon">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                      <path
-                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="nav-link-text">Help</span> </a
-                >
-              </li>
-             
-            </ul>
-            
-          </nav>
-          
-          <div class="app-sidepanel-footer">
-            <nav class="app-nav app-nav-footer">
-              <ul class="app-menu footer-menu list-unstyled">
-                <li class="nav-item">
-                 
-                  <a class="nav-link" href="settings.html">
-                    <span class="nav-icon">
-                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fill-rule="evenodd"
-                          d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"
-                        />
-                        <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
-                      </svg>
-                    </span>
-                    <span class="nav-link-text">Settings</span> </a
-                  >
-                </li>
-                
-                <li class="nav-item">
-                  
-                  <a class="nav-link" href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
-                    <span class="nav-icon">
-                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                        <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                      </svg>
-                    </span>
-                    <span class="nav-link-text">Download</span> </a
-                  >
-                </li>
-                
-                <li class="nav-item">
-                  
-                  <a class="nav-link" href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
-                    <span class="nav-icon">
-                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
-                        <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                      </svg>
-                    </span>
-                    <span class="nav-link-text">License</span> </a
-                  >
-                </li> -->
             </ul>
           </nav>
         </div>
@@ -390,7 +145,7 @@
               <div class="page-utilities">
                 <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                   <div class="col-auto">
-                    <form class="table-search-form row gx-1 align-items-center">
+                    <form class="table-search-form row gx-1 align-items-center" id="search-form">
                       <div class="col-auto">
                         <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Search" />
                       </div>
@@ -399,13 +154,12 @@
                       </div>
                     </form>
                   </div>
-                  <!--//col-->
                   <div class="col-auto">
-                    <select class="form-select w-auto">
-                      <option selected value="option-1">All</option>
-                      <option value="option-2">Scanning</option>
-                      <option value="option-3">Intervensi</option>
-                      <option value="option-4">Resume</option>
+                    <select class="form-select w-auto" id="filter-select">
+                      <option selected value="all">All</option>
+                      <option value="scanning">Scanning</option>
+                      <option value="intervensi">Intervensi</option>
+                      <option value="resume">Resume</option>
                     </select>
                   </div>
                   <div class="col-auto">
@@ -418,14 +172,9 @@
                     </a>
                   </div>
                 </div>
-                <!--//row-->
               </div>
-              <!--//table-utilities-->
             </div>
-            <!--//col-auto-->
           </div>
-          <!--//row-->
-
           <div class="tab-content" id="orders-table-tab-content">
             <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
               <div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -445,11 +194,8 @@
                       <tbody id="laporan-table-body"></tbody>
                     </table>
                   </div>
-                  <!--//table-responsive-->
                 </div>
-                <!--//app-card-body-->
               </div>
-              <!--//app-card-->
               <nav class="app-pagination">
                 <ul class="pagination justify-content-center">
                   <li class="page-item disabled">
@@ -463,27 +209,14 @@
                   </li>
                 </ul>
               </nav>
-              <!--//app-pagination-->
             </div>
-            <!--//tab-pane-->
-            <!--//tab-pane-->
-            <!--//tab-pane-->
           </div>
-          <!--//tab-content-->
         </div>
-        <!--//container-fluid-->
       </div>
-      <!--//app-content-->
-
-      <!--//app-footer-->
     </div>
-    <!--//app-wrapper-->
-
-    <!-- Javascript -->
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script>
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -495,7 +228,7 @@
       import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
       import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
-      // Konfigurasi Firebase
+      // Konfigurasi Firebase Anda
       const firebaseConfig = {
         apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
         authDomain: "test-online-b48ef.firebaseapp.com",
@@ -512,20 +245,23 @@
       const database = getDatabase(app);
       const auth = getAuth(app);
 
-      // Ambil referensi tabel HTML
+      // Ambil referensi elemen HTML
       const tableBody = document.getElementById("laporan-table-body");
+      const searchForm = document.getElementById("search-form");
+      const searchInput = document.getElementById("search-orders");
+      const filterSelect = document.getElementById("filter-select");
       const logoutBtn = document.getElementById("logoutBtn");
+      const downloadCsvBtn = document.getElementById("downloadCsvBtn"); // Ambil tombol download
 
       // Referensi database
       const laporanRef = ref(database, "laporan");
-      const dataResumeRef = ref(database, "DATA_RESUME");
-      const dataScanningRef = ref(database, "DATA_SCANNING");
-      const dataIntervensiRef = ref(database, "DATA_INTERVENSI");
+
+      let allLaporan = [];
 
       // Auth State Listener untuk logout
       onAuthStateChanged(auth, (user) => {
         if (!user) {
-          window.location.href = "index.html"; // Redirect ke halaman login jika tidak ada user
+          window.location.href = "index.html";
         }
       });
 
@@ -548,60 +284,93 @@
         });
       }
 
-      // Listener untuk menampilkan data laporan
-      onValue(laporanRef, (snapshot) => {
+      // Fungsi untuk merender tabel dengan data laporan yang telah difilter
+      function renderTable(laporanData) {
         tableBody.innerHTML = "";
+        if (laporanData.length > 0) {
+          laporanData.forEach((laporan) => {
+            const tanggalFormatted = laporan.timestamp && typeof laporan.timestamp === "number" ? formatTanggal(laporan.timestamp) : laporan.tanggal || "-";
 
-        if (snapshot.exists()) {
-          snapshot.forEach((childSnapshot) => {
-            const laporanData = childSnapshot.val();
-
-            if (laporanData.nama) {
-              const tanggalFormatted = laporanData.timestamp && typeof laporanData.timestamp === "number" ? formatTanggal(laporanData.timestamp) : laporanData.tanggal || "-";
-
-              // Tentukan link detail sesuai posisi
-              let linkHref = "#";
-              if (laporanData.posisi === "resume") {
-                linkHref = `resumejawaban.html?key=${laporanData.key}`;
-              } else if (laporanData.posisi === "scanning") {
-                linkHref = `scanningjawaban.html?key=${laporanData.key}`;
-              } else if (laporanData.posisi === "Intervensi") {
-                linkHref = `intervensijawaban.html?key=${laporanData.key}`;
-              }
-
-              const tableRow = `
-            <tr>
-              <td class="cell">${laporanData.nama}</td>
-              <td class="cell">${tanggalFormatted}</td>
-              <td class="cell"><span class="badge bg-success">${laporanData.posisi || "-"}</span></td>
-              <td class="cell">${laporanData.nama_pengisi || "-"}</td>
-              <td class="cell">
-                <a class="btn-sm app-btn-secondary" href="${linkHref}">
-                  Lihat Isi
-                </a>
-              </td>
-              <td class="cell">
-                <button class="btn btn-sm btn-danger delete-btn" data-key="${laporanData.key}" data-posisi="${laporanData.posisi}" data-nama="${laporanData.nama}">Hapus</button>
-              </td>
-            </tr>
-          `;
-              tableBody.innerHTML += tableRow;
+            let linkHref = "#";
+            if (laporan.posisi === "resume") {
+              linkHref = `resumejawaban.html?key=${laporan.key}`;
+            } else if (laporan.posisi === "scanning") {
+              linkHref = `scanningjawaban.html?key=${laporan.key}`;
+            } else if (laporan.posisi === "Intervensi") {
+              linkHref = `intervensijawaban.html?key=${laporan.key}`;
             }
+
+            const tableRow = `
+          <tr>
+            <td class="cell">${laporan.nama || "-"}</td>
+            <td class="cell">${tanggalFormatted}</td>
+            <td class="cell"><span class="badge bg-success">${laporan.posisi || "-"}</span></td>
+            <td class="cell">${laporan.nama_pengisi || "-"}</td>
+            <td class="cell">
+              <a class="btn-sm app-btn-secondary" href="${linkHref}">
+                Lihat Isi
+              </a>
+            </td>
+            <td class="cell">
+              <button class="btn btn-sm btn-danger delete-btn" data-key="${laporan.key}" data-posisi="${laporan.posisi}" data-nama="${laporan.nama}">Hapus</button>
+            </td>
+          </tr>
+        `;
+            tableBody.innerHTML += tableRow;
           });
 
-          // Tambahkan event listener untuk tombol hapus
           document.querySelectorAll(".delete-btn").forEach((button) => {
             button.addEventListener("click", handleDelete);
           });
         } else {
           const noDataRow = `
         <tr>
-          <td class="cell" colspan="6" style="text-align: center;">Belum ada data laporan.</td>
+          <td class="cell" colspan="6" style="text-align: center;">Tidak ada data yang ditemukan.</td>
         </tr>
       `;
           tableBody.innerHTML = noDataRow;
         }
+      }
+
+      // Listener utama untuk mengambil data laporan dari Firebase
+      onValue(laporanRef, (snapshot) => {
+        const dataFromFirebase = snapshot.val();
+        allLaporan = dataFromFirebase ? Object.values(dataFromFirebase) : [];
+        renderTable(allLaporan);
       });
+
+      // Listener untuk form pencarian
+      if (searchForm) {
+        searchForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          filterAndRender();
+        });
+      }
+
+      // Listener untuk dropdown filter
+      if (filterSelect) {
+        filterSelect.addEventListener("change", () => {
+          filterAndRender();
+        });
+      }
+
+      // Fungsi untuk memfilter data dan merender tabel
+      function filterAndRender() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedFilter = filterSelect.value;
+
+        let filteredLaporan = allLaporan;
+
+        if (selectedFilter !== "all") {
+          filteredLaporan = filteredLaporan.filter((laporan) => laporan.posisi.toLowerCase() === selectedFilter.toLowerCase());
+        }
+
+        if (searchTerm) {
+          filteredLaporan = filteredLaporan.filter((laporan) => laporan.nama && laporan.nama.toLowerCase().includes(searchTerm));
+        }
+
+        renderTable(filteredLaporan);
+      }
 
       /**
        * Fungsi untuk menghapus data laporan
@@ -616,7 +385,6 @@
           return;
         }
 
-        // Tampilkan konfirmasi menggunakan SweetAlert2
         const result = await Swal.fire({
           title: "Apakah Anda yakin?",
           text: "Data yang dihapus tidak bisa dikembalikan!",
@@ -630,11 +398,9 @@
 
         if (result.isConfirmed) {
           try {
-            // Hapus data dari laporan
             const laporanItemRef = ref(database, `laporan/${key}`);
             await remove(laporanItemRef);
 
-            // Hapus data dari lokasi spesifik (DATA_RESUME, DATA_SCANNING, dll.)
             let specificDataRef;
             if (posisi === "resume") {
               specificDataRef = ref(database, `DATA_RESUME/${nama}/${key}`);
@@ -666,40 +432,21 @@
       }
 
       // --- Logika untuk Tombol Download CSV ---
-      document.addEventListener("DOMContentLoaded", () => {
-        const downloadBtn = document.getElementById("downloadCsvBtn");
+      if (downloadCsvBtn) {
+        downloadCsvBtn.addEventListener("click", (e) => {
+          e.preventDefault();
 
-        if (downloadBtn) {
-          downloadBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            onValue(
-              laporanRef,
-              (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                  const laporanArray = Object.values(data);
-                  const csv = convertToCSV(laporanArray);
-                  downloadCSV(csv);
-                  Swal.fire({
-                    icon: "success",
-                    title: "Berhasil!",
-                    text: "Data laporan berhasil diunduh.",
-                    confirmButtonColor: "#3085d6",
-                  });
-                } else {
-                  Swal.fire({
-                    icon: "info",
-                    title: "Tidak Ada Data",
-                    text: "Tidak ada data laporan yang dapat diunduh.",
-                    confirmButtonColor: "#3085d6",
-                  });
-                }
-              },
-              { onlyOnce: true }
-            );
+          const csv = convertToCSV(allLaporan);
+          downloadCSV(csv);
+
+          Swal.fire({
+            icon: "success",
+            title: "Berhasil!",
+            text: "Data laporan berhasil diunduh.",
+            confirmButtonColor: "#3085d6",
           });
-        }
-      });
+        });
+      }
 
       function convertToCSV(objArray) {
         let str = "";

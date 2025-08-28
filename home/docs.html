@@ -134,6 +134,7 @@
               <!-- START: Consolidated Form -->
               <form class="settings-form" id="kuisForm">
                 <div id="step1" style="display: block">
+                  <h4 class="text-center mb-3">BIODATA</h4>
                   <h5 class="mt-4">A. Klien</h5>
                   <div class="row mb-3">
                     <div class="col-md-6">
@@ -4829,135 +4830,139 @@
 <script src="assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getDatabase, ref, push, set, get, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getDatabase, ref, push, set, get, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
-  // Konfigurasi Firebase Anda
-  const firebaseConfig = {
-    apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
-    authDomain: "test-online-b48ef.firebaseapp.com",
-    databaseURL: "https://test-online-b48ef-default-rtdb.firebaseio.com",
-    projectId: "test-online-b48ef",
-    storageBucket: "test-online-b48ef.appspot.com",
-    messagingSenderId: "636551088140",
-    appId: "1:636551088140:web:747fbb116635b4074a4629",
-    measurementId: "G-5Q7L6DK68G",
-  };
+  // Konfigurasi Firebase Anda
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2znNMTTg8Kv1dvpTGCsddos8Y7PmgLk4",
+    authDomain: "test-online-b48ef.firebaseapp.com",
+    databaseURL: "https://test-online-b48ef-default-rtdb.firebaseio.com",
+    projectId: "test-online-b48ef",
+    storageBucket: "test-online-b48ef.appspot.com",
+    messagingSenderId: "636551088140",
+    appId: "1:636551088140:web:747fbb116635b4074a4629",
+    measurementId: "G-5Q7L6DK68G",
+  };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const auth = getAuth(app);
 
-  let userNama = "Pengguna Tidak Dikenal";
-  const namaDisplayEl = document.getElementById("namaPenggunaSaatLogin");
-  const menuLaporan = document.getElementById("menu-laporan");
-  const kuisForm = document.getElementById("kuisForm");
+  let userNama = "Pengguna Tidak Dikenal";
+  let userId = null; // Tambahkan variabel untuk menyimpan UID pengguna
+  const namaDisplayEl = document.getElementById("namaPenggunaSaatLogin");
+  const menuLaporan = document.getElementById("menu-laporan");
+  const kuisForm = document.getElementById("kuisForm");
 
-  // 🔹 Cek status login pengguna saat ini
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const uid = user.uid;
-      try {
-        const namaSnap = await get(ref(db, `users/${uid}/nama`));
-        if (namaSnap.exists()) {
-          userNama = namaSnap.val();
-        } else {
-          userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
-        }
-        if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
-        console.log("✅ Nama pengguna:", userNama);
+  // 🔹 Cek status login pengguna saat ini
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const uid = user.uid;
+      userId = uid; // Simpan UID pengguna
+      try {
+        const namaSnap = await get(ref(db, `users/${uid}/nama`));
+        if (namaSnap.exists()) {
+          userNama = namaSnap.val();
+        } else {
+          userNama = user.displayName || user.email || "Pengguna Tidak Dikenal";
+        }
+        if (namaDisplayEl) namaDisplayEl.textContent = `${userNama}!`;
+        console.log("✅ Nama pengguna:", userNama);
 
-        const roleSnap = await get(ref(db, `users/${uid}/role`));
-        if (roleSnap.exists() && roleSnap.val() === "admin") {
-          if (menuLaporan) menuLaporan.style.display = "block";
-        } else {
-          if (menuLaporan) menuLaporan.style.display = "none";
-        }
-      } catch (err) {
-        console.error("❌ Gagal mengambil data user:", err);
-        if (namaDisplayEl) namaDisplayEl.textContent = "Pengguna Tidak Dikenal!";
-        if (menuLaporan) menuLaporan.style.display = "none";
-      }
+        const roleSnap = await get(ref(db, `users/${uid}/role`));
+        if (roleSnap.exists() && roleSnap.val() === "admin") {
+          if (menuLaporan) menuLaporan.style.display = "block";
+        } else {
+          if (menuLaporan) menuLaporan.style.display = "none";
+        }
+      } catch (err) {
+        console.error("❌ Gagal mengambil data user:", err);
+        if (namaDisplayEl) namaDisplayEl.textContent = "Pengguna Tidak Dikenal!";
+        if (menuLaporan) menuLaporan.style.display = "none";
+      }
 
-    } else {
-      userNama = "Pengguna Tidak Dikenal";
-      console.log("🚪 Tidak ada pengguna yang login, redirect ke login...");
-      window.location.href = "../index.html";
-    }
-  });
+    } else {
+      userNama = "Pengguna Tidak Dikenal";
+      userId = null;
+      console.log("🚪 Tidak ada pengguna yang login, redirect ke login...");
+      window.location.href = "../index.html";
+    }
+  });
 
-  // 🔹 Handle form submission
-  if (kuisForm) {
-    kuisForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+  // 🔹 Handle form submission
+  if (kuisForm) {
+    kuisForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-      const formData = {};
-      const inputs = kuisForm.querySelectorAll("input, select, textarea");
+      const formData = {};
+      const inputs = kuisForm.querySelectorAll("input, select, textarea");
 
-      inputs.forEach((input) => {
-        const key = input.name || input.id;
-        if (input.type === "radio") {
-          if (input.checked) formData[key] = input.value;
-        } else if (input.type === "checkbox") {
-          if (input.checked) formData[key] = true;
-        } else {
-          formData[key] = input.value;
-        }
-      });
+      inputs.forEach((input) => {
+        const key = input.name || input.id;
+        if (input.type === "radio") {
+          if (input.checked) formData[key] = input.value;
+        } else if (input.type === "checkbox") {
+          if (input.checked) formData[key] = true;
+        } else {
+          formData[key] = input.value;
+        }
+      });
 
-      // Validasi minimal: pastikan nama klien terisi.
-      const namaKlien = formData.klien_nama || "Tanpa Nama";
-      if (!namaKlien || namaKlien.trim() === "") {
-        Swal.fire({
-          icon: 'error',
-          title: 'Gagal!',
-          text: 'Nama klien harus diisi.',
-          confirmButtonText: 'OK'
-        });
-        return;
-      }
-      
-      const safeNamaKlien = namaKlien.replace(/[.#$[\]]/g, "");
+      // Validasi minimal: pastikan nama klien terisi.
+      const namaKlien = formData.klien_nama || "Tanpa Nama";
+      if (!namaKlien || namaKlien.trim() === "") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal!',
+          text: 'Nama klien harus diisi.',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+      
+      const safeNamaKlien = namaKlien.replace(/[.#$[\]]/g, "");
 
-      const newRef = push(ref(db, "DATA_SCANNING"));
-      const kunciKey = newRef.key;
+      const newRef = push(ref(db, "DATA_SCANNING"));
+      const kunciKey = newRef.key;
 
-      const dataLaporan = {
-        key: kunciKey,
-        nama: safeNamaKlien,
-        tanggal: formData.klien_tanggal || new Date().toISOString(),
-        posisi: "scanning", // Posisi disesuaikan dengan "scanning"
-        nama_pengisi: userNama,
-        timestamp: serverTimestamp(),
-      };
+      const dataLaporan = {
+        key: kunciKey,
+        nama: safeNamaKlien,
+        tanggal: formData.klien_tanggal || new Date().toISOString(),
+        posisi: "scanning",
+        nama_pengisi: userNama,
+        user_id: userId, // ✅ Menambahkan ID pengguna
+        timestamp: serverTimestamp(),
+      };
 
-      Promise.all([
-        set(newRef, { ...formData, nama_pengisi: userNama, timestamp: serverTimestamp() }),
-        set(ref(db, `laporan/${kunciKey}`), dataLaporan),
-      ])
-      .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Berhasil!',
-          text: 'Data berhasil disimpan ke Firebase!',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          kuisForm.reset();
-          if (typeof showStep === "function") showStep(1);
-        });
-      })
-      .catch((error) => {
-        console.error("❌ Gagal menyimpan data:", error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Gagal!',
-          text: 'Gagal menyimpan data. Silakan coba lagi.',
-          confirmButtonText: 'OK'
-        });
-      });
-    });
-  }
+      Promise.all([
+        set(newRef, { ...formData, nama_pengisi: userNama, timestamp: serverTimestamp() }),
+        set(ref(db, `laporan/${kunciKey}`), dataLaporan),
+      ])
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil!',
+          text: 'Data berhasil disimpan ke Firebase!',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          kuisForm.reset();
+          if (typeof showStep === "function") showStep(1);
+        });
+      })
+      .catch((error) => {
+        console.error("❌ Gagal menyimpan data:", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal!',
+          text: 'Gagal menyimpan data. Silakan coba lagi.',
+          confirmButtonText: 'OK'
+        });
+      });
+    });
+  }
 </script>
 
 

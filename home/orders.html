@@ -437,6 +437,7 @@
                           <th class="cell">Nama</th>
                           <th class="cell">Tanggal Pengisian</th>
                           <th class="cell">Bagian</th>
+                          <th class="cell">Nama Pengisi</th>
                           <th class="cell">Detail</th>
                         </tr>
                       </thead>
@@ -540,6 +541,7 @@
               <td class="cell">${laporanData.nama}</td>
               <td class="cell">${tanggalFormatted}</td>
               <td class="cell"><span class="badge bg-success">${laporanData.posisi || "-"}</span></td>
+              <td class="cell">${laporanData.nama_pengisi || "-"}</td>
               <td class="cell">
                 <a class="btn-sm app-btn-secondary" href="${linkHref}">
                   Lihat Isi
@@ -553,7 +555,7 @@
         } else {
           const noDataRow = `
         <tr>
-          <td class="cell" colspan="4" style="text-align: center;">Belum ada data laporan.</td>
+          <td class="cell" colspan="5" style="text-align: center;">Belum ada data laporan.</td>
         </tr>
       `;
           tableBody.innerHTML = noDataRow;
@@ -607,7 +609,8 @@
 
       function convertToCSV(objArray) {
         let str = "";
-        const headers = ["Nama", "Tanggal Pengisian", "Posisi", "Jawaban"];
+        // Menambahkan 'Nama Pengisi' ke header CSV
+        const headers = ["Nama", "Tanggal Pengisian", "Posisi", "Nama Pengisi", "Jawaban"];
         str += headers.join(";") + "\r\n";
 
         for (let i = 0; i < objArray.length; i++) {
@@ -615,13 +618,15 @@
           const nama = item.nama ? `"${item.nama.replace(/"/g, '""')}"` : '""';
           const tanggal = item.timestamp && !isNaN(item.timestamp) ? `"${formatTanggal(item.timestamp)}"` : item.tanggal ? `"${item.tanggal}"` : '""';
           const posisi = item.posisi ? `"${item.posisi}"` : '""';
+          const namaPengisi = item.nama_pengisi ? `"${item.nama_pengisi.replace(/"/g, '""')}"` : '""'; // Tambahkan nama pengisi
           const jawaban = item.jawaban
             ? `"${Object.values(item.jawaban)
                 .map((j) => j.jawaban)
                 .join(" | ")
                 .replace(/"/g, '""')}"`
             : '""';
-          str += [nama, tanggal, posisi, jawaban].join(";") + "\r\n";
+          // Menambahkan nama pengisi ke baris CSV
+          str += [nama, tanggal, posisi, namaPengisi, jawaban].join(";") + "\r\n";
         }
         return str;
       }

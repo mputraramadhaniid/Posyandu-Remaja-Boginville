@@ -957,8 +957,9 @@
           kuisForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // Mengambil nama pengguna dari objek loggedInUser
-            const userNama = loggedInUser.displayName || loggedInUser.email || "Pengguna Tidak Dikenal";
+            // Mendapatkan UID dan nama pengguna dari objek loggedInUser
+            const userId = loggedInUser ? loggedInUser.uid : null;
+            const userNama = loggedInUser ? loggedInUser.displayName || loggedInUser.email || "Pengguna Tidak Dikenal" : "Pengguna Tidak Dikenal";
 
             const formData = {};
             const inputs = kuisForm.querySelectorAll("input, select, textarea");
@@ -992,7 +993,9 @@
               key: kunciKey,
               nama: formData.nama_klien || "Tidak ada nama",
               tanggal: formData.hari || new Date().toISOString(),
-              posisi: "Intervensi", // Diperbaiki: 'scanning' menjadi 'intervensi'
+              posisi: "Intervensi",
+              nama_pengisi: userNama,
+              user_id: userId, // ✅ Menambahkan ID pengguna
               timestamp: serverTimestamp(),
             };
 

@@ -243,7 +243,7 @@
 
       async function fetchJawabanData(key) {
         try {
-          const snapshot = await get(ref(db, `DATA/${key}`));
+          const snapshot = await get(ref(db, `DATA_RESUME/${key}`));
           if (snapshot.exists()) {
             const data = snapshot.val();
             currentData = data;
@@ -352,9 +352,10 @@
             answerText = ratingLabels3[answerValue] || "Tidak Dijawab";
           }
 
+          const questionNumber = key.split("-")[1] || "N/A"; // Fixed question number display
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${key.replace("q", "")}</td>
+            <td>${questionNumber}</td>
             <td>${question}</td>
             <td><strong>${answerText}</strong> (${answerValue || "N/A"})</td>
           `;

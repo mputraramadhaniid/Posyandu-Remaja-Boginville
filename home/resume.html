@@ -1228,7 +1228,7 @@
 
         // Mengambil nama dari input form untuk path database
         const namaKlien = formData.nama.replace(/[.#$[\]]/g, "");
-        const baseRef = ref(db, `DATA_RESUME/${namaKlien}`);
+        const baseRef = ref(db, `DATA_RESUME`);
         const newRef = push(baseRef);
         const kunciKey = newRef.key;
 

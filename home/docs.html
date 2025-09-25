@@ -5818,6 +5818,60 @@ const menuLaporan = document.getElementById("menu-laporan");
 const kuisForm = document.getElementById("kuisForm");
 const logoutBtn = document.getElementById("logoutBtn");
 
+
+// Function to save form data to localStorage
+function saveFormData() {
+    const formData = {};
+    const inputs = kuisForm.querySelectorAll("input, select, textarea");
+    inputs.forEach((input) => {
+        const key = input.name;
+        if (!key) return; // Skip inputs without a name
+
+        if (input.type === "radio") {
+            if (input.checked) {
+                formData[key] = input.value;
+            }
+        } else if (input.type === "checkbox") {
+            if (!formData[key]) {
+                formData[key] = [];
+            }
+            if (input.checked) {
+                formData[key].push(input.value || "checked");
+            }
+        } else {
+            formData[key] = input.value;
+        }
+    });
+    localStorage.setItem("kuisFormTempData", JSON.stringify(formData));
+    console.log("✔️ Data temporarily saved.");
+}
+
+// Function to load data from localStorage
+function loadFormData() {
+    const savedData = localStorage.getItem("kuisFormTempData");
+    if (savedData) {
+        const formData = JSON.parse(savedData);
+        const inputs = kuisForm.querySelectorAll("input, select, textarea");
+        inputs.forEach((input) => {
+            const key = input.name;
+            if (!key || formData[key] === undefined) return;
+
+            if (input.type === "radio") {
+                if (input.value === formData[key]) {
+                    input.checked = true;
+                }
+            } else if (input.type === "checkbox") {
+                if (Array.isArray(formData[key]) && formData[key].includes(input.value || "checked")) {
+                    input.checked = true;
+                }
+            } else {
+                input.value = formData[key];
+            }
+        });
+        console.log("🔄 Data loaded from temporary storage.");
+    }
+}
+
 // Cek status login
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -5863,92 +5917,97 @@ if (logoutBtn) {
 }
 
 // Handle form submission
+// Inside the onAuthStateChanged function, after checking for the user
+// Add this block to handle form interactions
 if (kuisForm) {
-  kuisForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+    // Load saved data when the page loads
+    loadFormData();
 
-    const formData = {};
-    const inputs = kuisForm.querySelectorAll("input, select, textarea");
+    // Save data automatically on any change in the form
+    kuisForm.addEventListener("change", saveFormData);
+    kuisForm.addEventListener("input", saveFormData); // Also listen for 'input' to catch text changes
 
-    inputs.forEach((input) => {
-      const key = input.name;
-      
-      // Mengabaikan input yang tidak memiliki atribut 'name'
-      if (!key) {
-        console.warn('Input element skipped due to missing "name" attribute:', input);
-        return;
-      }
-      
-      if (input.type === "radio") {
-        if (input.checked) {
-          // Hanya simpan nilai yang dicentang
-          formData[key] = input.value;
+    // Handle form submission
+    kuisForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = {};
+        const inputs = kuisForm.querySelectorAll("input, select, textarea");
+
+        // Collect all form data
+        inputs.forEach((input) => {
+            const key = input.name;
+            if (!key) return;
+            if (input.type === "radio") {
+                if (input.checked) {
+                    formData[key] = input.value;
+                }
+            } else if (input.type === "checkbox") {
+                if (input.checked) {
+                    if (!formData[key]) {
+                        formData[key] = [];
+                    }
+                    formData[key].push(input.value || "checked");
+                }
+            } else {
+                formData[key] = input.value;
+            }
+        });
+
+        const namaKlien = formData.klien_nama || "Tanpa Nama";
+        if (!namaKlien || namaKlien.trim() === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Nama klien harus diisi.',
+                confirmButtonText: 'OK'
+            });
+            return;
         }
-      } else if (input.type === "checkbox") {
-        if (input.checked) {
-          // Simpan nilai checkbox ke dalam array jika ada lebih dari satu
-          if (!formData[key]) {
-            formData[key] = [];
-          }
-          formData[key].push(input.value || "checked");
-        }
-      } else {
-        formData[key] = input.value;
-      }
+
+        const safeNamaKlien = namaKlien.replace(/[.#$[\]]/g, "");
+        const newRef = push(ref(db, "DATA_SCANNING"));
+        const kunciKey = newRef.key;
+
+        const dataLaporan = {
+            key: kunciKey,
+            nama: safeNamaKlien,
+            tanggal: formData.tgl_klien_masuk || new Date().toISOString(),
+            posisi: "scanning",
+            nama_pengisi: userNama,
+            user_id: userId,
+            timestamp: serverTimestamp(),
+        };
+
+        Promise.all([
+            set(newRef, { ...formData, nama_pengisi: userNama, timestamp: serverTimestamp() }),
+            set(ref(db, `laporan/${kunciKey}`), dataLaporan),
+        ])
+        .then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: 'Data berhasil disimpan ke Firebase!',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                kuisForm.reset();
+                // ⭐ Clear the temporary data from localStorage on successful submission
+                localStorage.removeItem("kuisFormTempData");
+                console.log("🗑️ Temporary data cleared.");
+                // Redirect or show the first step again
+                if (typeof showStep === "function") showStep(1);
+            });
+        })
+        .catch((error) => {
+            console.error("❌ Gagal menyimpan data:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Gagal menyimpan data. Silakan coba lagi.',
+                confirmButtonText: 'OK'
+            });
+        });
     });
-
-    const namaKlien = formData.klien_nama || "Tanpa Nama";
-    if (!namaKlien || namaKlien.trim() === "") {
-      Swal.fire({
-        icon: 'error',
-        title: 'Gagal!',
-        text: 'Nama klien harus diisi.',
-        confirmButtonText: 'OK'
-      });
-      return;
-    }
-    
-    const safeNamaKlien = namaKlien.replace(/[.#$[\]]/g, "");
-
-    const newRef = push(ref(db, "DATA_SCANNING"));
-    const kunciKey = newRef.key;
-
-    const dataLaporan = {
-      key: kunciKey,
-      nama: safeNamaKlien,
-      tanggal: formData.klien_tanggal || new Date().toISOString(),
-      posisi: "scanning",
-      nama_pengisi: userNama,
-      user_id: userId,
-      timestamp: serverTimestamp(),
-    };
-
-    Promise.all([
-      set(newRef, { ...formData, nama_pengisi: userNama, timestamp: serverTimestamp() }),
-      set(ref(db, `laporan/${kunciKey}`), dataLaporan),
-    ])
-    .then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: 'Data berhasil disimpan ke Firebase!',
-        confirmButtonText: 'OK'
-      }).then(() => {
-        kuisForm.reset();
-        // Redirect atau tampilkan langkah pertama lagi
-        if (typeof showStep === "function") showStep(1);
-      });
-    })
-    .catch((error) => {
-      console.error("❌ Gagal menyimpan data:", error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Gagal!',
-        text: 'Gagal menyimpan data. Silakan coba lagi.',
-        confirmButtonText: 'OK'
-      });
-    });
-  });
 }
 </script>
 
